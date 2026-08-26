@@ -21,6 +21,10 @@ permissions:
 jobs:
   vigilar:
     runs-on: ubuntu-latest
+    # El secreto se expone como variable del job porque el contexto `secrets`
+    # no se puede usar en el `if` de un paso, y ese paso debe saber si existe.
+    env:
+      GH_PAT: ${{ secrets.GH_PAT }}
     steps:
       - uses: actions/checkout@v4
 
@@ -40,7 +44,7 @@ jobs:
       # token ya muerto y todas las ejecuciones siguientes caerían con
       # invalid_grant sin causa aparente.
       - name: Actualizar el refresh token rotado
-        if: ${{ always() && hashFiles('.refresh-token-nuevo') != '' && secrets.GH_PAT != '' }}
+        if: ${{ always() && hashFiles('.refresh-token-nuevo') != '' && env.GH_PAT != '' }}
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
