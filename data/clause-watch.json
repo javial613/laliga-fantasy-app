@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-08-26T16:33:02.602Z",
+  "tomadaEn": "2026-08-26T19:17:22.973Z",
   "leagueId": "017842199",
   "jugadores": {
     "184": {
@@ -184,7 +184,7 @@
     },
     "3116": {
       "teamId": "37424533",
-      "clause": 61465888,
+      "clause": 61865888,
       "marketValue": 61465888,
       "name": "Bernardo Silva"
     },
@@ -201,6 +201,21 @@
       "name": "Iván Martín"
     }
   },
-  "costes": {},
-  "historial": []
+  "costes": {
+    "37424533": 200000
+  },
+  "historial": [
+    {
+      "playerId": "3116",
+      "playerName": "Bernardo Silva",
+      "teamId": "37424533",
+      "clauseAnterior": 61465888,
+      "clauseActual": 61865888,
+      "subida": 400000,
+      "coste": 200000,
+      "desde": "2026-08-26T16:33:02.602Z",
+      "hasta": "2026-08-26T19:17:22.973Z",
+      "fecha": "2026-08-26T19:17:22.973Z"
+    }
+  ]
 }
