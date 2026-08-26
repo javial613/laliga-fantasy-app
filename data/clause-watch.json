@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-08-26T13:27:25.114Z",
+  "tomadaEn": "2026-08-26T14:58:15.741Z",
   "leagueId": "017842199",
   "jugadores": {
     "184": {
@@ -139,12 +139,6 @@
       "clause": 8888662,
       "marketValue": 8888662,
       "name": "Marc Bernal"
-    },
-    "2923": {
-      "teamId": "37424533",
-      "clause": 17564606,
-      "marketValue": 14445705,
-      "name": "Raúl Moro"
     },
     "2976": {
       "teamId": "37424698",
