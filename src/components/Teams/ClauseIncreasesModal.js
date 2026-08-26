@@ -19,9 +19,15 @@ const fmtFecha = (valor) => {
  * poder auditar ese descuento: si una línea no cuadra con lo que hizo el
  * manager, el saldo estimado tampoco cuadrará.
  */
+// Etiquetas del desglose. Ojo con el tipo 1: la API no separa las cláusulas
+// pagadas de las compras a otro manager (la pantalla de Actividad las deduce
+// por heurística), así que aquí van juntas y conviene que se note.
 const TIPOS = {
-    1: 'compras', 31: 'fichajes', 32: 'cláusulas pagadas',
-    33: 'ventas', 6: 'ganancias por jornada',
+    1: 'compras a otro manager y cláusulas pagadas',
+    31: 'fichajes del mercado',
+    32: 'cláusulas pagadas',
+    33: 'ventas',
+    6: 'ganancias por jornada',
 };
 
 /** Desglose de los movimientos de un manager a partir del registro del cálculo. */
