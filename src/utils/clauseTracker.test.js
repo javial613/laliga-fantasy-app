@@ -131,12 +131,15 @@ describe('construirInstantanea', () => {
     test('indexa por jugador con equipo, cláusula y nombre', () => {
         const snap = construirInstantanea(new Map([
             ['T1', [{ playerMaster: { id: 7, marketValue: M(5), nickname: 'Siete' }, buyoutClause: M(10) }]],
-            ['T2', [{ playerMaster: { id: 8 }, buyoutClause: 0 }]],
+            ['T2', [{ playerMaster: { id: 8, marketValue: M(3) }, buyoutClause: 0 }]],
             ['T3', [{ buyoutClause: M(9) }]],
         ]));
 
         expect(snap['7']).toEqual({ teamId: 'T1', clause: M(10), marketValue: M(5), name: 'Siete' });
-        expect(Object.keys(snap)).toHaveLength(1);
+        // El jugador sin cláusula también entra: hace falta para el valor del
+        // equipo, y la detección ya lo ignora por tener cláusula 0.
+        expect(snap['8'].clause).toBe(0);
+        expect(Object.keys(snap)).toHaveLength(2);
     });
 });
 

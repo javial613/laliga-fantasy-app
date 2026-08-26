@@ -149,10 +149,15 @@ export const construirInstantanea = (porEquipo) => {
     for (const [teamId, players] of porEquipo) {
         for (const pt of players || []) {
             const id = pt?.playerMaster?.id;
-            if (id == null || !(pt.buyoutClause > 0)) continue;
+            if (id == null) continue;
+            // Se guardan TODOS los jugadores, tengan cláusula o no. Para
+            // detectar subidas basta con los que la tienen (la comparación ya
+            // descarta los que valen 0), pero dejar fuera al resto convertía la
+            // instantánea en una foto parcial de la plantilla, inservible para
+            // calcular el valor de un equipo.
             snap[String(id)] = {
                 teamId: String(teamId),
-                clause: pt.buyoutClause,
+                clause: pt.buyoutClause || 0,
                 marketValue: pt.playerMaster.marketValue ?? null,
                 // El nombre viaja en la instantánea porque la comparación se
                 // hace contra datos de otra sesión: si no, solo habría ids.
