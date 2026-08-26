@@ -54,7 +54,7 @@ const Teams = () => {
     return entry?.id || entry?.team?.id;
   }, [standings, user]);
 
-  const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, nombrePorEquipo, refreshBudgets } = useTeamBudgets(leagueId, standings, userTeamId);
+  const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets } = useTeamBudgets(leagueId, standings, userTeamId);
   const [clausulasDe, setClausulasDe] = useState(null); // teamId cuyas subidas se están viendo
 
   const subidasDe = (teamId) =>
@@ -334,11 +334,28 @@ const Teams = () => {
                   {(() => {
                     const total = Object.values(costeClausulas || {}).reduce((a, b) => a + b, 0);
                     const hist = historialClausulas || [];
-                    if (!total && hist.length === 0) return null;
+                    if (!total && hist.length === 0) {
+                      return origenClausulas === 'vigilante' ? (
+                        <div className="mb-1">
+                          Vigilancia de cláusulas activa · sin subidas detectadas todavía
+                          {remoto?.tomadaEn && ` · última comprobación ${new Date(remoto.tomadaEn)
+                            .toLocaleString('es-ES', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}`}
+                        </div>
+                      ) : null;
+                    }
                     return (
                       <div className="mb-2">
                         <div className="mb-1">
-                          Subidas de cláusula detectadas: {formatCurrency(total)} en la liga
+                          Subidas de cláusula detectadas: {formatCurrency(total)} en la liga ·{' '}
+                          {origenClausulas === 'vigilante' ? (
+                            <>vigilancia continua (última comprobación:{' '}
+                            {remoto?.tomadaEn
+                              ? new Date(remoto.tomadaEn).toLocaleString('es-ES', {
+                                  day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+                              : '—'})</>
+                          ) : (
+                            <>solo mientras la app está abierta (el vigilante no responde)</>
+                          )}
                         </div>
                         {hist.length > 0 && (
                           <table className="min-w-full text-left">

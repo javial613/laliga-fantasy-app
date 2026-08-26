@@ -4,6 +4,7 @@ import { fantasyAPI } from '../services/api';
 import { extractArray, readTeamMoney } from '../utils/helpers';
 import { buildBudgetLedger, getManagerBalance } from '../utils/teamBudgets';
 import useClauseCosts from './useClauseCosts';
+import useRemoteClauseData from './useRemoteClauseData';
 import { getAjusteManual } from '../utils/ajustesSaldo';
 
 // La pantalla de Actividad se queda en 5 páginas porque solo enseña lo
@@ -74,8 +75,16 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
 
     // Las subidas de cláusula no salen en el histórico: se detectan aparte
     // comparando instantáneas y se restan del saldo calculado.
-    const { costePorEquipo: costeClausulas, ultimaDeteccion, historial: historialClausulas } =
+    const { costePorEquipo: costeLocal, historial: historialLocal } =
         useClauseCosts(leagueId, standings, nombrePorEquipo);
+
+    // El vigilante remoto corre cada hora y no se pierde ni las madrugadas ni
+    // los días sin usar la app, así que cuando hay datos suyos mandan sobre el
+    // rastreo local. El local queda como respaldo si el remoto no responde.
+    const remoto = useRemoteClauseData(leagueId);
+    const costeClausulas = remoto ? remoto.costes : costeLocal;
+    const historialClausulas = remoto ? remoto.historial : historialLocal;
+    const origenClausulas = remoto ? 'vigilante' : 'local';
     const { data, isLoading } = useQuery({
         queryKey: ['leagueActivityFull', leagueId],
         queryFn: () => fetchFullActivity(leagueId),
@@ -168,7 +177,7 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
         await refetchOwnMoney();
     }, [queryClient, leagueId, refetchOwnMoney]);
 
-    return { balanceFor, ledger, selfCheck, ownManagerId, costeClausulas, ultimaDeteccion, historialClausulas, nombrePorEquipo, refreshBudgets, isLoading };
+    return { balanceFor, ledger, selfCheck, ownManagerId, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, isLoading };
 };
 
 export default useTeamBudgets;
