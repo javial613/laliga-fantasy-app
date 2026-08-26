@@ -100,13 +100,18 @@ const renovarSesion = async (refreshToken) => {
                 await fs.writeFile('.refresh-token-nuevo', datos.refresh_token, 'utf8');
                 console.log('El refresh token ha rotado: se actualizará el secreto.');
             }
-            if (!datos.access_token) {
-                fatal('la renovación no devolvió access_token. Claves recibidas: '
+            // El B2C de LaLiga no emite access_token para el scope `openid`:
+            // el bearer que acepta la API es el id_token. La propia app hace
+            // esta misma sustitución (ver authService: access_token || id_token).
+            const bearer = datos.access_token || datos.id_token;
+            if (!bearer) {
+                fatal('la renovación no devolvió ningún token utilizable. Claves recibidas: '
                     + Object.keys(datos).join(', '));
             }
-            console.log(`Sesión renovada (client_id ${clientId.slice(0, 8)}…).`);
+            console.log(`Sesión renovada (client_id ${clientId.slice(0, 8)}…`
+                + `, bearer: ${datos.access_token ? 'access_token' : 'id_token'}).`);
             avisarSiCaduca(datos.refresh_token_expires_in);
-            return { accessToken: datos.access_token, refreshToken: datos.refresh_token || refreshToken };
+            return { accessToken: bearer, refreshToken: datos.refresh_token || refreshToken };
         }
         ultimoError = `HTTP ${res.status}: ${cuerpo.slice(0, 300)}`;
     }
