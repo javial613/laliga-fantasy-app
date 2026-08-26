@@ -55,7 +55,11 @@ jobs:
       - name: Guardar los cambios
         run: |
           rm -f .refresh-token-nuevo
-          if git diff --quiet -- data/; then
+          # `git status --porcelain`, no `git diff`: en la primera ejecución el
+          # fichero de estado aún no está en el repositorio, y git diff ignora
+          # lo que no tiene seguimiento. Con diff, la primera instantánea se
+          # perdía y el vigilante no llegaba a arrancar nunca.
+          if [ -z "$(git status --porcelain -- data/)" ]; then
             echo "Sin cambios que guardar."
             exit 0
           fi
