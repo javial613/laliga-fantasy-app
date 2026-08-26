@@ -85,7 +85,7 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
     const costeClausulas = remoto ? remoto.costes : costeLocal;
     const historialClausulas = remoto ? remoto.historial : historialLocal;
     const origenClausulas = remoto ? 'vigilante' : 'local';
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, dataUpdatedAt } = useQuery({
         queryKey: ['leagueActivityFull', leagueId],
         queryFn: () => fetchFullActivity(leagueId),
         enabled: !!leagueId,
@@ -177,7 +177,10 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
         await refetchOwnMoney();
     }, [queryClient, leagueId, refetchOwnMoney]);
 
-    return { balanceFor, ledger, selfCheck, ownManagerId, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, isLoading };
+    // Momento en que se leyó el histórico. Se expone para poder mostrarlo: si
+    // valor y saldo vinieran de fotos distintas, el patrimonio sería una mezcla
+    // sin sentido, y con la marca a la vista eso deja de ser invisible.
+    return { balanceFor, ledger, selfCheck, ownManagerId, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe: dataUpdatedAt || null, isLoading };
 };
 
 export default useTeamBudgets;

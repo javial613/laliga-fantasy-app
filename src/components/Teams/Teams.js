@@ -54,7 +54,7 @@ const Teams = () => {
     return entry?.id || entry?.team?.id;
   }, [standings, user]);
 
-  const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets } = useTeamBudgets(leagueId, standings, userTeamId);
+  const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe } = useTeamBudgets(leagueId, standings, userTeamId);
   const [clausulasDe, setClausulasDe] = useState(null); // teamId cuyas subidas se están viendo
 
   const subidasDe = (teamId) =>
@@ -310,6 +310,14 @@ const Teams = () => {
                     ) : (
                       <> · la API no ha devuelto tu saldo real, no se puede contrastar</>
                     )}
+                  </div>
+                  <div className="mb-1">
+                    Saldos y valores calculados con los datos de{' '}
+                    <strong>{datosDe
+                      ? new Date(datosDe).toLocaleString('es-ES', {
+                          day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+                      : '—'}</strong>
+                    {' '}(ambos de la misma consulta, no de fechas distintas)
                   </div>
                   <div className="mb-1">
                     {ledger.totalItems} eventos leídos · {ledger.applied} aplicados ·
