@@ -34,16 +34,19 @@ jobs:
           LALIGA_LEAGUE_ID: ${{ secrets.LALIGA_LEAGUE_ID }}
         run: node scripts/clause-watcher.mjs
 
-      # El proveedor rota el refresh token en cada uso. Sin esto, la siguiente
-      # ejecución fallaría con invalid_grant y el vigilante moriría en silencio.
+      # El proveedor rota el refresh token en cada uso, e invalida el anterior
+      # en cuanto responde. Por eso este paso corre SIEMPRE, incluso si el de
+      # arriba ha fallado: si no, un fallo posterior dejaría el secreto con un
+      # token ya muerto y todas las ejecuciones siguientes caerían con
+      # invalid_grant sin causa aparente.
       - name: Actualizar el refresh token rotado
-        if: ${{ hashFiles('.refresh-token-nuevo') != '' && env.GH_PAT != '' }}
+        if: ${{ always() && hashFiles('.refresh-token-nuevo') != '' && secrets.GH_PAT != '' }}
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           gh secret set LALIGA_REFRESH_TOKEN --body "$(cat .refresh-token-nuevo)"
           rm -f .refresh-token-nuevo
+          echo "Secreto LALIGA_REFRESH_TOKEN actualizado."
 
       - name: Guardar los cambios
         run: |

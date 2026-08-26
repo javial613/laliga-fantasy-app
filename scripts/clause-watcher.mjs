@@ -75,17 +75,35 @@ const renovarSesion = async (refreshToken) => {
     for (const clientId of CLIENT_IDS) {
         const res = await fetch(TOKEN_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                // Mismas cabeceras y parámetros que usa la app: sin `scope` el
+                // proveedor responde 200 pero sin access_token, y sin
+                // User-Agent algunos endpoints se comportan distinto.
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            },
             body: new URLSearchParams({
                 grant_type: 'refresh_token',
                 refresh_token: refreshToken,
                 client_id: clientId,
+                scope: 'openid offline_access',
             }),
         });
         const cuerpo = await res.text();
         if (res.ok) {
             const datos = JSON.parse(cuerpo);
-            if (!datos.access_token) fatal('la renovación no devolvió access_token');
+            // El refresh rotado se guarda ANTES de validar nada más: el
+            // proveedor ya ha invalidado el anterior, así que abortar aquí sin
+            // guardarlo dejaría el secreto obsoleto y la próxima ejecución
+            // fallaría con invalid_grant sin motivo aparente.
+            if (datos.refresh_token && datos.refresh_token !== refreshToken) {
+                await fs.writeFile('.refresh-token-nuevo', datos.refresh_token, 'utf8');
+                console.log('El refresh token ha rotado: se actualizará el secreto.');
+            }
+            if (!datos.access_token) {
+                fatal('la renovación no devolvió access_token. Claves recibidas: '
+                    + Object.keys(datos).join(', '));
+            }
             console.log(`Sesión renovada (client_id ${clientId.slice(0, 8)}…).`);
             avisarSiCaduca(datos.refresh_token_expires_in);
             return { accessToken: datos.access_token, refreshToken: datos.refresh_token || refreshToken };
@@ -122,12 +140,6 @@ const main = async () => {
     if (!leagueId) fatal('falta LALIGA_LEAGUE_ID');
 
     const { accessToken, refreshToken } = await renovarSesion(refreshInicial);
-
-    // El refresh rotado se deja aparte para que el workflow pueda actualizarlo.
-    if (refreshToken !== refreshInicial) {
-        await fs.writeFile('.refresh-token-nuevo', refreshToken, 'utf8');
-        console.log('El refresh token ha rotado: hay que actualizar el secreto.');
-    }
 
     const clasificacion = comoLista(await pedir(accessToken, `/leagues/${leagueId}/standing?x-lang=es`));
     const equipos = clasificacion
