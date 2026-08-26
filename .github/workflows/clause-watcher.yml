@@ -1,0 +1,59 @@
+# Vigila las subidas de cláusula de la liga.
+#
+# Corre cada hora porque la detección solo es válida entre dos instantáneas del
+# mismo día: la revalorización automática de LaLiga, de madrugada, hace
+# inatribuible cualquier intervalo que la cruce. Con una foto por hora, la única
+# pareja descartada es la que rodea esa franja y todas las demás sirven.
+name: Vigilar cláusulas
+
+on:
+  schedule:
+    - cron: '7 * * * *'   # cada hora, en el minuto 7 (evita el pico en punto)
+  workflow_dispatch:       # también se puede lanzar a mano
+
+concurrency:
+  group: clause-watcher
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  vigilar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Tomar instantánea de cláusulas
+        env:
+          LALIGA_REFRESH_TOKEN: ${{ secrets.LALIGA_REFRESH_TOKEN }}
+          LALIGA_LEAGUE_ID: ${{ secrets.LALIGA_LEAGUE_ID }}
+        run: node scripts/clause-watcher.mjs
+
+      # El proveedor rota el refresh token en cada uso. Sin esto, la siguiente
+      # ejecución fallaría con invalid_grant y el vigilante moriría en silencio.
+      - name: Actualizar el refresh token rotado
+        if: ${{ hashFiles('.refresh-token-nuevo') != '' && env.GH_PAT != '' }}
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh secret set LALIGA_REFRESH_TOKEN --body "$(cat .refresh-token-nuevo)"
+          rm -f .refresh-token-nuevo
+
+      - name: Guardar los cambios
+        run: |
+          rm -f .refresh-token-nuevo
+          if git diff --quiet -- data/; then
+            echo "Sin cambios que guardar."
+            exit 0
+          fi
+          git config user.name  "clause-watcher"
+          git config user.email "clause-watcher@users.noreply.github.com"
+          git add data/
+          git commit -m "Instantánea de cláusulas $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
