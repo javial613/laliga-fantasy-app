@@ -75,7 +75,7 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
 
     // Las subidas de cláusula no salen en el histórico: se detectan aparte
     // comparando instantáneas y se restan del saldo calculado.
-    const { costePorEquipo: costeLocal, historial: historialLocal } =
+    const { costePorEquipo: costeLocal, historial: historialLocal, valorPorEquipo } =
         useClauseCosts(leagueId, standings, nombrePorEquipo);
 
     // El vigilante remoto corre cada hora y no se pierde ni las madrugadas ni
@@ -180,7 +180,7 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
     // Momento en que se leyó el histórico. Se expone para poder mostrarlo: si
     // valor y saldo vinieran de fotos distintas, el patrimonio sería una mezcla
     // sin sentido, y con la marca a la vista eso deja de ser invisible.
-    return { balanceFor, ledger, selfCheck, ownManagerId, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe: dataUpdatedAt || null, managerIdByTeamId, isLoading };
+    return { balanceFor, ledger, selfCheck, ownManagerId, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe: dataUpdatedAt || null, managerIdByTeamId, valorPorEquipo, isLoading };
 };
 
 export default useTeamBudgets;

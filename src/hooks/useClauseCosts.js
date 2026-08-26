@@ -58,7 +58,7 @@ const escribir = (key, valor) => {
  */
 const useClauseCosts = (leagueId, standings, nombrePorEquipo) => {
     const queryClient = useQueryClient();
-    const [estado, setEstado] = useState({ costePorEquipo: {}, ultimaDeteccion: [], historial: [], listo: false });
+    const [estado, setEstado] = useState({ costePorEquipo: {}, ultimaDeteccion: [], historial: [], valorPorEquipo: {}, listo: false });
 
     useEffect(() => {
         if (!leagueId || !standings) return;
@@ -76,6 +76,17 @@ const useClauseCosts = (leagueId, standings, nombrePorEquipo) => {
 
                 const instantanea = construirInstantanea(jugadoresPorEquipo);
                 if (Object.keys(instantanea).length === 0) return;
+
+                // Valor real de cada plantilla, sumando el valor de mercado de
+                // sus jugadores. El campo `teamValue` de la clasificación mide
+                // otra cosa: comparado con la app oficial se desvía decenas de
+                // millones, y además en direcciones distintas según el equipo,
+                // así que no sirve para el patrimonio.
+                const valorPorEquipo = {};
+                for (const [teamId, jugadores] of jugadoresPorEquipo) {
+                    valorPorEquipo[String(teamId)] = (jugadores || []).reduce(
+                        (suma, pt) => suma + (pt?.playerMaster?.marketValue || 0), 0);
+                }
 
                 const ahora = new Date().toISOString();
                 const guardado = leer(KEY_SNAP(leagueId), null);
@@ -104,7 +115,7 @@ const useClauseCosts = (leagueId, standings, nombrePorEquipo) => {
 
                 escribir(KEY_SNAP(leagueId), { tomadaEn: ahora, jugadores: instantanea });
                 if (!cancelado) {
-                    setEstado({ costePorEquipo: costes, ultimaDeteccion: subidas, historial, listo: true });
+                    setEstado({ costePorEquipo: costes, ultimaDeteccion: subidas, historial, valorPorEquipo, listo: true });
                 }
             } catch {
                 if (!cancelado) setEstado((e) => ({ ...e, listo: true }));

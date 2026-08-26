@@ -54,7 +54,7 @@ const Teams = () => {
     return entry?.id || entry?.team?.id;
   }, [standings, user]);
 
-  const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe, managerIdByTeamId } = useTeamBudgets(leagueId, standings, userTeamId);
+  const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe, managerIdByTeamId, valorPorEquipo } = useTeamBudgets(leagueId, standings, userTeamId);
   const [clausulasDe, setClausulasDe] = useState(null); // teamId cuyas subidas se están viendo
 
   const subidasDe = (teamId) =>
@@ -95,7 +95,13 @@ const Teams = () => {
     return item.points || item.team?.points || 0;
   };
 
+  // El valor se calcula sumando los jugadores de la plantilla, que es lo que
+  // coincide con la app oficial. `teamValue` de la clasificación se desvía
+  // decenas de millones y además en distinto sentido según el equipo, así que
+  // solo se usa como respaldo mientras las plantillas se están cargando.
   const getTeamValue = (item) => {
+    const calculado = valorPorEquipo?.[String(getTeamId(item))];
+    if (calculado > 0) return calculado;
     return item.teamValue || item.team?.teamValue || 0;
   };
 
