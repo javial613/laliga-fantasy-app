@@ -54,7 +54,7 @@ const Teams = () => {
     return entry?.id || entry?.team?.id;
   }, [standings, user]);
 
-  const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe } = useTeamBudgets(leagueId, standings, userTeamId);
+  const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe, managerIdByTeamId } = useTeamBudgets(leagueId, standings, userTeamId);
   const [clausulasDe, setClausulasDe] = useState(null); // teamId cuyas subidas se están viendo
 
   const subidasDe = (teamId) =>
@@ -653,6 +653,9 @@ const Teams = () => {
         ajusteManual={clausulasDe != null
           ? getAjusteManual(nombrePorEquipo?.get?.(String(clausulasDe)))
           : null}
+        ledger={ledger}
+        managerId={clausulasDe != null ? managerIdByTeamId?.get?.(String(clausulasDe)) : null}
+        presupuestoInicial={ledger?.startingBudget ?? 100000000}
       />
     </div>
   );
