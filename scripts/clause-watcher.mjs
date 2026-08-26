@@ -62,8 +62,15 @@ const avisarSiCaduca = (segundosRestantes) => {
     );
 };
 
-const fatal = (mensaje) => {
+const fatal = (mensaje, error) => {
     console.error(`ERROR: ${mensaje}`);
+    // `TypeError: fetch failed` esconde el motivo en `cause`; sin desenvolverlo
+    // no hay forma de saber si fue DNS, TLS, timeout o rechazo del servidor.
+    let causa = error?.cause;
+    while (causa) {
+        console.error(`  causa: ${causa.code || ''} ${causa.message || causa}`.trim());
+        causa = causa.cause;
+    }
     process.exit(1);
 };
 
@@ -119,12 +126,32 @@ const renovarSesion = async (refreshToken) => {
         + 'Si pone invalid_grant, el refresh token ya no vale: hay que sacarlo de nuevo de la app.');
 };
 
-const pedir = async (accessToken, ruta) => {
-    const res = await fetch(`${API}${ruta}`, {
-        headers: { Authorization: `Bearer ${accessToken}`, 'x-lang': 'es', Accept: 'application/json' },
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status} en ${ruta}`);
-    return res.json();
+const CABECERAS = (accessToken) => ({
+    Authorization: `Bearer ${accessToken}`,
+    'x-lang': 'es',
+    Accept: 'application/json',
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+});
+
+const pedir = async (accessToken, ruta, intentos = 3) => {
+    let ultimo;
+    for (let i = 1; i <= intentos; i += 1) {
+        try {
+            const res = await fetch(`${API}${ruta}`, {
+                headers: CABECERAS(accessToken),
+                signal: AbortSignal.timeout(20000),
+            });
+            if (!res.ok) throw new Error(`HTTP ${res.status} en ${ruta}: ${(await res.text()).slice(0, 200)}`);
+            return res.json();
+        } catch (err) {
+            ultimo = err;
+            if (i < intentos) {
+                console.warn(`  reintento ${i}/${intentos - 1} en ${ruta}: ${err.cause?.code || err.message}`);
+                await new Promise((r) => setTimeout(r, 1500 * i));
+            }
+        }
+    }
+    throw ultimo;
 };
 
 const comoLista = (x) => (Array.isArray(x) ? x : (Array.isArray(x?.data) ? x.data
@@ -205,4 +232,4 @@ const main = async () => {
     }
 };
 
-main().catch((err) => fatal(err.stack || err.message));
+main().catch((err) => fatal(err.stack || err.message, err));
