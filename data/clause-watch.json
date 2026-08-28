@@ -1,216 +1,234 @@
 {
-  "tomadaEn": "2026-08-28T05:20:41.760Z",
+  "tomadaEn": "2026-08-28T18:36:38.068Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
       "teamId": "37424533",
-      "clause": 29993540,
-      "marketValue": 29993540,
+      "clause": 29983669,
+      "marketValue": 29983669,
       "name": "Bartra"
     },
     "652": {
       "teamId": "37424698",
       "clause": 14350000,
-      "marketValue": 14271996,
+      "marketValue": 14266475,
       "name": "Rubén García"
     },
     "927": {
       "teamId": "37424533",
       "clause": 8600000,
-      "marketValue": 7983905,
+      "marketValue": 7982175,
       "name": "Berenguer"
     },
     "1191": {
       "teamId": "37424533",
       "clause": 8490137,
-      "marketValue": 7605860,
+      "marketValue": 7605142,
       "name": "Hugo Duro"
     },
     "1215": {
       "teamId": "37425380",
       "clause": 12688396,
-      "marketValue": 5754763,
+      "marketValue": 5753747,
       "name": "Turrientes"
     },
     "1337": {
       "teamId": "37424533",
       "clause": 24924178,
-      "marketValue": 22524381,
+      "marketValue": 22515722,
       "name": "Tenaglia"
     },
     "1930": {
       "teamId": "37424533",
-      "clause": 11921304,
-      "marketValue": 11921304,
+      "clause": 11917596,
+      "marketValue": 11917596,
       "name": "El Hilali"
     },
     "2414": {
       "teamId": "37425380",
       "clause": 17000000,
-      "marketValue": 15740102,
+      "marketValue": 15734438,
       "name": "Bellerín"
     },
     "2418": {
       "teamId": "37424698",
       "clause": 8120000,
-      "marketValue": 6308485,
+      "marketValue": 6306010,
       "name": "Marc Roca"
     },
     "2429": {
       "teamId": "37424533",
       "clause": 14200000,
-      "marketValue": 13718326,
+      "marketValue": 13710368,
       "name": "Fran García"
     },
     "2448": {
       "teamId": "37425380",
       "clause": 16186031,
-      "marketValue": 6461416,
+      "marketValue": 6460572,
       "name": "Oskarsson"
     },
     "2458": {
       "teamId": "37425380",
       "clause": 12915241,
-      "marketValue": 4959273,
+      "marketValue": 4957797,
       "name": "Diakhaby"
     },
     "2464": {
       "teamId": "37424533",
       "clause": 13886280,
-      "marketValue": 9147985,
+      "marketValue": 9143499,
       "name": "Pepelu"
     },
     "2511": {
       "teamId": "37424698",
-      "clause": 4320535,
-      "marketValue": 4320535,
+      "clause": 4318243,
+      "marketValue": 4318243,
       "name": "R. Terrats"
     },
     "2531": {
       "teamId": "37425380",
       "clause": 28300000,
-      "marketValue": 19846830,
+      "marketValue": 19845061,
       "name": "Trent"
     },
     "2541": {
       "teamId": "37424698",
-      "clause": 39282252,
-      "marketValue": 39282252,
+      "clause": 39264326,
+      "marketValue": 39264326,
       "name": "Á. Valles"
     },
     "2548": {
       "teamId": "37424533",
-      "clause": 6867665,
-      "marketValue": 6867665,
+      "clause": 6863355,
+      "marketValue": 6863355,
       "name": "Riquelme"
     },
     "2600": {
       "teamId": "37424698",
-      "clause": 5485127,
-      "marketValue": 5485127,
+      "clause": 5480735,
+      "marketValue": 5480735,
       "name": "Mariano"
     },
     "2607": {
       "teamId": "37425380",
       "clause": 15250450,
-      "marketValue": 8075185,
+      "marketValue": 8074163,
       "name": "Ilaix Moriba"
     },
     "2614": {
       "teamId": "37424533",
       "clause": 44028903,
-      "marketValue": 36500553,
+      "marketValue": 36495091,
       "name": "C. Romero"
     },
     "2700": {
       "teamId": "37425380",
       "clause": 29954800,
-      "marketValue": 20295618,
+      "marketValue": 20294457,
       "name": "Etta Eyong"
     },
     "2703": {
       "teamId": "37424698",
-      "clause": 1274878,
-      "marketValue": 1274878,
+      "clause": 1274229,
+      "marketValue": 1274229,
       "name": "Redondo"
     },
     "2714": {
       "teamId": "37424698",
       "clause": 4650000,
-      "marketValue": 3958225,
+      "marketValue": 3957635,
       "name": "Javi Rueda"
     },
     "2784": {
       "teamId": "37424698",
-      "clause": 9338073,
-      "marketValue": 9338073,
+      "clause": 9334511,
+      "marketValue": 9334511,
       "name": "Marc Bernal"
     },
     "2976": {
       "teamId": "37424698",
-      "clause": 6208536,
-      "marketValue": 6208536,
+      "clause": 6206193,
+      "marketValue": 6206193,
       "name": "A. Alti"
     },
     "3008": {
       "teamId": "37425380",
       "clause": 5200000,
-      "marketValue": 2321944,
+      "marketValue": 2320843,
       "name": "Manu Hernando"
     },
     "3028": {
       "teamId": "37424533",
       "clause": 18076216,
-      "marketValue": 14354488,
+      "marketValue": 14350780,
       "name": "G. Puerta"
     },
     "3103": {
       "teamId": "37424698",
       "clause": 145100001,
-      "marketValue": 130648539,
+      "marketValue": 130611357,
       "name": "Mbappé"
     },
     "3106": {
       "teamId": "37425380",
       "clause": 75265340,
-      "marketValue": 70516936,
+      "marketValue": 70506578,
       "name": "Cucurella"
     },
     "3108": {
       "teamId": "37424698",
-      "clause": 51845580,
-      "marketValue": 51845580,
+      "clause": 51822107,
+      "marketValue": 51822107,
       "name": "Aubameyang"
     },
     "3109": {
       "teamId": "37424533",
       "clause": 42793200,
-      "marketValue": 40061204,
+      "marketValue": 40052109,
       "name": "Leo Román"
     },
     "3115": {
       "teamId": "37424698",
       "clause": 1001005,
-      "marketValue": 808252,
+      "marketValue": 808146,
       "name": "Diaby"
     },
     "3116": {
       "teamId": "37424533",
       "clause": 61865888,
-      "marketValue": 59704121,
+      "marketValue": 59693929,
       "name": "Bernardo Silva"
+    },
+    "3145": {
+      "teamId": "37425380",
+      "clause": 16500000,
+      "marketValue": 12615104,
+      "name": "Robbie Ure"
     },
     "3149": {
       "teamId": "37424698",
-      "clause": 3516086,
-      "marketValue": 3516086,
+      "clause": 3515015,
+      "marketValue": 3515015,
       "name": "Bright Ede"
+    },
+    "3164": {
+      "teamId": "37425380",
+      "clause": 5000000,
+      "marketValue": 3224036,
+      "name": "Bardeli"
     },
     "3205": {
       "teamId": "37424533",
       "clause": 7981270,
-      "marketValue": 7867524,
+      "marketValue": 7865728,
       "name": "Iván Martín"
+    },
+    "3225": {
+      "teamId": "37425380",
+      "clause": 3857304,
+      "marketValue": 3857304,
+      "name": "Abdelkarim"
     }
   },
   "costes": {
