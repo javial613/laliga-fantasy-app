@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-08-29T09:59:50.702Z",
+  "tomadaEn": "2026-08-29T15:01:53.684Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -20,12 +20,6 @@
       "marketValue": 7879937,
       "name": "Berenguer"
     },
-    "1191": {
-      "teamId": "37424533",
-      "clause": 8490137,
-      "marketValue": 7477092,
-      "name": "Hugo Duro"
-    },
     "1215": {
       "teamId": "37425380",
       "clause": 12688396,
@@ -43,6 +37,12 @@
       "clause": 12024108,
       "marketValue": 12024108,
       "name": "El Hilali"
+    },
+    "2315": {
+      "teamId": "37424533",
+      "clause": 7227932,
+      "marketValue": 7227932,
+      "name": "Paredes"
     },
     "2414": {
       "teamId": "37425380",
@@ -76,7 +76,7 @@
     },
     "2464": {
       "teamId": "37424533",
-      "clause": 13886280,
+      "clause": 15386280,
       "marketValue": 9437611,
       "name": "Pepelu"
     },
@@ -140,6 +140,18 @@
       "marketValue": 9720236,
       "name": "Marc Bernal"
     },
+    "2843": {
+      "teamId": "37425380",
+      "clause": 3200000,
+      "marketValue": 1707674,
+      "name": "Xavi Espart"
+    },
+    "2939": {
+      "teamId": "37424698",
+      "clause": 8880000,
+      "marketValue": 8697694,
+      "name": "G. Villar"
+    },
     "2976": {
       "teamId": "37424698",
       "clause": 6333453,
@@ -152,15 +164,9 @@
       "marketValue": 2401850,
       "name": "Manu Hernando"
     },
-    "3028": {
-      "teamId": "37424533",
-      "clause": 18076216,
-      "marketValue": 14328159,
-      "name": "G. Puerta"
-    },
     "3103": {
-      "teamId": "37424698",
-      "clause": 145100001,
+      "teamId": "37424533",
+      "clause": 148100001,
       "marketValue": 131314970,
       "name": "Mbappé"
     },
@@ -178,7 +184,7 @@
     },
     "3109": {
       "teamId": "37424533",
-      "clause": 42793200,
+      "clause": 44393200,
       "marketValue": 39809089,
       "name": "Leo Román"
     },
@@ -220,10 +226,34 @@
     }
   },
   "costes": {
-    "37424533": 1050000,
+    "37424533": 2600000,
     "37424698": 709
   },
   "historial": [
+    {
+      "playerId": "2464",
+      "playerName": "Pepelu",
+      "teamId": "37424533",
+      "clauseAnterior": 13886280,
+      "clauseActual": 15386280,
+      "subida": 1500000,
+      "coste": 750000,
+      "desde": "2026-08-29T09:59:50.702Z",
+      "hasta": "2026-08-29T15:01:53.684Z",
+      "fecha": "2026-08-29T15:01:53.684Z"
+    },
+    {
+      "playerId": "3109",
+      "playerName": "Leo Román",
+      "teamId": "37424533",
+      "clauseAnterior": 42793200,
+      "clauseActual": 44393200,
+      "subida": 1600000,
+      "coste": 800000,
+      "desde": "2026-08-29T09:59:50.702Z",
+      "hasta": "2026-08-29T15:01:53.684Z",
+      "fecha": "2026-08-29T15:01:53.684Z"
+    },
     {
       "playerId": "1337",
       "playerName": "Tenaglia",
