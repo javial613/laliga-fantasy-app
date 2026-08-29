@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-08-29T02:07:54.011Z",
+  "tomadaEn": "2026-08-29T09:59:50.702Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -34,7 +34,7 @@
     },
     "1337": {
       "teamId": "37424533",
-      "clause": 24924178,
+      "clause": 26624178,
       "marketValue": 23094088,
       "name": "Tenaglia"
     },
@@ -116,12 +116,6 @@
       "marketValue": 7917958,
       "name": "Ilaix Moriba"
     },
-    "2614": {
-      "teamId": "37424533",
-      "clause": 44028903,
-      "marketValue": 35868972,
-      "name": "C. Romero"
-    },
     "2700": {
       "teamId": "37425380",
       "clause": 29954800,
@@ -194,12 +188,6 @@
       "marketValue": 792072,
       "name": "Diaby"
     },
-    "3116": {
-      "teamId": "37424533",
-      "clause": 61865888,
-      "marketValue": 59031412,
-      "name": "Bernardo Silva"
-    },
     "3145": {
       "teamId": "37425380",
       "clause": 16500000,
@@ -232,10 +220,22 @@
     }
   },
   "costes": {
-    "37424533": 200000,
+    "37424533": 1050000,
     "37424698": 709
   },
   "historial": [
+    {
+      "playerId": "1337",
+      "playerName": "Tenaglia",
+      "teamId": "37424533",
+      "clauseAnterior": 24924178,
+      "clauseActual": 26624178,
+      "subida": 1700000,
+      "coste": 850000,
+      "desde": "2026-08-29T02:07:54.011Z",
+      "hasta": "2026-08-29T09:59:50.702Z",
+      "fecha": "2026-08-29T09:59:50.702Z"
+    },
     {
       "playerId": "2784",
       "playerName": "Marc Bernal",
