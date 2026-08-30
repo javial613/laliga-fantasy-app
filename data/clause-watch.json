@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-08-30T12:49:20.183Z",
+  "tomadaEn": "2026-08-30T17:24:54.301Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -116,12 +116,6 @@
       "marketValue": 6534915,
       "name": "Mariano"
     },
-    "2607": {
-      "teamId": "37425380",
-      "clause": 15250450,
-      "marketValue": 7718350,
-      "name": "Ilaix Moriba"
-    },
     "2700": {
       "teamId": "37425380",
       "clause": 29954800,
@@ -190,7 +184,7 @@
     },
     "3108": {
       "teamId": "37424698",
-      "clause": 55783086,
+      "clause": 65683086,
       "marketValue": 55783086,
       "name": "Aubameyang"
     },
@@ -239,9 +233,21 @@
   },
   "costes": {
     "37424533": 2600000,
-    "37424698": 709
+    "37424698": 4950709
   },
   "historial": [
+    {
+      "playerId": "3108",
+      "playerName": "Aubameyang",
+      "teamId": "37424698",
+      "clauseAnterior": 55783086,
+      "clauseActual": 65683086,
+      "subida": 9900000,
+      "coste": 4950000,
+      "desde": "2026-08-30T12:49:20.183Z",
+      "hasta": "2026-08-30T17:24:54.301Z",
+      "fecha": "2026-08-30T17:24:54.301Z"
+    },
     {
       "playerId": "2464",
       "playerName": "Pepelu",
