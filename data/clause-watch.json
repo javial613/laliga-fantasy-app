@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-08-30T06:36:02.885Z",
+  "tomadaEn": "2026-08-30T12:49:20.183Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -7,6 +7,12 @@
       "clause": 30514948,
       "marketValue": 30514948,
       "name": "Bartra"
+    },
+    "644": {
+      "teamId": "37425380",
+      "clause": 35924225,
+      "marketValue": 35821697,
+      "name": "Sergio Herrera"
     },
     "652": {
       "teamId": "37424698",
@@ -145,6 +151,12 @@
       "clause": 3200000,
       "marketValue": 2144321,
       "name": "Xavi Espart"
+    },
+    "2912": {
+      "teamId": "37424533",
+      "clause": 1000000,
+      "marketValue": 433259,
+      "name": "Julio Díaz"
     },
     "2939": {
       "teamId": "37424698",
