@@ -10,14 +10,17 @@ const DIA_MS = 24 * 60 * 60 * 1000;
 const AVISAR_DESDE = 2 * DIA_MS;
 
 /**
- * Aviso de protección de cláusula a punto de caducar.
+ * Aviso de jugadores propios expuestos a que les paguen la cláusula.
  *
- * Mientras la protección está activa nadie puede pagar la cláusula de un
- * jugador. Al vencer queda expuesto, así que interesa saberlo con antelación
- * para poder blindarlo o subir la cláusula antes, no después.
+ * Distingue dos situaciones, porque exigen reacciones distintas:
+ *  - **Sin protección**: cualquiera puede llevárselo ahora mismo pagando su
+ *    cláusula. Es lo más urgente y va primero.
+ *  - **A punto de acabar** (menos de dos días): todavía hay margen para
+ *    blindarlo o subir la cláusula. Avisar con una semana sería ruido
+ *    permanente; avisar al vencer llegaría tarde.
  *
- * Solo aparece con menos de dos días por delante: avisar con una semana sería
- * ruido permanente, y avisar al vencer llegaría tarde.
+ * En ambos casos se muestra el importe, que es lo que decide si conviene
+ * actuar o asumir el riesgo.
  */
 const ClauseProtectionBanner = ({ teamId }) => {
     const leagueId = useAuthStore((state) => state.leagueId);
@@ -29,32 +32,38 @@ const ClauseProtectionBanner = ({ teamId }) => {
         staleTime: 5 * 60 * 1000,
     });
 
-    const enRiesgo = useMemo(() => {
+    const { abiertos, porVencer } = useMemo(() => {
         const payload = teamData?.data || teamData;
         const jugadores = payload?.players || [];
         const ahora = Date.now();
+        const abierta = [];
+        const proxima = [];
 
-        return jugadores
-            .map((pt) => {
-                const fin = pt?.buyoutClauseLockedEndTime;
-                if (!fin) return null;
-                const restante = new Date(fin).getTime() - ahora;
-                // Ya vencida: no es un aviso, es un hecho consumado, y saldría
-                // permanentemente para media plantilla.
-                if (restante <= 0 || restante > AVISAR_DESDE) return null;
-                return {
-                    id: pt.playerMaster?.id,
-                    nombre: pt.playerMaster?.nickname || pt.playerMaster?.name || 'Jugador',
-                    clausula: pt.buyoutClause,
-                    restanteMs: restante,
-                    texto: getClauseTimeRemaining(fin),
-                };
-            })
-            .filter(Boolean)
-            .sort((a, b) => a.restanteMs - b.restanteMs);
+        for (const pt of jugadores) {
+            const clausula = pt?.buyoutClause;
+            if (!(clausula > 0)) continue;
+            const fin = pt?.buyoutClauseLockedEndTime;
+            const restante = fin ? new Date(fin).getTime() - ahora : 0;
+            const ficha = {
+                id: pt.playerMaster?.id,
+                nombre: pt.playerMaster?.nickname || pt.playerMaster?.name || 'Jugador',
+                clausula,
+                restanteMs: restante,
+                texto: fin ? getClauseTimeRemaining(fin) : null,
+            };
+            // Sin fecha de bloqueo o ya vencida: la cláusula está abierta.
+            if (restante <= 0) abierta.push(ficha);
+            else if (restante <= AVISAR_DESDE) proxima.push(ficha);
+        }
+
+        // Los abiertos, por cláusula más barata: son los que se pueden llevar
+        // más fácilmente. Los que van a vencer, por urgencia.
+        abierta.sort((a, b) => a.clausula - b.clausula);
+        proxima.sort((a, b) => a.restanteMs - b.restanteMs);
+        return { abiertos: abierta, porVencer: proxima };
     }, [teamData]);
 
-    if (enRiesgo.length === 0) return null;
+    if (abiertos.length === 0 && porVencer.length === 0) return null;
 
     return (
         <div
@@ -64,27 +73,51 @@ const ClauseProtectionBanner = ({ teamId }) => {
             <div className="flex items-center gap-2 mb-2">
                 <ShieldAlert className="w-5 h-5 text-orange-600 dark:text-orange-400" aria-hidden="true" />
                 <h3 className="font-semibold text-orange-800 dark:text-orange-300">
-                    Protección de cláusula a punto de acabar ({enRiesgo.length})
+                    Cláusulas expuestas ({abiertos.length + porVencer.length})
                 </h3>
             </div>
-            <ul className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
-                {enRiesgo.map((j) => (
-                    <li key={j.id || j.nombre} className="flex items-center gap-1.5">
-                        <span className="text-gray-900 dark:text-gray-100 font-medium">{j.nombre}</span>
-                        <span className={j.restanteMs <= DIA_MS
-                            ? 'text-red-600 dark:text-red-400 font-semibold'
-                            : 'text-orange-700 dark:text-orange-400'}
-                        >
-                            · queda {j.texto}
-                        </span>
-                        {j.clausula > 0 && (
-                            <span className="text-gray-500 dark:text-gray-400">
-                                ({formatCurrency(j.clausula)})
-                            </span>
-                        )}
-                    </li>
-                ))}
-            </ul>
+
+            {abiertos.length > 0 && (
+                <div className="mb-2">
+                    <p className="text-xs uppercase tracking-wider text-red-700 dark:text-red-400 font-semibold mb-1">
+                        Te los pueden clausular ahora mismo ({abiertos.length})
+                    </p>
+                    <ul className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
+                        {abiertos.map((j) => (
+                            <li key={j.id || j.nombre} className="flex items-center gap-1.5">
+                                <span className="text-gray-900 dark:text-gray-100 font-medium">{j.nombre}</span>
+                                <span className="text-red-600 dark:text-red-400 font-semibold">
+                                    · {formatCurrency(j.clausula)}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+
+            {porVencer.length > 0 && (
+                <div>
+                    <p className="text-xs uppercase tracking-wider text-orange-700 dark:text-orange-400 font-semibold mb-1">
+                        Protección a punto de acabar ({porVencer.length})
+                    </p>
+                    <ul className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
+                        {porVencer.map((j) => (
+                            <li key={j.id || j.nombre} className="flex items-center gap-1.5">
+                                <span className="text-gray-900 dark:text-gray-100 font-medium">{j.nombre}</span>
+                                <span className={j.restanteMs <= DIA_MS
+                                    ? 'text-red-600 dark:text-red-400 font-semibold'
+                                    : 'text-orange-700 dark:text-orange-400'}
+                                >
+                                    · queda {j.texto}
+                                </span>
+                                <span className="text-gray-500 dark:text-gray-400">
+                                    ({formatCurrency(j.clausula)})
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 };

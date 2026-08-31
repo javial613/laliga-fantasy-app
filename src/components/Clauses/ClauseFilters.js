@@ -286,6 +286,7 @@ const ClauseFilters = ({
             >
               <option value="clauseValue">💰 Valor de Cláusula</option>
               <option value="marketValue">📈 Valor de Mercado</option>
+              <option value="trend">🚀 Revalorización 24h</option>
               <option value="points">🏆 Puntos</option>
               <option value="timeRemaining">⏰ Tiempo Restante</option>
             </select>

@@ -189,7 +189,7 @@ const Dashboard = () => {
             {/* Aviso de alineación en riesgo (solo aparece si hay riesgos) */}
             <LineupRiskBanner teamId={myTeam?.teamId || myTeam?.team?.id} />
 
-            {/* Jugadores cuya protección de cláusula vence en menos de 2 días */}
+            {/* Jugadores propios expuestos: cláusula ya abierta o a punto de abrirse */}
             <ClauseProtectionBanner teamId={myTeam?.teamId || myTeam?.team?.id} />
 
             {/* Puntos en vivo (solo durante partidos de la jornada) */}

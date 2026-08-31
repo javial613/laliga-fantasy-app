@@ -35,7 +35,9 @@ const Clauses = () => {
 
   // Filter / sort state
   const [showAll, setShowAll] = useState(false);
-  const [sortBy, setSortBy] = useState('clauseValue');
+  // Por defecto, los que más se están revalorizando: es lo que decide si
+  // clausular a alguien renta, más que el importe de la cláusula en sí.
+  const [sortBy, setSortBy] = useState('trend');
   const [sortOrder, setSortOrder] = useState('desc');
   const [ownerFilter, setOwnerFilter] = useState('all');
   const [positionFilter, setPositionFilter] = useState('all');
@@ -114,6 +116,18 @@ const Clauses = () => {
           case 'points':
             comparison = b.points - a.points;
             break;
+          case 'trend': {
+            // Revalorización de las últimas 24h. Sin dato de tendencia el
+            // jugador se va al final en vez de colarse como si fuera 0: no es
+            // lo mismo "no sube" que "no lo sabemos".
+            const aTrend = typeof a.trendData?.diferencia1 === 'number' ? a.trendData.diferencia1 : null;
+            const bTrend = typeof b.trendData?.diferencia1 === 'number' ? b.trendData.diferencia1 : null;
+            if (aTrend === null && bTrend === null) comparison = 0;
+            else if (aTrend === null) comparison = 1;
+            else if (bTrend === null) comparison = -1;
+            else comparison = bTrend - aTrend;
+            break;
+          }
           case 'timeRemaining': {
             const aTime = a.isLocked
               ? (typeof a.hoursRemaining === 'number' ? a.hoursRemaining : Number.MAX_SAFE_INTEGER)
