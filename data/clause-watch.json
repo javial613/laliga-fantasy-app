@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-08-31T05:26:11.879Z",
+  "tomadaEn": "2026-08-31T13:37:26.840Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -34,7 +34,7 @@
     },
     "1337": {
       "teamId": "37424533",
-      "clause": 26624178,
+      "clause": 27424178,
       "marketValue": 24915010,
       "name": "Tenaglia"
     },
@@ -184,7 +184,7 @@
     },
     "3108": {
       "teamId": "37424698",
-      "clause": 65683086,
+      "clause": 67083086,
       "marketValue": 57801289,
       "name": "Aubameyang"
     },
@@ -232,10 +232,34 @@
     }
   },
   "costes": {
-    "37424533": 2600000,
-    "37424698": 4950709
+    "37424533": 3000000,
+    "37424698": 5650709
   },
   "historial": [
+    {
+      "playerId": "1337",
+      "playerName": "Tenaglia",
+      "teamId": "37424533",
+      "clauseAnterior": 26624178,
+      "clauseActual": 27424178,
+      "subida": 800000,
+      "coste": 400000,
+      "desde": "2026-08-31T05:26:11.879Z",
+      "hasta": "2026-08-31T13:37:26.840Z",
+      "fecha": "2026-08-31T13:37:26.840Z"
+    },
+    {
+      "playerId": "3108",
+      "playerName": "Aubameyang",
+      "teamId": "37424698",
+      "clauseAnterior": 65683086,
+      "clauseActual": 67083086,
+      "subida": 1400000,
+      "coste": 700000,
+      "desde": "2026-08-31T05:26:11.879Z",
+      "hasta": "2026-08-31T13:37:26.840Z",
+      "fecha": "2026-08-31T13:37:26.840Z"
+    },
     {
       "playerId": "3108",
       "playerName": "Aubameyang",
