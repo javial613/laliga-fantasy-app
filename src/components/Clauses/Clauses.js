@@ -34,7 +34,10 @@ const Clauses = () => {
   const queryClient = useQueryClient();
 
   // Filter / sort state
-  const [showAll, setShowAll] = useState(false);
+  // Se muestran también las bloqueadas: saber a quién NO puedes clausular
+  // todavía, y cuándo podrás, es tan útil como ver las disponibles. El filtro
+  // sigue ahí para quedarse solo con las que se pueden pagar ya.
+  const [showAll, setShowAll] = useState(true);
   // Por defecto, los que más se están revalorizando: es lo que decide si
   // clausular a alguien renta, más que el importe de la cláusula en sí.
   const [sortBy, setSortBy] = useState('trend');

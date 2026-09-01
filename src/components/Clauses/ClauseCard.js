@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from '../../utils/motionShim';
-import { Shield, Clock, TrendingUp, User, Euro } from 'lucide-react';
+import { Shield, Clock, TrendingUp, User, Euro, Lock } from 'lucide-react';
 import { formatNumber, formatNumberWithDots, getPositionColor } from '../../utils/helpers';
 import ProgressiveImage from '../Common/ProgressiveImage';
 import { getClauseStatusColor, getClauseTimeRemaining } from '../../utils/clauseUtils';
@@ -166,6 +166,21 @@ const ClauseCard = React.memo(
                     })}
                   </div>
                 )}
+              </div>
+            </div>
+          )}
+
+          {/* Bloqueado: en el sitio del botón, para que no quede duda de que
+              ahora mismo no se puede pagar. Sin esto, una tarjeta sin botón
+              parece un fallo de la app. */}
+          {clause.isLocked && (
+            <div className="pt-3 border-t border-gray-200 dark:border-dark-border">
+              <div
+                className="w-full flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-medium py-3 px-4 rounded-lg cursor-not-allowed"
+                aria-label={`No se puede clausular a ${clause.playerName}: está protegido`}
+              >
+                <Lock className="w-4 h-4" aria-hidden="true" />
+                Protegido · no se puede clausular
               </div>
             </div>
           )}
