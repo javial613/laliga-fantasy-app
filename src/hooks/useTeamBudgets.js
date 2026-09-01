@@ -5,6 +5,7 @@ import { extractArray, readTeamMoney } from '../utils/helpers';
 import { buildBudgetLedger, getManagerBalance } from '../utils/teamBudgets';
 import useClauseCosts from './useClauseCosts';
 import useRemoteClauseData from './useRemoteClauseData';
+import useDismissedClauseDetections, { claveDeteccion } from './useDismissedClauseDetections';
 import { getAjusteManual } from '../utils/ajustesSaldo';
 
 // La pantalla de Actividad se queda en 5 páginas porque solo enseña lo
@@ -82,9 +83,39 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
     // los días sin usar la app, así que cuando hay datos suyos mandan sobre el
     // rastreo local. El local queda como respaldo si el remoto no responde.
     const remoto = useRemoteClauseData(leagueId);
-    const costeClausulas = remoto ? remoto.costes : costeLocal;
-    const historialClausulas = remoto ? remoto.historial : historialLocal;
     const origenClausulas = remoto ? 'vigilante' : 'local';
+
+    // Detecciones que el usuario ha descartado a mano: no cuentan ni en el
+    // listado ni en el saldo. La detección es heurística y se equivoca de
+    // cuando en cuando; esto lo corrige sin desactivarla del todo.
+    const { descartadas, descartar, restaurarTodas } = useDismissedClauseDetections(leagueId);
+
+    const { costeClausulas, historialClausulas, nDescartadas } = useMemo(() => {
+        const historialBruto = remoto ? remoto.historial : historialLocal;
+        const costesBrutos = remoto ? remoto.costes : costeLocal;
+        const claves = descartadas || {};
+        if (Object.keys(claves).length === 0) {
+            return { costeClausulas: costesBrutos, historialClausulas: historialBruto, nDescartadas: 0 };
+        }
+
+        const historial = [];
+        const restar = {};
+        let n = 0;
+        for (const d of historialBruto || []) {
+            if (claves[claveDeteccion(d)]) {
+                n += 1;
+                restar[String(d.teamId)] = (restar[String(d.teamId)] || 0) + (d.coste || 0);
+            } else {
+                historial.push(d);
+            }
+        }
+
+        const costes = { ...(costesBrutos || {}) };
+        for (const [teamId, importe] of Object.entries(restar)) {
+            costes[teamId] = Math.max(0, (costes[teamId] || 0) - importe);
+        }
+        return { costeClausulas: costes, historialClausulas: historial, nDescartadas: n };
+    }, [remoto, historialLocal, costeLocal, descartadas]);
     const { data, isLoading, dataUpdatedAt } = useQuery({
         queryKey: ['leagueActivityFull', leagueId],
         queryFn: () => fetchFullActivity(leagueId),
@@ -180,7 +211,8 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
     // Momento en que se leyó el histórico. Se expone para poder mostrarlo: si
     // valor y saldo vinieran de fotos distintas, el patrimonio sería una mezcla
     // sin sentido, y con la marca a la vista eso deja de ser invisible.
-    return { balanceFor, ledger, selfCheck, ownManagerId, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe: dataUpdatedAt || null, managerIdByTeamId, valorPorEquipo, isLoading };
+    return { balanceFor, ledger, selfCheck, ownManagerId, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe: dataUpdatedAt || null, managerIdByTeamId, valorPorEquipo,
+        descartarDeteccion: descartar, restaurarDetecciones: restaurarTodas, nDescartadas, isLoading };
 };
 
 export default useTeamBudgets;

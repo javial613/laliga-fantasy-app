@@ -54,7 +54,8 @@ const Teams = () => {
     return entry?.id || entry?.team?.id;
   }, [standings, user]);
 
-  const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe, managerIdByTeamId, valorPorEquipo } = useTeamBudgets(leagueId, standings, userTeamId);
+  const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe, managerIdByTeamId, valorPorEquipo,
+    descartarDeteccion, restaurarDetecciones, nDescartadas } = useTeamBudgets(leagueId, standings, userTeamId);
   const [clausulasDe, setClausulasDe] = useState(null); // teamId cuyas subidas se están viendo
 
   const subidasDe = (teamId) =>
@@ -662,6 +663,9 @@ const Teams = () => {
         ledger={ledger}
         managerId={clausulasDe != null ? managerIdByTeamId?.get?.(String(clausulasDe)) : null}
         presupuestoInicial={ledger?.startingBudget ?? 100000000}
+        onDescartar={descartarDeteccion}
+        onRestaurar={restaurarDetecciones}
+        nDescartadas={nDescartadas}
       />
     </div>
   );

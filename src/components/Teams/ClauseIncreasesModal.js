@@ -51,6 +51,7 @@ const desglosarMovimientos = (ledger, managerId) => {
 const ClauseIncreasesModal = ({
     isOpen, onClose, managerName, subidas = [], ajusteManual = null,
     ledger = null, managerId = null, presupuestoInicial = 100000000,
+    onDescartar = null, nDescartadas = 0, onRestaurar = null,
 }) => {
     const total = subidas.reduce((s, x) => s + (x.coste || 0), 0);
     const desglose = desglosarMovimientos(ledger, managerId);
@@ -100,7 +101,8 @@ const ClauseIncreasesModal = ({
                                         <th className="py-2 pr-3">Jugador</th>
                                         <th className="py-2 pr-3">Cláusula</th>
                                         <th className="py-2 pr-3">Subió</th>
-                                        <th className="py-2">Pagó</th>
+                                        <th className="py-2 pr-3">Pagó</th>
+                                        <th className="py-2 w-8" />
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -118,8 +120,21 @@ const ClauseIncreasesModal = ({
                                             <td className="py-2 pr-3 whitespace-nowrap text-gray-600 dark:text-gray-300">
                                                 {formatCurrency(s.subida)}
                                             </td>
-                                            <td className="py-2 whitespace-nowrap font-semibold text-red-600 dark:text-red-400">
+                                            <td className="py-2 pr-3 whitespace-nowrap font-semibold text-red-600 dark:text-red-400">
                                                 −{formatCurrency(s.coste)}
+                                            </td>
+                                            <td className="py-2">
+                                                {onDescartar && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => onDescartar(s)}
+                                                        title="Descartar: dejará de contar en el saldo"
+                                                        aria-label={`Descartar la subida de ${s.playerName || s.playerId}`}
+                                                        className="p-1 rounded text-gray-400 hover:text-red-600 dark:hover:text-red-400"
+                                                    >
+                                                        <X className="w-4 h-4" />
+                                                    </button>
+                                                )}
                                             </td>
                                         </tr>
                                     ))}
@@ -127,6 +142,22 @@ const ClauseIncreasesModal = ({
                             </table>
                         </div>
                     </>
+                )}
+
+                {nDescartadas > 0 && (
+                    <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                        {nDescartadas} detección{nDescartadas !== 1 ? 'es' : ''} descartada
+                        {nDescartadas !== 1 ? 's' : ''} — no cuenta{nDescartadas !== 1 ? 'n' : ''} en el saldo.
+                        {onRestaurar && (
+                            <button
+                                type="button"
+                                onClick={onRestaurar}
+                                className="ml-1 underline hover:text-gray-700 dark:hover:text-gray-200"
+                            >
+                                Restaurar todas
+                            </button>
+                        )}
+                    </p>
                 )}
 
                 {/* De dónde sale su saldo. Sin esto, la cifra de patrimonio de un
