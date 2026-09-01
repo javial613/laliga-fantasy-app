@@ -162,6 +162,10 @@ export const construirInstantanea = (porEquipo) => {
                 // El nombre viaja en la instantánea porque la comparación se
                 // hace contra datos de otra sesión: si no, solo habría ids.
                 name: pt.playerMaster.nickname || pt.playerMaster.name || null,
+                // Momento en que deja de estar protegido. Blindar empuja esta
+                // fecha 24 horas; al pasar, cualquiera puede pagar su cláusula.
+                // Se guarda para poder avisar por adelantado.
+                lockedUntil: pt.buyoutClauseLockedEndTime || null,
             };
         }
     }

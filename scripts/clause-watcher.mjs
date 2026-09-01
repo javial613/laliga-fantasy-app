@@ -25,6 +25,7 @@ import {
     detectarSubidasDeClausula,
     acumularCostes,
 } from '../src/utils/clauseTracker.js';
+import { seleccionarAvisos, limpiarAvisados } from '../src/utils/clauseAlerts.js';
 
 // LaLiga emite el token con un client_id u otro según cómo se inició sesión
 // (email/contraseña y OAuth usan identificadores distintos), y el refresco falla
@@ -41,6 +42,73 @@ const TOKEN_URL = 'https://login.laliga.es/laligadspprob2c.onmicrosoft.com/oauth
 const API = 'https://fantasy-api.llt-services.com/api/v1/competition/1';
 const SALIDA = process.env.SALIDA || 'data/clause-watch.json';
 const MAX_HISTORIAL = 500;
+const VENTANA_AVISO_HORAS = Number(process.env.VENTANA_AVISO_HORAS || 24);
+const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
+const TG_CHAT = process.env.TELEGRAM_CHAT_ID || '';
+const MI_EQUIPO = process.env.LALIGA_TEAM_ID || null;
+
+const dinero = (n) => `${Math.round(n).toLocaleString('es-ES')}€`;
+
+const cuando = (ms) => new Date(ms).toLocaleString('es-ES', {
+    timeZone: 'Europe/Madrid', weekday: 'short', day: '2-digit',
+    month: '2-digit', hour: '2-digit', minute: '2-digit',
+});
+
+/** Envía un mensaje a Telegram. Un fallo aquí no debe tumbar la instantánea:
+ *  perder un aviso es molesto, perder el seguimiento de cláusulas es peor. */
+const enviarTelegram = async (texto) => {
+    if (!TG_TOKEN || !TG_CHAT) {
+        console.log('Telegram no configurado: aviso omitido.');
+        return false;
+    }
+    try {
+        const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: TG_CHAT, text: texto,
+                parse_mode: 'HTML', disable_web_page_preview: true,
+            }),
+        });
+        if (!res.ok) {
+            console.warn(`Telegram devolvió ${res.status}: ${(await res.text()).slice(0, 200)}`);
+            return false;
+        }
+        return true;
+    } catch (err) {
+        console.warn(`No se pudo enviar el aviso: ${err.message}`);
+        return false;
+    }
+};
+
+const componerMensaje = (avisos) => {
+    const rivales = avisos.filter((a) => !a.esMio);
+    const mios = avisos.filter((a) => a.esMio);
+    const lineas = [];
+
+    if (rivales.length) {
+        lineas.push('🎯 <b>Cláusulas que se abren pronto</b>', '');
+        for (const a of rivales) {
+            lineas.push(`<b>${a.nombre}</b>${a.manager ? ` · ${a.manager}` : ''}`);
+            lineas.push(`   se abre el ${cuando(a.apertura)}`);
+            lineas.push(`   cláusula ${dinero(a.clausula)} · valor ${dinero(a.valor)}`);
+            if (a.gangaPor > 0) lineas.push(`   💰 ganga: vale ${dinero(a.gangaPor)} más de lo que cuesta`);
+            lineas.push('');
+        }
+    }
+
+    if (mios.length) {
+        lineas.push('⚠️ <b>Tuyos que quedan expuestos</b>', '');
+        for (const a of mios) {
+            lineas.push(`<b>${a.nombre}</b> · se abre el ${cuando(a.apertura)}`);
+            lineas.push(`   cláusula ${dinero(a.clausula)} · valor ${dinero(a.valor)}`);
+            if (a.gangaPor > 0) lineas.push('   💰 te lo pueden llevar barato');
+            lineas.push('');
+        }
+    }
+
+    return lineas.join('\n').trim();
+};
 
 // Los tokens duran unos 90 días. Sin este aviso, el vigilante moriría un día
 // sin previo aviso y los saldos se quedarían congelados sin que nadie lo note
@@ -211,6 +279,33 @@ const main = async () => {
         subidas = r.subidas.map((s) => ({ ...s, fecha: ahora }));
     }
 
+    // Avisos de apertura de cláusula. Se anuncian por adelantado porque el
+    // cron de GitHub es irregular (huecos de 2-8h observados) y detectar la
+    // apertura a posteriori llegaría tarde para poder pagarla.
+    const nombrePorEquipo = new Map(
+        clasificacion
+            .map((e) => [String(e.id || e.team?.id),
+                e.team?.manager?.managerName || e.manager || e.name])
+            .filter(([id, nombre]) => id && nombre),
+    );
+    let avisados = limpiarAvisados(estado?.avisados, Date.now());
+    const avisos = seleccionarAvisos(instantanea, {
+        ahora: Date.now(),
+        ventanaHoras: VENTANA_AVISO_HORAS,
+        yaAvisados: avisados,
+        miEquipo: MI_EQUIPO,
+        nombrePorEquipo,
+    });
+    if (avisos.length) {
+        const enviado = await enviarTelegram(componerMensaje(avisos));
+        // Solo se marcan como avisados si el mensaje salió: si Telegram falla,
+        // se reintenta en la siguiente ejecución en vez de perderse.
+        if (enviado) {
+            for (const a of avisos) avisados[a.clave] = a.apertura;
+        }
+        console.log(`${avisos.length} aviso(s) de apertura · ${enviado ? 'enviados' : 'NO enviados'}`);
+    }
+
     const costes = subidas.length ? acumularCostes(estado?.costes, subidas) : (estado?.costes || {});
     const historial = [...subidas, ...(estado?.historial || [])].slice(0, MAX_HISTORIAL);
 
@@ -221,6 +316,7 @@ const main = async () => {
         jugadores: instantanea,
         costes,
         historial,
+        avisados,
     }, null, 2)}\n`, 'utf8');
 
     const estadoIntervalo = primeraVez
