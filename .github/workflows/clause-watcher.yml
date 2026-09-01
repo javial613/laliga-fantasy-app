@@ -36,11 +36,6 @@ jobs:
         env:
           LALIGA_REFRESH_TOKEN: ${{ secrets.LALIGA_REFRESH_TOKEN }}
           LALIGA_LEAGUE_ID: ${{ secrets.LALIGA_LEAGUE_ID }}
-          # Opcionales: sin ellos el vigilante sigue funcionando, solo que sin
-          # mandar avisos.
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          LALIGA_TEAM_ID: ${{ secrets.LALIGA_TEAM_ID }}
         run: node scripts/clause-watcher.mjs
 
       # El proveedor rota el refresh token en cada uso, e invalida el anterior
@@ -72,4 +67,43 @@ jobs:
           git config user.email "clause-watcher@users.noreply.github.com"
           git add data/
           git commit -m "Instantánea de cláusulas $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
+
+  # Espera dormido hasta el momento exacto en que un rival queda clausulable y
+  # avisa entonces. Va en un trabajo aparte para no retrasar la instantánea, y
+  # con timeout amplio porque su trabajo es, literalmente, esperar. En un
+  # repositorio público los minutos de Actions son ilimitados.
+  avisar:
+    needs: vigilar
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Esperar y avisar
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LALIGA_TEAM_ID: ${{ secrets.LALIGA_TEAM_ID }}
+          ESPERA_MAX_MINUTOS: '300'
+        run: node scripts/clause-alerter.mjs
+
+      - name: Guardar los avisos enviados
+        run: |
+          if [ -z "$(git status --porcelain -- data/)" ]; then
+            echo "Sin avisos nuevos que registrar."
+            exit 0
+          fi
+          git config user.name  "clause-watcher"
+          git config user.email "clause-watcher@users.noreply.github.com"
+          git pull --rebase --autostash
+          git add data/
+          git commit -m "Avisos de cláusula enviados $(date -u '+%Y-%m-%d %H:%M UTC')"
           git push
