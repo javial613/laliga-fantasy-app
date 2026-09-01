@@ -36,6 +36,11 @@ jobs:
         env:
           LALIGA_REFRESH_TOKEN: ${{ secrets.LALIGA_REFRESH_TOKEN }}
           LALIGA_LEAGUE_ID: ${{ secrets.LALIGA_LEAGUE_ID }}
+          # Opcionales: sin ellos el vigilante sigue funcionando, solo que sin
+          # mandar avisos.
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LALIGA_TEAM_ID: ${{ secrets.LALIGA_TEAM_ID }}
         run: node scripts/clause-watcher.mjs
 
       # El proveedor rota el refresh token en cada uso, e invalida el anterior
