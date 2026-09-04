@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-09-04T08:35:44.519Z",
+  "tomadaEn": "2026-09-04T11:11:43.291Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -135,13 +135,6 @@
       "name": "Riquelme",
       "lockedUntil": "2026-09-05T04:34:04+02:00"
     },
-    "2703": {
-      "teamId": "37424698",
-      "clause": 1280419,
-      "marketValue": 1280419,
-      "name": "Redondo",
-      "lockedUntil": "2026-09-02T13:01:34+02:00"
-    },
     "2714": {
       "teamId": "37424698",
       "clause": 4650000,
@@ -191,13 +184,6 @@
       "name": "G. Villar",
       "lockedUntil": "2026-09-12T13:08:18+02:00"
     },
-    "2976": {
-      "teamId": "37424698",
-      "clause": 6150000,
-      "marketValue": 5795161,
-      "name": "A. Alti",
-      "lockedUntil": "2026-09-09T13:01:01+02:00"
-    },
     "3008": {
       "teamId": "37425380",
       "clause": 5200000,
@@ -233,13 +219,6 @@
       "name": "Leo Román",
       "lockedUntil": "2026-09-17T20:59:37+02:00"
     },
-    "3115": {
-      "teamId": "37424698",
-      "clause": 1001005,
-      "marketValue": 707362,
-      "name": "Diaby",
-      "lockedUntil": "2026-09-03T13:01:01+02:00"
-    },
     "3145": {
       "teamId": "37425380",
       "clause": 16500000,
@@ -260,6 +239,13 @@
       "marketValue": 4421766,
       "name": "Bardeli",
       "lockedUntil": "2026-09-11T13:01:01+02:00"
+    },
+    "3196": {
+      "teamId": "37424533",
+      "clause": 31900000,
+      "marketValue": 1512330,
+      "name": "Bayindir",
+      "lockedUntil": "2026-09-18T13:01:06+02:00"
     },
     "3205": {
       "teamId": "37424533",
