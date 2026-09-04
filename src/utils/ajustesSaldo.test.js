@@ -11,8 +11,12 @@ describe('getAjusteManual', () => {
         expect(getAjusteManual('Juanitoooo21').motivo).toMatch(/cláusula/);
     });
 
+    test('admite importes negativos, que suman al saldo en vez de restarlo', () => {
+        expect(getAjusteManual('Yaguettou').importe).toBe(-2700000);
+    });
+
     test('devuelve null para el resto de managers', () => {
-        expect(getAjusteManual('Yaguettou')).toBeNull();
+        expect(getAjusteManual('Nadie')).toBeNull();
         expect(getAjusteManual('')).toBeNull();
         expect(getAjusteManual(null)).toBeNull();
     });

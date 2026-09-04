@@ -198,7 +198,9 @@ const ClauseIncreasesModal = ({
                                 {ajusteManual && (
                                     <tr className="border-b border-gray-100 dark:border-gray-700/50">
                                         <td className="py-1.5 pr-3 text-gray-600 dark:text-gray-300">corrección manual</td>
-                                        <td className="py-1.5 text-right text-red-600 dark:text-red-400">
+                                        <td className={`py-1.5 text-right ${ajusteManual.importe > 0
+                                            ? 'text-red-600 dark:text-red-400'
+                                            : 'text-green-600 dark:text-green-400'}`}>
                                             {formatCurrencyWithSign(-ajusteManual.importe)}
                                         </td>
                                     </tr>
@@ -217,7 +219,7 @@ const ClauseIncreasesModal = ({
 
                 {ajusteManual && (
                     <div className="mt-4 p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-xs text-amber-800 dark:text-amber-300">
-                        <strong>Además, corrección manual de −{formatCurrency(ajusteManual.importe)}.</strong>{' '}
+                        <strong>Además, corrección manual de {formatCurrencyWithSign(-ajusteManual.importe)}.</strong>{' '}
                         Es una estimación introducida a mano ({ajusteManual.motivo}), no un dato detectado.
                     </div>
                 )}

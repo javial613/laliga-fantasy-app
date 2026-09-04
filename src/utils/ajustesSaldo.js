@@ -14,11 +14,17 @@
  *
  * La clave es el nombre del manager, en minúsculas. Para retirar una
  * corrección basta con borrar su línea.
+ *
+ * SIGNO: `importe` se **resta** del saldo calculado. Un importe positivo baja
+ * el saldo (dinero gastado que el histórico no publica); uno negativo lo sube
+ * (dinero ingresado que tampoco aparece).
  */
 const AJUSTES = {
     // Gasto estimado en subidas de cláusula anteriores a que la app las
     // vigilara. Cifra aportada por el usuario de la liga.
     'juanitoooo21': { importe: 2000000, motivo: 'subidas de cláusula previas al seguimiento' },
+    // Importe negativo: suma al saldo. Corrección aportada por el usuario.
+    'yaguettou': { importe: -2700000, motivo: 'corrección manual del propio usuario' },
 };
 
 const normalizar = (nombre) =>

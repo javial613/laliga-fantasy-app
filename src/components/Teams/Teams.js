@@ -342,7 +342,7 @@ const Teams = () => {
                     return (
                       <div className="mb-1">
                         Correcciones manuales aplicadas:{' '}
-                        {conAjuste.map((t) => `${t.nombre} −${formatCurrency(t.ajuste.importe)} (${t.ajuste.motivo})`).join(' · ')}
+                        {conAjuste.map((t) => `${t.nombre} ${formatCurrencyWithSign(-t.ajuste.importe)} (${t.ajuste.motivo})`).join(' · ')}
                       </div>
                     );
                   })()}
