@@ -57,6 +57,19 @@ const fatal = (mensaje, error) => {
 /** Canjea el refresh token por un access token. Devuelve ambos, porque el
  *  refresh puede rotar y entonces hay que guardar el nuevo o la próxima
  *  ejecución fallará. */
+// El refresh token caduca a los 90 días. El proveedor devuelve cuánto le
+// queda al nuevo; si se acerca el final lo avisamos en el log de la ejecución
+// para tener margen de sacar uno nuevo antes de que el vigilante se pare.
+const avisarSiCaduca = (segundosRestantes) => {
+    const segundos = Number(segundosRestantes);
+    if (!Number.isFinite(segundos) || segundos <= 0) return;
+    const dias = Math.floor(segundos / 86400);
+    if (dias <= 14) {
+        console.warn(`AVISO: el refresh token caduca en ${dias} día(s). `
+            + 'Habrá que sacar uno nuevo de la app antes de esa fecha.');
+    }
+};
+
 const renovarSesion = async (refreshToken) => {
     let ultimoError = '';
     for (const clientId of CLIENT_IDS) {
