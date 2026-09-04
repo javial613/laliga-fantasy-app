@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-09-04T16:17:34.204Z",
+  "tomadaEn": "2026-09-04T19:31:15.091Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -207,7 +207,7 @@
     },
     "3108": {
       "teamId": "37424698",
-      "clause": 72483086,
+      "clause": 80483086,
       "marketValue": 67210669,
       "name": "Aubameyang",
       "lockedUntil": "2026-08-30T20:09:18+02:00"
@@ -283,9 +283,21 @@
   },
   "costes": {
     "37424533": 3000000,
-    "37424698": 8151266
+    "37424698": 12151266
   },
   "historial": [
+    {
+      "playerId": "3108",
+      "playerName": "Aubameyang",
+      "teamId": "37424698",
+      "clauseAnterior": 72483086,
+      "clauseActual": 80483086,
+      "subida": 8000000,
+      "coste": 4000000,
+      "desde": "2026-09-04T16:17:34.204Z",
+      "hasta": "2026-09-04T19:31:15.091Z",
+      "fecha": "2026-09-04T19:31:15.091Z"
+    },
     {
       "playerId": "2784",
       "playerName": "Marc Bernal",
