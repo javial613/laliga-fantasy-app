@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-09-05T19:00:52.652Z",
+  "tomadaEn": "2026-09-05T21:10:22.749Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -95,7 +95,7 @@
     },
     "2429": {
       "teamId": "37424533",
-      "clause": 19163205,
+      "clause": 22163205,
       "marketValue": 19163205,
       "name": "Fran García",
       "lockedUntil": "2026-09-04T13:01:01+02:00"
@@ -200,7 +200,7 @@
     },
     "3108": {
       "teamId": "37424698",
-      "clause": 80483086,
+      "clause": 83083086,
       "marketValue": 69260960,
       "name": "Aubameyang",
       "lockedUntil": "2026-08-30T20:09:18+02:00"
@@ -275,10 +275,34 @@
     "37425380": "gonsalo3007"
   },
   "costes": {
-    "37424533": 3000000,
-    "37424698": 12151266
+    "37424533": 4500000,
+    "37424698": 13451266
   },
   "historial": [
+    {
+      "playerId": "2429",
+      "playerName": "Fran García",
+      "teamId": "37424533",
+      "clauseAnterior": 19163205,
+      "clauseActual": 22163205,
+      "subida": 3000000,
+      "coste": 1500000,
+      "desde": "2026-09-05T19:00:52.652Z",
+      "hasta": "2026-09-05T21:10:22.749Z",
+      "fecha": "2026-09-05T21:10:22.749Z"
+    },
+    {
+      "playerId": "3108",
+      "playerName": "Aubameyang",
+      "teamId": "37424698",
+      "clauseAnterior": 80483086,
+      "clauseActual": 83083086,
+      "subida": 2600000,
+      "coste": 1300000,
+      "desde": "2026-09-05T19:00:52.652Z",
+      "hasta": "2026-09-05T21:10:22.749Z",
+      "fecha": "2026-09-05T21:10:22.749Z"
+    },
     {
       "playerId": "3108",
       "playerName": "Aubameyang",
