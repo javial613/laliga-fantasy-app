@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-09-05T10:29:57.940Z",
+  "tomadaEn": "2026-09-05T13:50:42.054Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -129,11 +129,11 @@
       "lockedUntil": "2026-08-17T13:01:13+02:00"
     },
     "2548": {
-      "teamId": "37424533",
+      "teamId": "37425380",
       "clause": 12101910,
       "marketValue": 12101910,
       "name": "Riquelme",
-      "lockedUntil": "2026-09-05T04:34:04+02:00"
+      "lockedUntil": "2026-09-19T13:27:53+02:00"
     },
     "2714": {
       "teamId": "37424698",
@@ -197,13 +197,6 @@
       "marketValue": 138783075,
       "name": "Mbappé",
       "lockedUntil": "2026-09-12T13:19:07+02:00"
-    },
-    "3106": {
-      "teamId": "37425380",
-      "clause": 75265340,
-      "marketValue": 66849314,
-      "name": "Cucurella",
-      "lockedUntil": "2026-08-21T13:01:29+02:00"
     },
     "3108": {
       "teamId": "37424698",
