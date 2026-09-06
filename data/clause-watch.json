@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-09-06T09:22:16.206Z",
+  "tomadaEn": "2026-09-06T13:39:22.216Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -30,13 +30,6 @@
       "name": "Guridi",
       "lockedUntil": "2026-09-17T13:01:44+02:00"
     },
-    "927": {
-      "teamId": "37424533",
-      "clause": 9567045,
-      "marketValue": 9567045,
-      "name": "Berenguer",
-      "lockedUntil": "2026-09-08T13:01:17+02:00"
-    },
     "1215": {
       "teamId": "37425380",
       "clause": 12688396,
@@ -57,13 +50,6 @@
       "marketValue": 31107903,
       "name": "Tenaglia",
       "lockedUntil": "2026-09-16T10:54:18+02:00"
-    },
-    "1930": {
-      "teamId": "37424533",
-      "clause": 12793659,
-      "marketValue": 12793659,
-      "name": "El Hilali",
-      "lockedUntil": "2026-09-06T13:11:31+02:00"
     },
     "2206": {
       "teamId": "37424698",
@@ -106,6 +92,13 @@
       "marketValue": 7573505,
       "name": "Oskarsson",
       "lockedUntil": "2026-08-15T13:14:46+02:00"
+    },
+    "2457": {
+      "teamId": "37424533",
+      "clause": 20974100,
+      "marketValue": 20974100,
+      "name": "Dimitrievski",
+      "lockedUntil": "2026-09-20T13:01:06+02:00"
     },
     "2464": {
       "teamId": "37424533",
@@ -176,6 +169,13 @@
       "marketValue": 425594,
       "name": "Julio Díaz",
       "lockedUntil": "2026-09-13T13:01:14+02:00"
+    },
+    "2938": {
+      "teamId": "37424533",
+      "clause": 5708975,
+      "marketValue": 5708975,
+      "name": "Koski",
+      "lockedUntil": "2026-09-20T13:01:06+02:00"
     },
     "2939": {
       "teamId": "37424698",
