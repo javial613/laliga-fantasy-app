@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-09-10T05:55:24.368Z",
+  "tomadaEn": "2026-09-10T11:12:19.624Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -65,6 +65,13 @@
       "name": "Paredes",
       "lockedUntil": "2026-09-12T13:08:18+02:00"
     },
+    "2324": {
+      "teamId": "37424533",
+      "clause": 6134854,
+      "marketValue": 6134854,
+      "name": "Giménez",
+      "lockedUntil": "2026-09-24T13:01:23+02:00"
+    },
     "2335": {
       "teamId": "37425380",
       "clause": 3508415,
@@ -80,11 +87,11 @@
       "lockedUntil": "2026-09-15T13:01:06+02:00"
     },
     "2418": {
-      "teamId": "37424698",
+      "teamId": "37424533",
       "clause": 10821788,
       "marketValue": 10821788,
       "name": "Marc Roca",
-      "lockedUntil": "2026-09-10T13:01:01+02:00"
+      "lockedUntil": "2026-09-24T13:01:06+02:00"
     },
     "2429": {
       "teamId": "37424698",
@@ -239,20 +246,6 @@
       "marketValue": 1288574,
       "name": "Bayindir",
       "lockedUntil": "2026-09-18T13:01:06+02:00"
-    },
-    "3205": {
-      "teamId": "37424533",
-      "clause": 8280330,
-      "marketValue": 8280330,
-      "name": "Iván Martín",
-      "lockedUntil": "2026-09-08T13:01:17+02:00"
-    },
-    "3208": {
-      "teamId": "37424698",
-      "clause": 74200000,
-      "marketValue": 71461422,
-      "name": "Rodri",
-      "lockedUntil": "2026-09-21T13:01:08+02:00"
     },
     "3209": {
       "teamId": "37424698",
