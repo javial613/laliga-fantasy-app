@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-09-11T01:00:31.843Z",
+  "tomadaEn": "2026-09-11T05:54:55.045Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -12,14 +12,14 @@
     "644": {
       "teamId": "37425380",
       "clause": 35924225,
-      "marketValue": 35554975,
+      "marketValue": 39656190,
       "name": "Sergio Herrera",
       "lockedUntil": "2026-09-13T13:01:14+02:00"
     },
     "652": {
       "teamId": "37424698",
       "clause": 18703284,
-      "marketValue": 14974468,
+      "marketValue": 13087470,
       "name": "Rubén García",
       "lockedUntil": "2026-09-02T13:01:34+02:00"
     },
@@ -68,8 +68,8 @@
     "2324": {
       "teamId": "37424533",
       "clause": 6607629,
-      "marketValue": 6607629,
-      "name": "Giménez",
+      "marketValue": 5073372,
+      "name": "J. M. Giménez",
       "lockedUntil": "2026-09-24T13:01:23+02:00"
     },
     "2335": {
@@ -117,7 +117,7 @@
     "2464": {
       "teamId": "37424533",
       "clause": 15386280,
-      "marketValue": 9523747,
+      "marketValue": 8837128,
       "name": "Pepelu",
       "lockedUntil": "2026-08-15T13:01:54+02:00"
     },
@@ -131,7 +131,7 @@
     "2548": {
       "teamId": "37425380",
       "clause": 15400483,
-      "marketValue": 15400483,
+      "marketValue": 3518596,
       "name": "Riquelme",
       "lockedUntil": "2026-09-19T13:27:53+02:00"
     },
@@ -222,7 +222,7 @@
     "3108": {
       "teamId": "37424698",
       "clause": 106083086,
-      "marketValue": 86646997,
+      "marketValue": 27187958,
       "name": "Aubameyang",
       "lockedUntil": "2026-08-30T20:09:18+02:00"
     },
