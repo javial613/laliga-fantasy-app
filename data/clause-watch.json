@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-09-11T11:12:47.009Z",
+  "tomadaEn": "2026-09-11T16:24:43.868Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -228,7 +228,7 @@
     },
     "3108": {
       "teamId": "37424698",
-      "clause": 106083086,
+      "clause": 110083086,
       "marketValue": 27187958,
       "name": "Aubameyang",
       "lockedUntil": "2026-08-30T20:09:18+02:00"
@@ -304,9 +304,21 @@
   },
   "costes": {
     "37424533": 4500677,
-    "37424698": 16451266
+    "37424698": 18451266
   },
   "historial": [
+    {
+      "playerId": "3108",
+      "playerName": "Aubameyang",
+      "teamId": "37424698",
+      "clauseAnterior": 106083086,
+      "clauseActual": 110083086,
+      "subida": 4000000,
+      "coste": 2000000,
+      "desde": "2026-09-11T11:12:47.009Z",
+      "hasta": "2026-09-11T16:24:43.868Z",
+      "fecha": "2026-09-11T16:24:43.868Z"
+    },
     {
       "playerId": "2315",
       "playerName": "Paredes",
