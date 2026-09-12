@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-09-12T19:18:48.419Z",
+  "tomadaEn": "2026-09-12T22:13:33.414Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -214,7 +214,7 @@
     },
     "3103": {
       "teamId": "37424533",
-      "clause": 197709067,
+      "clause": 200009067,
       "marketValue": 139886713,
       "name": "Mbappé",
       "lockedUntil": "2026-09-12T13:19:07+02:00"
@@ -303,10 +303,22 @@
     "37425380": "gonsalo3007"
   },
   "costes": {
-    "37424533": 4500677,
+    "37424533": 5650677,
     "37424698": 18451266
   },
   "historial": [
+    {
+      "playerId": "3103",
+      "playerName": "Mbappé",
+      "teamId": "37424533",
+      "clauseAnterior": 197709067,
+      "clauseActual": 200009067,
+      "subida": 2300000,
+      "coste": 1150000,
+      "desde": "2026-09-12T19:18:48.419Z",
+      "hasta": "2026-09-12T22:13:33.414Z",
+      "fecha": "2026-09-12T22:13:33.414Z"
+    },
     {
       "playerId": "3108",
       "playerName": "Aubameyang",
