@@ -37,18 +37,17 @@ const Clauses = () => {
   // Se muestran también las bloqueadas: saber a quién NO puedes clausular
   // todavía, y cuándo podrás, es tan útil como ver las disponibles. El filtro
   // sigue ahí para quedarse solo con las que se pueden pagar ya.
-  const [showAll, setShowAllState] = useState(true);
-  // El orden por defecto depende de la vista:
-  //  - "Todas": lo que menos le queda de protección primero (las ya abiertas
-  //    arriba), para ver quién se va a poder clausular antes.
-  //  - "Solo disponibles": todas están abiertas, así que el tiempo no ordena
-  //    nada; ahí manda la revalorización de 24h, que es lo que decide si
-  //    clausular a alguien renta.
-  // Se puede cambiar a mano en el selector; solo se reajusta al cambiar de vista.
-  const [sortBy, setSortBy] = useState('timeRemaining');
-  const [sortOrder, setSortOrder] = useState('asc');
-  const setShowAll = useCallback((valor) => {
-    setShowAllState(valor);
+  // Dos vistas excluyentes:
+  //  - Disponibles: las que se pueden pagar ya, por revalorización de 24h,
+  //    que es lo que decide si clausular a alguien renta.
+  //  - Protegidas: las que aún no, de la que antes se abre a la que más tarda,
+  //    para saber a quién vas a poder clausular primero.
+  // Al cambiar de vista se reajusta el orden; el selector permite cambiarlo.
+  const [verProtegidas, setVerProtegidasState] = useState(false);
+  const [sortBy, setSortBy] = useState('trend');
+  const [sortOrder, setSortOrder] = useState('desc');
+  const setVerProtegidas = useCallback((valor) => {
+    setVerProtegidasState(valor);
     setSortBy(valor ? 'timeRemaining' : 'trend');
     setSortOrder(valor ? 'asc' : 'desc');
   }, []);
@@ -157,9 +156,6 @@ const Clauses = () => {
             comparison = b.clausulaAmount - a.clausulaAmount;
         }
 
-        if (comparison === 0 && showAll && a.isLocked !== b.isLocked) {
-          return a.isLocked ? 1 : -1;
-        }
         if (comparison === 0 && sortBy !== 'trend') {
           // Desempate (p. ej. entre las ya abiertas al ordenar por tiempo):
           // primero las que más suben, sea cual sea el sentido elegido.
@@ -170,7 +166,7 @@ const Clauses = () => {
         return sortOrder === 'asc' ? -comparison : comparison;
       });
     },
-    [sortBy, sortOrder, showAll]
+    [sortBy, sortOrder]
   );
 
   // Fetch all team data and extract clauses
@@ -322,7 +318,7 @@ const Clauses = () => {
       setClausesData(sortedData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortBy, sortOrder, showAll, ownerFilter, positionFilter]);
+  }, [sortBy, sortOrder, verProtegidas, ownerFilter, positionFilter]);
 
   // Payment handlers
   const handlePayClause = useCallback(
@@ -441,13 +437,13 @@ const Clauses = () => {
   const filteredClauses = useMemo(
     () =>
       clausesData.filter((clause) => {
-        if (!showAll && clause.isLocked) return false;
+        if (clause.isLocked !== verProtegidas) return false;
         if (ownerFilter !== 'all' && clause.ownerName !== ownerFilter) return false;
         if (positionFilter !== 'all' && clause.positionId.toString() !== positionFilter)
           return false;
         return true;
       }),
-    [clausesData, showAll, ownerFilter, positionFilter]
+    [clausesData, verProtegidas, ownerFilter, positionFilter]
   );
 
   const availableMoney = teamReady ? teamService.getAvailableMoney() : teamMoney;
@@ -464,7 +460,7 @@ const Clauses = () => {
             Cláusulas de Rescisión
           </h1>
           <p className="text-gray-500 dark:text-gray-400 mt-1">
-            {filteredClauses.length} cláusulas {showAll ? 'totales' : 'disponibles'}
+            {filteredClauses.length} cláusulas {verProtegidas ? 'protegidas' : 'disponibles'}
             {ownerFilter !== 'all' && ` de ${ownerFilter}`}
             {positionFilter !== 'all' && ` - ${getPositionName(parseInt(positionFilter))}`}
             {clausesData.length > 0 && (
@@ -508,8 +504,8 @@ const Clauses = () => {
 
       {/* Filters and Controls */}
       <ClauseFilters
-        showAll={showAll}
-        setShowAll={setShowAll}
+        verProtegidas={verProtegidas}
+        setVerProtegidas={setVerProtegidas}
         ownerFilter={ownerFilter}
         setOwnerFilter={setOwnerFilter}
         positionFilter={positionFilter}
@@ -549,13 +545,13 @@ const Clauses = () => {
               <EmptyState
                 icon={Shield}
                 title={
-                  showAll
-                    ? 'No hay cláusulas en la liga'
+                  verProtegidas
+                    ? 'No hay cláusulas protegidas'
                     : 'No hay cláusulas disponibles'
                 }
                 description={
-                  showAll
-                    ? 'No se encontraron jugadores con cláusulas de rescisión'
+                  verProtegidas
+                    ? 'Ahora mismo todas las cláusulas se pueden pagar'
                     : 'Todas las cláusulas están actualmente bloqueadas'
                 }
               />

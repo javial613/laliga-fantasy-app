@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Shield, User, Trophy, Filter, Eye, ChevronDown, ChevronUp,
+  Shield, User, Trophy, Filter, Lock, ChevronDown, ChevronUp,
 } from 'lucide-react';
 import { getPositionName } from '../../utils/helpers';
 
@@ -45,8 +45,8 @@ const SORT_LABEL = {
 };
 
 const ClauseFilters = ({
-  showAll,
-  setShowAll,
+  verProtegidas,
+  setVerProtegidas,
   ownerFilter,
   setOwnerFilter,
   positionFilter,
@@ -69,7 +69,7 @@ const ClauseFilters = ({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-        {/* Show All Toggle */}
+        {/* Disponibles / Protegidas */}
         <div className="flex flex-col h-full" style={{ minHeight: '160px' }}>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Filtro de disponibilidad
@@ -77,65 +77,59 @@ const ClauseFilters = ({
           <div className="space-y-2">
             <div
               className={`px-3 py-2 rounded-lg border-2 ${
-                showAll
+                verProtegidas
                   ? 'border-primary-200 bg-primary-50 dark:bg-primary-900/20 dark:border-primary-800'
                   : 'border-green-200 bg-green-50 dark:bg-green-900/20 dark:border-green-800'
               }`}
             >
               <div className="flex items-center gap-2">
-                {showAll ? (
-                  <Eye className="w-4 h-4 text-primary-600 dark:text-primary-400" aria-hidden="true" />
+                {verProtegidas ? (
+                  <Lock className="w-4 h-4 text-primary-600 dark:text-primary-400" aria-hidden="true" />
                 ) : (
                   <Shield className="w-4 h-4 text-green-600 dark:text-green-400" aria-hidden="true" />
                 )}
                 <span
                   className={`text-sm font-medium ${
-                    showAll
+                    verProtegidas
                       ? 'text-primary-700 dark:text-primary-300'
                       : 'text-green-700 dark:text-green-300'
                   }`}
                 >
-                  {showAll ? 'Todas las cláusulas' : 'Solo disponibles'}
+                  {verProtegidas ? 'Protegidas' : 'Disponibles'}
                 </span>
               </div>
               <div
                 className={`text-xs mt-1 ${
-                  showAll
+                  verProtegidas
                     ? 'text-primary-600 dark:text-primary-400'
                     : 'text-green-600 dark:text-green-400'
                 }`}
               >
-                {showAll
-                  ? `${filteredClauses.length} cláusulas en total`
-                  : `${
-                      filteredClauses.filter(
-                        (c) =>
-                          !c.isLocked ||
-                          (c.unlockTime && new Date(c.unlockTime) <= new Date())
-                      ).length
-                    } cláusulas disponibles`}
+                {verProtegidas
+                  ? `${filteredClauses.length} protegidas · la que antes se abre primero`
+                  : `${filteredClauses.length} cláusulas que se pueden pagar ya`}
               </div>
             </div>
 
             <button
               type="button"
-              onClick={() => setShowAll(!showAll)}
-              aria-pressed={showAll}
+              onClick={() => setVerProtegidas(!verProtegidas)}
+              aria-pressed={verProtegidas}
               className={`w-full flex items-center justify-start gap-2 px-3 py-2 rounded-lg font-medium transition-all duration-200 border-2 text-sm ${
-                showAll
+                verProtegidas
                   ? 'border-green-300 bg-green-100 hover:bg-green-200 text-green-800 dark:border-green-600 dark:bg-green-900/30 dark:hover:bg-green-900/50 dark:text-green-200'
                   : 'border-primary-300 bg-primary-100 hover:bg-primary-200 text-primary-800 dark:border-primary-600 dark:bg-primary-900/30 dark:hover:bg-primary-900/50 dark:text-primary-200'
               }`}
             >
-              {showAll ? (
+              {verProtegidas ? (
                 <>
                   <Shield className="w-3 h-3" aria-hidden="true" />
-                  <span>Solo disponibles</span>
+                  <span>Ver disponibles</span>
                 </>
               ) : (
                 <>
-                  <Eye className="w-3 h-3" aria-hidden="true" />
-                  <span>Todas</span>
+                  <Lock className="w-3 h-3" aria-hidden="true" />
+                  <span>Ver protegidas</span>
                 </>
               )}
             </button>
