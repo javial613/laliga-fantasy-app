@@ -20,9 +20,10 @@
  * (dinero ingresado que tampoco aparece).
  */
 const AJUSTES = {
-    // Gasto estimado en subidas de cláusula anteriores a que la app las
-    // vigilara. Cifra aportada por el usuario de la liga.
-    'juanitoooo21': { importe: 2000000, motivo: 'subidas de cláusula previas al seguimiento' },
+    // Gasto en subidas de cláusula que el vigilante no ha detectado, aportado
+    // por el usuario de la liga: 2M previos al seguimiento + 25M añadidos el
+    // 13-09-2026. Va aparte de lo que detecta el bot, que se resta por su lado.
+    'juanitoooo21': { importe: 27000000, motivo: 'subidas de cláusula no detectadas (2M previas al seguimiento + 25M)' },
     // Importe negativo: suma al saldo. Corrección aportada por el usuario.
     'yaguettou': { importe: -2700000, motivo: 'corrección manual del propio usuario' },
 };
