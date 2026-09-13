@@ -40,6 +40,7 @@ const SORT_LABEL = {
   clauseValue: 'Valor de Cláusula',
   marketValue: 'Valor de Mercado',
   points: 'Puntos',
+  trend: 'Revalorización 24h',
   timeRemaining: 'Tiempo Restante',
 };
 

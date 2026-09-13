@@ -37,11 +37,21 @@ const Clauses = () => {
   // Se muestran también las bloqueadas: saber a quién NO puedes clausular
   // todavía, y cuándo podrás, es tan útil como ver las disponibles. El filtro
   // sigue ahí para quedarse solo con las que se pueden pagar ya.
-  const [showAll, setShowAll] = useState(true);
-  // Por defecto, los que más se están revalorizando: es lo que decide si
-  // clausular a alguien renta, más que el importe de la cláusula en sí.
-  const [sortBy, setSortBy] = useState('trend');
-  const [sortOrder, setSortOrder] = useState('desc');
+  const [showAll, setShowAllState] = useState(true);
+  // El orden por defecto depende de la vista:
+  //  - "Todas": lo que menos le queda de protección primero (las ya abiertas
+  //    arriba), para ver quién se va a poder clausular antes.
+  //  - "Solo disponibles": todas están abiertas, así que el tiempo no ordena
+  //    nada; ahí manda la revalorización de 24h, que es lo que decide si
+  //    clausular a alguien renta.
+  // Se puede cambiar a mano en el selector; solo se reajusta al cambiar de vista.
+  const [sortBy, setSortBy] = useState('timeRemaining');
+  const [sortOrder, setSortOrder] = useState('asc');
+  const setShowAll = useCallback((valor) => {
+    setShowAllState(valor);
+    setSortBy(valor ? 'timeRemaining' : 'trend');
+    setSortOrder(valor ? 'asc' : 'desc');
+  }, []);
   const [ownerFilter, setOwnerFilter] = useState('all');
   const [positionFilter, setPositionFilter] = useState('all');
 
@@ -132,13 +142,15 @@ const Clauses = () => {
             break;
           }
           case 'timeRemaining': {
-            const aTime = a.isLocked
-              ? (typeof a.hoursRemaining === 'number' ? a.hoursRemaining : Number.MAX_SAFE_INTEGER)
-              : -1;
-            const bTime = b.isLocked
-              ? (typeof b.hoursRemaining === 'number' ? b.hoursRemaining : Number.MAX_SAFE_INTEGER)
-              : -1;
-            comparison = bTime - aTime;
+            // Milisegundos exactos hasta el desbloqueo, no las horas redondeadas:
+            // con horas, dos protecciones que acaban a los 10 y 50 minutos
+            // empatarían. Las ya abiertas cuentan como -1 (van antes que todas).
+            const restante = (c) => {
+              if (!c.isLocked) return -1;
+              const fin = c.unlockTime instanceof Date ? c.unlockTime.getTime() : NaN;
+              return Number.isFinite(fin) ? fin : Number.MAX_SAFE_INTEGER;
+            };
+            comparison = restante(b) - restante(a);
             break;
           }
           default:
@@ -147,6 +159,13 @@ const Clauses = () => {
 
         if (comparison === 0 && showAll && a.isLocked !== b.isLocked) {
           return a.isLocked ? 1 : -1;
+        }
+        if (comparison === 0 && sortBy !== 'trend') {
+          // Desempate (p. ej. entre las ya abiertas al ordenar por tiempo):
+          // primero las que más suben, sea cual sea el sentido elegido.
+          const at = typeof a.trendData?.diferencia1 === 'number' ? a.trendData.diferencia1 : -Infinity;
+          const bt = typeof b.trendData?.diferencia1 === 'number' ? b.trendData.diferencia1 : -Infinity;
+          return at === bt ? 0 : (bt > at ? 1 : -1);
         }
         return sortOrder === 'asc' ? -comparison : comparison;
       });
