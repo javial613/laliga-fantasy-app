@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-09-13T16:11:54.620Z",
+  "tomadaEn": "2026-09-13T19:25:27.212Z",
   "leagueId": "017842199",
   "jugadores": {
     "121": {
@@ -274,13 +274,6 @@
       "marketValue": 6820399,
       "name": "Saliba",
       "lockedUntil": "2026-09-25T13:01:10+02:00"
-    },
-    "3249": {
-      "teamId": "37424533",
-      "clause": 16094439,
-      "marketValue": 15960173,
-      "name": "Adama Traoré",
-      "lockedUntil": "2026-09-23T13:01:06+02:00"
     },
     "3265": {
       "teamId": "37424533",
