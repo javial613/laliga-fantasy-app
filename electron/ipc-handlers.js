@@ -70,6 +70,23 @@ function registerIpcHandlers(deps = {}) {
         }
     });
 
+    // Apple (y otros proveedores) rechazan el inicio de sesión desde
+    // navegadores empotrados. Con el user agent por defecto de Electron —que
+    // lleva "Electron/37.x" y el nombre de la app— la pantalla de Apple
+    // responde "Failed to verify your identity" por mucho que la contraseña
+    // sea correcta. Nos presentamos como el Chrome que de hecho somos: el
+    // motor es el mismo, solo se quitan las marcas que delatan la app.
+    const navegadorUA = () => {
+        const chrome = process.versions.chrome || '138.0.0.0';
+        const plataforma = process.platform === 'win32'
+            ? 'Windows NT 10.0; Win64; x64'
+            : (process.platform === 'darwin'
+                ? 'Macintosh; Intel Mac OS X 10_15_7'
+                : 'X11; Linux x86_64');
+        return `Mozilla/5.0 (${plataforma}) AppleWebKit/537.36 (KHTML, like Gecko) `
+            + `Chrome/${chrome} Safari/537.36`;
+    };
+
     // IPC Handler for the interactive OAuth (Google/social) login. Opens a
     // controlled child window on LaLiga's B2C authorize URL, lets the user
     // authenticate, and captures the `code` from the redirect to the app's
@@ -112,6 +129,12 @@ function registerIpcHandlers(deps = {}) {
                     partition: 'oauth-login'
                 }
             });
+
+            // Debe aplicarse antes de cualquier navegación, y sobre el
+            // webContents (no solo en loadURL) para que valga también en los
+            // saltos a appleid.apple.com que hace la propia página.
+            const userAgent = navegadorUA();
+            authWindow.webContents.setUserAgent(userAgent);
 
             const finish = (result) => {
                 if (settled) return;
@@ -208,7 +231,7 @@ function registerIpcHandlers(deps = {}) {
                 finish({ success: false, cancelled: true });
             });
 
-            authWindow.loadURL(authorizeUrl).catch((error) => {
+            authWindow.loadURL(authorizeUrl, { userAgent }).catch((error) => {
                 finish({ success: false, error: error.message });
             });
         });
