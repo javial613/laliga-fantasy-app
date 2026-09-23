@@ -336,7 +336,7 @@ const Teams = () => {
                     // estimación metida a mano, no un dato, y debe notarse.
                     const conAjuste = extractArray(standings)
                       .map((t) => ({ nombre: nombrePorEquipo?.get?.(String(t.id || t.team?.id)) }))
-                      .map((t) => ({ ...t, ajuste: getAjusteManual(t.nombre) }))
+                      .map((t) => ({ ...t, ajuste: getAjusteManual(t.nombre, leagueId) }))
                       .filter((t) => t.ajuste);
                     if (conAjuste.length === 0) return null;
                     return (
@@ -658,7 +658,7 @@ const Teams = () => {
         managerName={clausulasDe != null ? nombrePorEquipo?.get?.(String(clausulasDe)) : null}
         subidas={clausulasDe != null ? subidasDe(clausulasDe) : []}
         ajusteManual={clausulasDe != null
-          ? getAjusteManual(nombrePorEquipo?.get?.(String(clausulasDe)))
+          ? getAjusteManual(nombrePorEquipo?.get?.(String(clausulasDe)), leagueId)
           : null}
         ledger={ledger}
         managerId={clausulasDe != null ? managerIdByTeamId?.get?.(String(clausulasDe)) : null}

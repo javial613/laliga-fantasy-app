@@ -187,10 +187,10 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
         const managerId = managerIdByTeamId.get(String(userTeamId));
         const base = getManagerBalance(ledger, managerId);
         if (base == null) return null;
-        const ajuste = getAjusteManual(nombrePorEquipo.get(String(userTeamId)))?.importe || 0;
+        const ajuste = getAjusteManual(nombrePorEquipo.get(String(userTeamId)), leagueId)?.importe || 0;
         const estimated = base - (costeClausulas[String(userTeamId)] || 0) - ajuste;
         return { real, estimated, diff: estimated - real };
-    }, [ownMoney, ledger, userTeamId, managerIdByTeamId, costeClausulas, nombrePorEquipo]);
+    }, [ownMoney, ledger, userTeamId, managerIdByTeamId, costeClausulas, nombrePorEquipo, leagueId]);
 
     const balanceFor = useMemo(() => (teamId) => {
         if (!ledger) return undefined;
@@ -198,9 +198,9 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
         if (!managerId) return undefined;
         const base = getManagerBalance(ledger, managerId);
         if (base == null) return base;
-        const ajuste = getAjusteManual(nombrePorEquipo.get(String(teamId)))?.importe || 0;
+        const ajuste = getAjusteManual(nombrePorEquipo.get(String(teamId)), leagueId)?.importe || 0;
         return base - (costeClausulas[String(teamId)] || 0) - ajuste;
-    }, [ledger, managerIdByTeamId, costeClausulas, nombrePorEquipo]);
+    }, [ledger, managerIdByTeamId, costeClausulas, nombrePorEquipo, leagueId]);
 
     /** Fuerza la recarga del saldo propio y del histórico. */
     const refreshBudgets = useCallback(async () => {
