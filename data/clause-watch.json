@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-04T10:54:32.450Z",
+  "tomadaEn": "2026-10-04T13:09:52.777Z",
   "leagueId": "018592924",
   "jugadores": {
     "184": {
@@ -72,12 +72,12 @@
       "name": "Giménez",
       "lockedUntil": "2026-10-11T12:55:05+02:00"
     },
-    "2390": {
-      "teamId": "40631220",
-      "clause": 14708183,
-      "marketValue": 6445919,
-      "name": "Starfelt",
-      "lockedUntil": "2026-10-06T12:55:48+02:00"
+    "2354": {
+      "teamId": "40639639",
+      "clause": 37805022,
+      "marketValue": 37680457,
+      "name": "Eric",
+      "lockedUntil": "2026-10-18T12:55:23+02:00"
     },
     "2414": {
       "teamId": "40631220",
@@ -309,13 +309,6 @@
       "marketValue": 2972241,
       "name": "Livakovic",
       "lockedUntil": "2026-10-06T15:33:52+02:00"
-    },
-    "3263": {
-      "teamId": "40631220",
-      "clause": 3800000,
-      "marketValue": 3453061,
-      "name": "Revivo",
-      "lockedUntil": "2026-10-08T12:55:15+02:00"
     }
   },
   "managers": {
