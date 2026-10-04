@@ -190,7 +190,19 @@ const main = async () => {
     if (jugadoresVistos === 0) fatal('no se obtuvo ninguna cláusula');
 
     const ahora = new Date().toISOString();
-    const estado = await leerEstado(SALIDA);
+    const guardado = await leerEstado(SALIDA);
+
+    // Al cambiar de liga se empieza de cero. El estado anterior es de otra
+    // competición: comparar sus cláusulas con las de esta inventaría subidas
+    // (un mismo jugador vale distinto en cada liga), y sus costes e historial
+    // se arrastrarían a un sitio donde nadie ha gastado ese dinero.
+    const esDeOtraLiga = guardado?.leagueId != null
+        && String(guardado.leagueId) !== String(leagueId);
+    if (esDeOtraLiga) {
+        console.log(`El estado guardado es de la liga ${guardado.leagueId}; `
+            + `se empieza de cero para ${leagueId}.`);
+    }
+    const estado = esDeOtraLiga ? null : guardado;
 
     let subidas = [];
     let atribuible = false;
