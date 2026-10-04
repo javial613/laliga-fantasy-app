@@ -109,6 +109,14 @@
       ],
       "icon": "build-resources/fantasy_logo_transparent.png"
     },
-    "afterAllArtifactBuild": "scripts/post-build.js"
+    "afterAllArtifactBuild": "scripts/post-build.js",
+    "protocols": [
+      {
+        "name": "LaLiga Fantasy Login",
+        "schemes": [
+          "authredirect"
+        ]
+      }
+    ]
   }
 }

@@ -1,4 +1,4 @@
-const { ipcMain, app, dialog, shell, BrowserWindow } = require('electron');
+const { ipcMain, app, dialog, shell } = require('electron');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
@@ -19,6 +19,8 @@ const {
     getServerAccessInfo,
     getUnifiedServerInstance,
 } = require('./server-manager');
+
+const { esperarRedireccion, cancelarEspera } = require('./oauth-redirect');
 
 const ALLOWED_EXTERNAL_PROTOCOLS = new Set(['https:', 'mailto:']);
 
@@ -70,32 +72,19 @@ function registerIpcHandlers(deps = {}) {
         }
     });
 
-    // Apple (y otros proveedores) rechazan el inicio de sesión desde
-    // navegadores empotrados. Con el user agent por defecto de Electron —que
-    // lleva "Electron/37.x" y el nombre de la app— la pantalla de Apple
-    // responde "Failed to verify your identity" por mucho que la contraseña
-    // sea correcta. Nos presentamos como el Chrome que de hecho somos: el
-    // motor es el mismo, solo se quitan las marcas que delatan la app.
-    const navegadorUA = () => {
-        const chrome = process.versions.chrome || '138.0.0.0';
-        const plataforma = process.platform === 'win32'
-            ? 'Windows NT 10.0; Win64; x64'
-            : (process.platform === 'darwin'
-                ? 'Macintosh; Intel Mac OS X 10_15_7'
-                : 'X11; Linux x86_64');
-        return `Mozilla/5.0 (${plataforma}) AppleWebKit/537.36 (KHTML, like Gecko) `
-            + `Chrome/${chrome} Safari/537.36`;
-    };
-
-    // IPC Handler for the interactive OAuth (Google/social) login. Opens a
-    // controlled child window on LaLiga's B2C authorize URL, lets the user
-    // authenticate, and captures the `code` from the redirect to the app's
-    // custom scheme. The renderer holds the PKCE verifier and does the token
-    // exchange — this handler never sees tokens, only the short-lived code.
+    // IPC Handler for the interactive OAuth login.
+    //
+    // El login se abre en el navegador del sistema, no en una ventana de la
+    // app: Apple rechaza las ventanas empotradas y responde "Failed to verify
+    // your identity" aunque la contraseña sea correcta. Al terminar, LaLiga
+    // redirige a authredirect://com.lfp.laligafantasy?code=…, que el sistema
+    // entrega a la app (ver main.js y oauth-redirect.js). Este handler solo
+    // llega a ver el código, de vida corta: el intercambio por tokens lo hace
+    // el renderer, que es quien guarda el verificador PKCE.
     ipcMain.handle('start-oauth-login', async (event, options = {}) => {
         const { authorizeUrl, redirectUri, state } = options;
 
-        // Validate inputs before opening any window.
+        // Se valida todo antes de abrir nada.
         let parsedAuthorize;
         try {
             parsedAuthorize = new URL(String(authorizeUrl));
@@ -109,132 +98,41 @@ function registerIpcHandlers(deps = {}) {
             return { success: false, error: 'redirect_uri inválido' };
         }
 
-        const parentWindow = getMainWindow();
+        // Se empieza a escuchar ANTES de abrir el navegador: si el usuario ya
+        // tiene sesión, la vuelta puede llegar casi instantánea.
+        const espera = esperarRedireccion({ redirectUri });
 
-        return new Promise((resolve) => {
-            let settled = false;
-            const authWindow = new BrowserWindow({
-                width: 520,
-                height: 720,
-                parent: parentWindow || undefined,
-                modal: !!parentWindow,
-                title: 'Iniciar sesión',
-                autoHideMenuBar: true,
-                webPreferences: {
-                    nodeIntegration: false,
-                    contextIsolation: true,
-                    enableRemoteModule: false,
-                    sandbox: true,
-                    // Fresh, isolated session so each login starts clean.
-                    partition: 'oauth-login'
-                }
-            });
+        try {
+            await shell.openExternal(parsedAuthorize.href);
+        } catch (error) {
+            cancelarEspera({ success: false, error: error.message });
+            return { success: false, error: `No se pudo abrir el navegador: ${error.message}` };
+        }
 
-            // Debe aplicarse antes de cualquier navegación, y sobre el
-            // webContents (no solo en loadURL) para que valga también en los
-            // saltos a appleid.apple.com que hace la propia página.
-            const userAgent = navegadorUA();
-            authWindow.webContents.setUserAgent(userAgent);
+        const vuelta = await espera;
+        if (!vuelta.success) return vuelta;
 
-            const finish = (result) => {
-                if (settled) return;
-                settled = true;
-                if (!authWindow.isDestroyed()) {
-                    authWindow.destroy();
-                }
-                resolve(result);
-            };
-
-            // Inspect a candidate navigation target for the redirect_uri.
-            const handleRedirect = (navEvent, url) => {
-                if (typeof url !== 'string' || !url.startsWith(redirectUri)) {
-                    return false;
-                }
-                if (navEvent && typeof navEvent.preventDefault === 'function') {
-                    navEvent.preventDefault();
-                }
-                try {
-                    const parsed = new URL(url);
-                    const returnedError = parsed.searchParams.get('error');
-                    if (returnedError) {
-                        finish({
-                            success: false,
-                            error: parsed.searchParams.get('error_description') || returnedError
-                        });
-                        return true;
-                    }
-                    const code = parsed.searchParams.get('code');
-                    const returnedState = parsed.searchParams.get('state');
-                    if (state && returnedState !== state) {
-                        finish({ success: false, error: 'State mismatch en la respuesta OAuth' });
-                        return true;
-                    }
-                    if (code) {
-                        finish({ success: true, code });
-                        return true;
-                    }
-                    finish({ success: false, error: 'No se recibió el código de autorización' });
-                } catch (error) {
-                    finish({ success: false, error: error.message });
-                }
-                return true;
-            };
-
-            // Log every navigation (scheme+host+path only — never the query,
-            // which carries the auth code) so we can see where B2C sends the
-            // window: our authredirect:// (good) or e.g. miliga.laliga.com (bad).
-            // Off by default; enable by running with OAUTH_DEBUG=true.
-            const logNav = (label, url) => {
-                if (process.env.OAUTH_DEBUG !== 'true') return;
-                try {
-                    const u = new URL(url);
-                    console.log(`[oauth-login] ${label}: ${u.protocol}//${u.host}${u.pathname}`);
-                } catch (e) {
-                    console.log(`[oauth-login] ${label}: ${url}`);
-                }
-            };
-
-            // Detect the failure path: if B2C rejects the redirect_uri it
-            // doesn't come back to us — it bounces to LaLiga's web reply URL
-            // (miliga.laliga.com), often carrying an ?error=. Catch that so the
-            // window doesn't hang, and surface a useful message.
-            const checkFailure = (url) => {
-                try {
-                    const u = new URL(url);
-                    const err = u.searchParams.get('error');
-                    if (err) {
-                        finish({ success: false, error: u.searchParams.get('error_description') || err });
-                        return true;
-                    }
-                    if (u.hostname === 'miliga.laliga.com') {
-                        finish({
-                            success: false,
-                            error: 'B2C no aceptó el redirect_uri para este client_id (authredirect:// no está registrado). Se necesita el client_id de la app móvil.'
-                        });
-                        return true;
-                    }
-                } catch (e) { /* noop */ }
-                return false;
-            };
-
-            authWindow.webContents.on('will-redirect', (navEvent, url) => { logNav('will-redirect', url); if (!handleRedirect(navEvent, url)) checkFailure(url); });
-            authWindow.webContents.on('will-navigate', (navEvent, url) => { logNav('will-navigate', url); if (!handleRedirect(navEvent, url)) checkFailure(url); });
-            authWindow.webContents.on('did-navigate', (_navEvent, url) => { logNav('did-navigate', url); checkFailure(url); });
-            // The custom scheme is unregistered, so navigation to it fails —
-            // catch the failed URL as a backup capture point.
-            authWindow.webContents.on('did-fail-load', (_navEvent, _errorCode, _errorDesc, validatedURL) => {
-                logNav('did-fail-load', validatedURL);
-                handleRedirect(null, validatedURL);
-            });
-
-            authWindow.on('closed', () => {
-                finish({ success: false, cancelled: true });
-            });
-
-            authWindow.loadURL(authorizeUrl, { userAgent }).catch((error) => {
-                finish({ success: false, error: error.message });
-            });
-        });
+        try {
+            const parsed = new URL(vuelta.url);
+            const returnedError = parsed.searchParams.get('error');
+            if (returnedError) {
+                return {
+                    success: false,
+                    error: parsed.searchParams.get('error_description') || returnedError,
+                };
+            }
+            const returnedState = parsed.searchParams.get('state');
+            if (state && returnedState !== state) {
+                return { success: false, error: 'State mismatch en la respuesta OAuth' };
+            }
+            const code = parsed.searchParams.get('code');
+            if (!code) {
+                return { success: false, error: 'No se recibió el código de autorización' };
+            }
+            return { success: true, code };
+        } catch (error) {
+            return { success: false, error: error.message };
+        }
     });
 
     // IPC Handler for API requests

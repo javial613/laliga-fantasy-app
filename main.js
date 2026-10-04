@@ -10,6 +10,7 @@ const {
 } = require('./electron/server-manager');
 const { processPendingUpdates } = require('./electron/auto-updater');
 const { registerIpcHandlers } = require('./electron/ipc-handlers');
+const { entregarUrl } = require('./electron/oauth-redirect');
 
 let mainWindow;
 const activeAppOrigins = new Set();
@@ -134,6 +135,23 @@ async function createWindow() {
 registerIpcHandlers({
     getMainWindow: () => mainWindow,
     activeAppOrigins,
+});
+
+// El login se hace en el navegador del sistema y vuelve por este esquema.
+// Se registra en cada arranque: si otra copia de la app se lo quedó, esta
+// lo recupera.
+app.setAsDefaultProtocolClient('authredirect');
+
+// macOS entrega así la vuelta del navegador. Puede llegar antes de que la
+// ventana exista, por eso el listener se registra fuera de whenReady.
+app.on('open-url', (event, url) => {
+    event.preventDefault();
+    if (!entregarUrl(url)) return;
+    if (mainWindow) {
+        if (mainWindow.isMinimized()) mainWindow.restore();
+        mainWindow.focus();
+    }
+    app.focus({ steal: true });
 });
 
 app.whenReady().then(createWindow);
