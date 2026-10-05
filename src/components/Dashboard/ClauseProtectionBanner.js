@@ -24,6 +24,33 @@ const AVISAR_DESDE = 2 * DIA_MS;
  * En ambos casos se muestra el importe, que es lo que decide si conviene
  * actuar o asumir el riesgo.
  */
+/**
+ * Revalorización de las últimas 24h. `null` es "no hay dato", que no es lo
+ * mismo que 0: un jugador que no se movió sí tiene dato.
+ */
+const CeldaSubida = ({ subida }) => (
+    <td className={`py-1 whitespace-nowrap ${
+        subida == null ? 'text-gray-400 dark:text-gray-500'
+            : subida > 0 ? 'text-green-600 dark:text-green-400'
+            : subida < 0 ? 'text-red-600 dark:text-red-400'
+            : 'text-gray-500 dark:text-gray-400'}`}
+    >
+        {subida == null ? 'sin dato' : formatCurrencyWithSign(subida)}
+    </td>
+);
+
+const Cabecera = ({ primera }) => (
+    <thead>
+        <tr className="text-left text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            <th className="py-1 pr-4">Jugador</th>
+            {primera && <th className="py-1 pr-4">{primera}</th>}
+            <th className="py-1 pr-4">Valor</th>
+            <th className="py-1 pr-4">Cláusula</th>
+            <th className="py-1">Subida 24h</th>
+        </tr>
+    </thead>
+);
+
 const ClauseProtectionBanner = ({ teamId }) => {
     const leagueId = useAuthStore((state) => state.leagueId);
     // La tendencia vive en un singleton fuera de React Query; el hook comparte
@@ -96,14 +123,7 @@ const ClauseProtectionBanner = ({ teamId }) => {
                     </p>
                     <div className="overflow-x-auto">
                         <table className="min-w-full text-sm">
-                            <thead>
-                                <tr className="text-left text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                                    <th className="py-1 pr-4">Jugador</th>
-                                    <th className="py-1 pr-4">Valor</th>
-                                    <th className="py-1 pr-4">Cláusula</th>
-                                    <th className="py-1">Subida 24h</th>
-                                </tr>
-                            </thead>
+                            <Cabecera />
                             <tbody>
                                 {abiertos.map((j) => (
                                     <tr key={j.id || j.nombre} className="border-t border-orange-200/60 dark:border-orange-800/40">
@@ -114,13 +134,7 @@ const ClauseProtectionBanner = ({ teamId }) => {
                                         <td className="py-1 pr-4 font-semibold text-red-600 dark:text-red-400 whitespace-nowrap">
                                             {formatCurrency(j.clausula)}
                                         </td>
-                                        <td className={`py-1 whitespace-nowrap ${
-                                            j.subida24h == null ? 'text-gray-400 dark:text-gray-500'
-                                                : j.subida24h > 0 ? 'text-green-600 dark:text-green-400'
-                                                : j.subida24h < 0 ? 'text-red-600 dark:text-red-400'
-                                                : 'text-gray-500 dark:text-gray-400'}`}>
-                                            {j.subida24h == null ? 'sin dato' : formatCurrencyWithSign(j.subida24h)}
-                                        </td>
+                                        <CeldaSubida subida={j.subida24h} />
                                     </tr>
                                 ))}
                             </tbody>
@@ -134,22 +148,31 @@ const ClauseProtectionBanner = ({ teamId }) => {
                     <p className="text-xs uppercase tracking-wider text-orange-700 dark:text-orange-400 font-semibold mb-1">
                         Protección a punto de acabar ({porVencer.length})
                     </p>
-                    <ul className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
-                        {porVencer.map((j) => (
-                            <li key={j.id || j.nombre} className="flex items-center gap-1.5">
-                                <span className="text-gray-900 dark:text-gray-100 font-medium">{j.nombre}</span>
-                                <span className={j.restanteMs <= DIA_MS
-                                    ? 'text-red-600 dark:text-red-400 font-semibold'
-                                    : 'text-orange-700 dark:text-orange-400'}
-                                >
-                                    · queda {j.texto}
-                                </span>
-                                <span className="text-gray-500 dark:text-gray-400">
-                                    ({formatCurrency(j.clausula)})
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full text-sm">
+                            <Cabecera primera="Queda" />
+                            <tbody>
+                                {porVencer.map((j) => (
+                                    <tr key={j.id || j.nombre} className="border-t border-orange-200/60 dark:border-orange-800/40">
+                                        <td className="py-1 pr-4 font-medium text-gray-900 dark:text-gray-100">{j.nombre}</td>
+                                        <td className={`py-1 pr-4 whitespace-nowrap ${j.restanteMs <= DIA_MS
+                                            ? 'text-red-600 dark:text-red-400 font-semibold'
+                                            : 'text-orange-700 dark:text-orange-400'}`}
+                                        >
+                                            {j.texto}
+                                        </td>
+                                        <td className="py-1 pr-4 text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                                            {j.valor != null ? formatCurrency(j.valor) : '—'}
+                                        </td>
+                                        <td className="py-1 pr-4 font-semibold text-orange-700 dark:text-orange-400 whitespace-nowrap">
+                                            {formatCurrency(j.clausula)}
+                                        </td>
+                                        <CeldaSubida subida={j.subida24h} />
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             )}
         </div>
