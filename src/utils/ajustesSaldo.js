@@ -33,6 +33,12 @@ const AJUSTES = {
         // Importe negativo: suma al saldo. Corrección aportada por el usuario.
         'yaguettou': { importe: -2700000, motivo: 'corrección manual del propio usuario' },
     },
+    // Liga 018592924 (Xixarito).
+    '018592924': {
+        // Importe positivo: resta del saldo. Subida de cláusula que el
+        // vigilante no vio, aportada por el usuario el 06-10-2026.
+        'juanitoooo21': { importe: 2500000, motivo: 'subida de cláusula no detectada' },
+    },
 };
 
 const normalizar = (nombre) =>

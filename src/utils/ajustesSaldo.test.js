@@ -15,6 +15,13 @@ describe('getAjusteManual', () => {
         expect(getAjusteManual('Yaguettou', '017842199').importe).toBe(-2700000);
     });
 
+    test('cada liga tiene sus propias correcciones', () => {
+        expect(getAjusteManual('Juanitoooo21', '018592924').importe).toBe(2500000);
+        // El mismo manager, otra liga, otra cifra.
+        expect(getAjusteManual('Juanitoooo21', '017842199').importe).toBe(27000000);
+        expect(getAjusteManual('Yaguettou', '018592924')).toBeNull();
+    });
+
     test('no aplica correcciones de una liga en otra', () => {
         // El mismo manager en otra liga empieza con el saldo sin corregir.
         expect(getAjusteManual('Juanitoooo21', '999999999')).toBeNull();
