@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-06T07:30:11.997Z",
+  "tomadaEn": "2026-10-06T15:04:45.069Z",
   "leagueId": "018592924",
   "jugadores": {
     "270": {
@@ -53,7 +53,7 @@
     },
     "2206": {
       "teamId": "40640228",
-      "clause": 15084240,
+      "clause": 20084240,
       "marketValue": 15084240,
       "name": "Yoel Lago",
       "lockedUntil": "2026-10-06T16:44:03+02:00"
@@ -78,6 +78,13 @@
       "marketValue": 19220149,
       "name": "Bellerín",
       "lockedUntil": "2026-10-09T12:55:23+02:00"
+    },
+    "2444": {
+      "teamId": "40636623",
+      "clause": 24300009,
+      "marketValue": 22482338,
+      "name": "Sucic",
+      "lockedUntil": "2026-10-20T12:55:24+02:00"
     },
     "2474": {
       "teamId": "40631220",
@@ -122,11 +129,11 @@
       "lockedUntil": "2026-10-06T12:55:48+02:00"
     },
     "2607": {
-      "teamId": "40631220",
+      "teamId": "40640228",
       "clause": 18519692,
       "marketValue": 18519692,
       "name": "Ilaix Moriba",
-      "lockedUntil": "2026-10-06T12:55:48+02:00"
+      "lockedUntil": "2026-10-20T12:56:00+02:00"
     },
     "2698": {
       "teamId": "40631220",
@@ -234,11 +241,11 @@
       "lockedUntil": "2026-10-09T12:55:23+02:00"
     },
     "3130": {
-      "teamId": "40631220",
+      "teamId": "40640228",
       "clause": 7149126,
       "marketValue": 7149126,
       "name": "Gulácsi",
-      "lockedUntil": "2026-10-06T12:55:48+02:00"
+      "lockedUntil": "2026-10-20T12:56:07+02:00"
     },
     "3133": {
       "teamId": "40639639",
@@ -256,7 +263,7 @@
     },
     "3147": {
       "teamId": "40640228",
-      "clause": 34629107,
+      "clause": 42129107,
       "marketValue": 34629107,
       "name": "Fer Niño",
       "lockedUntil": "2026-10-06T16:44:03+02:00"
@@ -268,19 +275,19 @@
       "name": "Grimaldo",
       "lockedUntil": "2026-10-11T12:55:05+02:00"
     },
+    "3167": {
+      "teamId": "40640228",
+      "clause": 1000000,
+      "marketValue": 520444,
+      "name": "Galdin",
+      "lockedUntil": "2026-10-20T12:55:24+02:00"
+    },
     "3197": {
       "teamId": "40636623",
       "clause": 56094908,
       "marketValue": 56094908,
       "name": "Cuti Romero",
       "lockedUntil": "2026-10-11T12:55:05+02:00"
-    },
-    "3237": {
-      "teamId": "40631220",
-      "clause": 11136365,
-      "marketValue": 10268300,
-      "name": "Bryan",
-      "lockedUntil": "2026-10-16T12:55:05+02:00"
     },
     "3242": {
       "teamId": "40640228",
@@ -290,11 +297,11 @@
       "lockedUntil": "2026-10-06T16:44:03+02:00"
     },
     "3251": {
-      "teamId": "40636623",
+      "teamId": "40631220",
       "clause": 4245066,
       "marketValue": 3032998,
       "name": "Livakovic",
-      "lockedUntil": "2026-10-06T15:33:52+02:00"
+      "lockedUntil": "2026-10-20T15:33:57+02:00"
     }
   },
   "managers": {
@@ -303,7 +310,34 @@
     "40639639": "gonsalo3007",
     "40640228": "Yaguettou"
   },
-  "costes": {},
-  "historial": [],
+  "costes": {
+    "40640228": 6250000
+  },
+  "historial": [
+    {
+      "playerId": "2206",
+      "playerName": "Yoel Lago",
+      "teamId": "40640228",
+      "clauseAnterior": 15084240,
+      "clauseActual": 20084240,
+      "subida": 5000000,
+      "coste": 2500000,
+      "desde": "2026-10-06T07:30:11.997Z",
+      "hasta": "2026-10-06T15:04:45.069Z",
+      "fecha": "2026-10-06T15:04:45.069Z"
+    },
+    {
+      "playerId": "3147",
+      "playerName": "Fer Niño",
+      "teamId": "40640228",
+      "clauseAnterior": 34629107,
+      "clauseActual": 42129107,
+      "subida": 7500000,
+      "coste": 3750000,
+      "desde": "2026-10-06T07:30:11.997Z",
+      "hasta": "2026-10-06T15:04:45.069Z",
+      "fecha": "2026-10-06T15:04:45.069Z"
+    }
+  ],
   "avisados": {}
 }
