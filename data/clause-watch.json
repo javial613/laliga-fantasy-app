@@ -1,7 +1,14 @@
 {
-  "tomadaEn": "2026-10-08T08:52:36.645Z",
+  "tomadaEn": "2026-10-08T16:25:26.699Z",
   "leagueId": "018592924",
   "jugadores": {
+    "68": {
+      "teamId": "40639639",
+      "clause": 45000000,
+      "marketValue": 40248485,
+      "name": "Unai Simón",
+      "lockedUntil": "2026-10-22T12:55:16+02:00"
+    },
     "270": {
       "teamId": "40636623",
       "clause": 1000000,
@@ -45,11 +52,11 @@
       "lockedUntil": "2026-10-06T15:33:52+02:00"
     },
     "2078": {
-      "teamId": "40640228",
+      "teamId": "40639639",
       "clause": 3356665,
       "marketValue": 3356665,
       "name": "Hugo Alvarez",
-      "lockedUntil": "2026-10-07T12:55:23+02:00"
+      "lockedUntil": "2026-10-22T12:58:05+02:00"
     },
     "2206": {
       "teamId": "40640228",
@@ -191,6 +198,13 @@
       "name": "Luismi Cruz",
       "lockedUntil": "2026-10-15T12:55:24+02:00"
     },
+    "2990": {
+      "teamId": "40639639",
+      "clause": 3922039,
+      "marketValue": 3910672,
+      "name": "Ximo Navarro",
+      "lockedUntil": "2026-10-22T12:55:16+02:00"
+    },
     "3002": {
       "teamId": "40631220",
       "clause": 26724713,
@@ -289,6 +303,20 @@
       "name": "Grimaldo",
       "lockedUntil": "2026-10-11T12:55:05+02:00"
     },
+    "3169": {
+      "teamId": "40640228",
+      "clause": 1000000,
+      "marketValue": 557037,
+      "name": "Bauza",
+      "lockedUntil": "2026-10-22T12:55:16+02:00"
+    },
+    "3183": {
+      "teamId": "40639639",
+      "clause": 4031821,
+      "marketValue": 3935320,
+      "name": "Dubasin",
+      "lockedUntil": "2026-10-22T12:55:16+02:00"
+    },
     "3197": {
       "teamId": "40636623",
       "clause": 57756549,
@@ -309,6 +337,13 @@
       "marketValue": 3100881,
       "name": "Livakovic",
       "lockedUntil": "2026-10-20T15:33:57+02:00"
+    },
+    "3265": {
+      "teamId": "40631220",
+      "clause": 26000000,
+      "marketValue": 25578132,
+      "name": "Fofana",
+      "lockedUntil": "2026-10-22T12:55:16+02:00"
     }
   },
   "managers": {
