@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-09T16:08:31.638Z",
+  "tomadaEn": "2026-10-09T21:38:43.926Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -291,7 +291,7 @@
     },
     "3147": {
       "teamId": "40640228",
-      "clause": 42129107,
+      "clause": 44129107,
       "marketValue": 38754800,
       "name": "Fer Niño",
       "lockedUntil": "2026-10-06T16:44:03+02:00"
@@ -360,9 +360,21 @@
     "40640228": "Yaguettou"
   },
   "costes": {
-    "40640228": 6250000
+    "40640228": 7250000
   },
   "historial": [
+    {
+      "playerId": "3147",
+      "playerName": "Fer Niño",
+      "teamId": "40640228",
+      "clauseAnterior": 42129107,
+      "clauseActual": 44129107,
+      "subida": 2000000,
+      "coste": 1000000,
+      "desde": "2026-10-09T16:08:31.638Z",
+      "hasta": "2026-10-09T21:38:43.926Z",
+      "fecha": "2026-10-09T21:38:43.926Z"
+    },
     {
       "playerId": "2206",
       "playerName": "Yoel Lago",
