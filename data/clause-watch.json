@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-10T08:25:47.030Z",
+  "tomadaEn": "2026-10-10T15:18:32.943Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -88,7 +88,7 @@
     },
     "2414": {
       "teamId": "40631220",
-      "clause": 19300000,
+      "clause": 20300000,
       "marketValue": 19274986,
       "name": "Bellerín",
       "lockedUntil": "2026-10-09T12:55:23+02:00"
@@ -99,13 +99,6 @@
       "marketValue": 24950645,
       "name": "Sucic",
       "lockedUntil": "2026-10-20T12:55:24+02:00"
-    },
-    "2474": {
-      "teamId": "40631220",
-      "clause": 2830850,
-      "marketValue": 2615447,
-      "name": "Denis Suárez",
-      "lockedUntil": "2026-10-12T12:55:18+02:00"
     },
     "2529": {
       "teamId": "40639639",
@@ -134,13 +127,6 @@
       "marketValue": 786227,
       "name": "Youssef",
       "lockedUntil": "2026-10-17T12:55:33+02:00"
-    },
-    "2577": {
-      "teamId": "40631220",
-      "clause": 5169221,
-      "marketValue": 5169221,
-      "name": "A. Rebbach",
-      "lockedUntil": "2026-10-10T12:55:18+02:00"
     },
     "2603": {
       "teamId": "40631220",
@@ -254,6 +240,13 @@
       "name": "Moleiro",
       "lockedUntil": "2026-10-11T12:55:05+02:00"
     },
+    "3089": {
+      "teamId": "40640228",
+      "clause": 53781856,
+      "marketValue": 53781856,
+      "name": "Ez Abde",
+      "lockedUntil": "2026-10-24T12:55:21+02:00"
+    },
     "3125": {
       "teamId": "40631220",
       "clause": 25378107,
@@ -360,9 +353,22 @@
     "40640228": "Yaguettou"
   },
   "costes": {
+    "40631220": 500000,
     "40640228": 7250000
   },
   "historial": [
+    {
+      "playerId": "2414",
+      "playerName": "Bellerín",
+      "teamId": "40631220",
+      "clauseAnterior": 19300000,
+      "clauseActual": 20300000,
+      "subida": 1000000,
+      "coste": 500000,
+      "desde": "2026-10-10T08:25:47.030Z",
+      "hasta": "2026-10-10T15:18:32.943Z",
+      "fecha": "2026-10-10T15:18:32.943Z"
+    },
     {
       "playerId": "3147",
       "playerName": "Fer Niño",
