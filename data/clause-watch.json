@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-11T18:01:54.141Z",
+  "tomadaEn": "2026-10-11T21:52:21.511Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -211,13 +211,6 @@
       "marketValue": 478457,
       "name": "Andrés",
       "lockedUntil": "2026-10-21T12:55:12+02:00"
-    },
-    "3071": {
-      "teamId": "40636623",
-      "clause": 19298921,
-      "marketValue": 7790933,
-      "name": "B. Iglesias",
-      "lockedUntil": "2026-10-06T15:33:52+02:00"
     },
     "3086": {
       "teamId": "40636623",
