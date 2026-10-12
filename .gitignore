@@ -231,3 +231,4 @@ yarn.lock
 *.md
 !README.md
 !README_EN.md
+.vercel

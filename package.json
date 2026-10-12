@@ -37,7 +37,8 @@
     "electron:dist": "npm run build && electron-builder --publish=never",
     "build:electron": "npm run build && electron-builder --publish=never",
     "build:full": "npm run build && electron-builder --win --publish=never",
-    "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js --mode json --report bundle-report.json"
+    "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js --mode json --report bundle-report.json",
+    "vercel-build": "craco build"
   },
   "devDependencies": {
     "@craco/craco": "^7.1.0",

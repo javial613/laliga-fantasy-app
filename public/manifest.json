@@ -1,0 +1,15 @@
+{
+  "short_name": "Fantasy",
+  "name": "LaLiga Fantasy",
+  "description": "Mercado, cláusulas y saldos de tu liga de LaLiga Fantasy",
+  "icons": [
+    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#111827",
+  "background_color": "#111827"
+}

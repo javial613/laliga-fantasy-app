@@ -1,0 +1,10 @@
+# Lo que no debe viajar a Vercel. Sin esto el envío incluye los DMG y el
+# empaquetado de Electron (cientos de MB) y tarda una eternidad.
+node_modules
+dist
+build
+.git
+*.dmg
+*.zip
+build-resources
+docker
