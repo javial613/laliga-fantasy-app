@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { HashRouter  as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import ClauseWatcher from './components/Common/ClauseWatcher';
 import { useAuthStore } from './stores/authStore';
+import { leerEmparejamientoDeHash } from './utils/pairingPayload';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Layout from './components/Layout/Layout';
 import LoadingSpinner from './components/Common/LoadingSpinner';
@@ -29,11 +30,24 @@ const OncesProbles = React.lazy(() => import(/* webpackChunkName: "onces" */ './
 
 function App() {
   const initializeAuth = useAuthStore((state) => state.initializeAuth);
+  const importarEmparejamiento = useAuthStore((state) => state.importarEmparejamiento);
 
   useEffect(() => {
+    // Enlace de emparejamiento desde el ordenador (QR de Ajustes): trae una
+    // sesión en el hash. Se borra de la barra de direcciones ANTES de usarla,
+    // para que no quede en el historial ni al compartir la página.
+    const emparejamiento = leerEmparejamientoDeHash(window.location.hash);
+    if (emparejamiento) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      // Pase lo que pase se sigue con el arranque normal: si el emparejamiento
+      // falla (código caducado, por ejemplo), aparece la pantalla de entrada.
+      importarEmparejamiento(emparejamiento).finally(() => initializeAuth());
+      return;
+    }
+
     // Initialize auth from localStorage if available
     initializeAuth();
-  }, [initializeAuth]);
+  }, [initializeAuth, importarEmparejamiento]);
 
   return (
     <ThemeProvider>

@@ -516,6 +516,28 @@ export const useAuthStore = create(
         }
       },
 
+      /**
+       * Entrada de sesión desde el QR del ordenador (ver PairPhone).
+       *
+       * Del QR solo viene el refresh token —la sesión entera no cabe—, así que
+       * lo primero es canjearlo por tokens completos. Es una cadena propia del
+       * móvil, independiente de la del ordenador.
+       *
+       * @returns {Promise<boolean>} si la sesión quedó abierta
+       */
+      importarEmparejamiento: async ({ refreshToken, clientId, leagueId, leagueName }) => {
+        if (!refreshToken) return false;
+        try {
+          const tokens = await authService.refreshToken(refreshToken, clientId || undefined);
+          if (!tokens?.id_token && !tokens?.access_token) return false;
+          await get().login(tokens);
+          if (leagueId) get().setLeague(leagueId, leagueName || null);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      },
+
       // Test function to simulate receiving tokens (for debugging)
       testTokenCapture: (testTokens) => {
         const sampleTokens = testTokens || {
