@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-12T09:06:20.182Z",
+  "tomadaEn": "2026-10-12T19:01:18.951Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -142,6 +142,13 @@
       "name": "Valentín Gómez",
       "lockedUntil": "2026-10-25T12:55:12+01:00"
     },
+    "2613": {
+      "teamId": "40631220",
+      "clause": 9438348,
+      "marketValue": 9438348,
+      "name": "M. Dituro",
+      "lockedUntil": "2026-10-26T12:55:08+01:00"
+    },
     "2698": {
       "teamId": "40631220",
       "clause": 3519924,
@@ -155,13 +162,6 @@
       "marketValue": 4990372,
       "name": "Javi Rueda",
       "lockedUntil": "2026-10-10T12:55:18+02:00"
-    },
-    "2772": {
-      "teamId": "40636623",
-      "clause": 48712475,
-      "marketValue": 48712475,
-      "name": "C. Soler",
-      "lockedUntil": "2026-10-14T12:55:15+02:00"
     },
     "2939": {
       "teamId": "40631220",
@@ -212,19 +212,19 @@
       "name": "Andrés",
       "lockedUntil": "2026-10-21T12:55:12+02:00"
     },
-    "3086": {
-      "teamId": "40636623",
-      "clause": 77271347,
-      "marketValue": 77271347,
-      "name": "Moleiro",
-      "lockedUntil": "2026-10-11T12:55:05+02:00"
-    },
     "3089": {
       "teamId": "40640228",
       "clause": 55880642,
       "marketValue": 55880642,
       "name": "Ez Abde",
       "lockedUntil": "2026-10-24T12:55:21+02:00"
+    },
+    "3104": {
+      "teamId": "40636623",
+      "clause": 193108000,
+      "marketValue": 193029283,
+      "name": "Lamine Yamal",
+      "lockedUntil": "2026-10-26T12:55:08+01:00"
     },
     "3125": {
       "teamId": "40631220",
