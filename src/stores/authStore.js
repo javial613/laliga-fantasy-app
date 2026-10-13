@@ -295,7 +295,34 @@ export const useAuthStore = create(
             }
 
             try {
-              const result = await authService.refreshToken(refreshTokenValue, state.tokens?.client_id);
+              // LaLiga solo acepta el refresh token contra el mismo cliente que
+              // lo emitió, y ese dato no siempre está guardado (sesiones
+              // antiguas, o importadas antes de que se etiquetaran). Se prueban
+              // por orden los conocidos, igual que hace el vigilante, y el que
+              // funcione se guarda para no volver a tantear.
+              const candidatos = [...new Set([
+                state.tokens?.client_id,
+                authService.AUTH_CONFIG.OAUTH_CLIENT_ID,
+                authService.AUTH_CONFIG.CLIENT_ID,
+                authService.AUTH_CONFIG.EMAIL_CLIENT_ID,
+              ].filter(Boolean))];
+
+              let result = null;
+              let clienteUsado = null;
+              let ultimoError = null;
+              for (const candidato of candidatos) {
+                try {
+                  result = await authService.refreshToken(refreshTokenValue, candidato);
+                  clienteUsado = candidato;
+                  break;
+                } catch (err) {
+                  ultimoError = err;
+                  // Solo se sigue probando si el rechazo es del cliente; ante
+                  // un fallo de red no tiene sentido repetir con otros.
+                  if (!err.message?.includes('invalid_grant')) throw err;
+                }
+              }
+              if (!result) throw ultimoError || new Error('invalid_grant');
 
               if (abortController.signal.aborted) {
                 throw new Error('Refresh aborted');
@@ -307,6 +334,7 @@ export const useAuthStore = create(
                 access_token: result.id_token || result.access_token,
                 id_token: result.id_token,
                 refresh_token: result.refresh_token || state.tokens.refresh_token,
+                client_id: clienteUsado,
                 expires_in: result.id_token_expires_in || result.expires_in || 86400,
                 expires_on: authService.calculateTokenExpiration({
                   id_token_expires_in: result.id_token_expires_in,
@@ -528,9 +556,15 @@ export const useAuthStore = create(
       importarEmparejamiento: async ({ refreshToken, clientId, leagueId, leagueName }) => {
         if (!refreshToken) return false;
         try {
-          const tokens = await authService.refreshToken(refreshToken, clientId || undefined);
+          // El cliente que se use aquí es el que habrá que seguir usando en
+          // cada renovación: LaLiga solo acepta el refresh token contra el
+          // mismo que lo emitió. La respuesta no lo incluye, así que se
+          // etiqueta a mano; sin esto la sesión del móvil muere en cuanto
+          // caduca el primer token de acceso, al cabo de una hora.
+          const clienteEfectivo = clientId || authService.AUTH_CONFIG.CLIENT_ID;
+          const tokens = await authService.refreshToken(refreshToken, clienteEfectivo);
           if (!tokens?.id_token && !tokens?.access_token) return false;
-          await get().login(tokens);
+          await get().login({ ...tokens, client_id: clienteEfectivo });
           if (leagueId) get().setLeague(leagueId, leagueName || null);
           return true;
         } catch (error) {
