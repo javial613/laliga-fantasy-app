@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from '../../utils/motionShim';
 import { LogIn, Mail, Lock, ExternalLink, Chrome } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
+import PairImport from './PairImport';
 import authService from '../../services/authService';
 import updateService from '../../services/updateService';
 import * as pkce from '../../utils/pkce';
@@ -698,6 +699,10 @@ const Login = () => {
               </button>
               </>
               )}
+
+              {/* Fuera de la app de escritorio, emparejar con el ordenador es
+                  la vía practicable: el login de LaLiga no sabe volver aquí. */}
+              {!canUseElectronOAuth && <PairImport />}
 
               {(showManualGuide || !canUseElectronOAuth) && (
               <>

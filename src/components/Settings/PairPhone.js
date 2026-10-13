@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import QRCode from 'qrcode';
-import { Smartphone, ShieldAlert, RefreshCw, EyeOff } from 'lucide-react';
+import { Smartphone, ShieldAlert, RefreshCw, EyeOff, Copy, Check } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 import { obtenerTokensInteractivo, sePuedeIniciarSesionInteractiva } from '../../services/interactiveLogin';
 import { construirEnlaceEmparejamiento } from '../../utils/pairingPayload';
@@ -24,6 +24,8 @@ const PairPhone = () => {
     const leagueName = useAuthStore((state) => state.leagueName);
 
     const [qr, setQr] = useState(null);
+    const [enlace, setEnlace] = useState(null);
+    const [copiado, setCopiado] = useState(false);
     const [cargando, setCargando] = useState(false);
     const [error, setError] = useState(null);
 
@@ -52,12 +54,25 @@ const PairPhone = () => {
                 width: 420,
             });
             setQr(imagen);
+            setEnlace(enlace);
+            setCopiado(false);
         } catch (err) {
             setError(err.message || 'No se pudo generar el código');
         } finally {
             setCargando(false);
         }
     }, [leagueId, leagueName]);
+
+    const copiar = async () => {
+        if (!enlace) return;
+        try {
+            await navigator.clipboard.writeText(enlace);
+            setCopiado(true);
+            setTimeout(() => setCopiado(false), 4000);
+        } catch (err) {
+            setError('No se pudo copiar. Escanea el QR con la cámara.');
+        }
+    };
 
     if (!disponible) return null;
 
@@ -70,8 +85,7 @@ const PairPhone = () => {
 
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
                 Abre <span className="font-mono text-xs break-all">{WEB_URL}</span> en el móvil y
-                añádela a la pantalla de inicio. Para entrar sin escribir nada, genera un código y
-                escanéalo con la cámara.
+                añádela a la pantalla de inicio. Después genera el código de abajo para entrar.
             </p>
 
             {!qr && (
@@ -114,8 +128,20 @@ const PairPhone = () => {
                         className="w-[320px] max-w-full rounded-lg bg-white p-2"
                     />
 
+                    <p className="mt-2 max-w-[420px] text-xs text-gray-500 dark:text-gray-400">
+                        En el iPhone, abre la app <strong>desde su icono</strong> de la pantalla de
+                        inicio y pega ahí el enlace. Si escaneas el QR con la cámara, la sesión se
+                        queda en Safari, que guarda sus datos aparte del icono, y este seguirá
+                        pidiéndote entrar.
+                    </p>
+
                     <div className="mt-3 flex flex-wrap gap-2">
-                        <button type="button" onClick={() => setQr(null)} className="btn-secondary flex items-center gap-2">
+                        <button type="button" onClick={copiar} className="btn-primary flex items-center gap-2">
+                            {copiado
+                                ? <><Check className="w-4 h-4" aria-hidden="true" /> Copiado</>
+                                : <><Copy className="w-4 h-4" aria-hidden="true" /> Copiar enlace</>}
+                        </button>
+                        <button type="button" onClick={() => { setQr(null); setEnlace(null); }} className="btn-secondary flex items-center gap-2">
                             <EyeOff className="w-4 h-4" aria-hidden="true" /> Ocultar
                         </button>
                         <button type="button" onClick={generar} disabled={cargando} className="btn-secondary flex items-center gap-2 disabled:opacity-60">
