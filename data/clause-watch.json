@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-13T01:18:05.201Z",
+  "tomadaEn": "2026-10-13T09:20:17.017Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -263,7 +263,7 @@
     },
     "3147": {
       "teamId": "40640228",
-      "clause": 45129107,
+      "clause": 45429107,
       "marketValue": 43279716,
       "name": "Fer Niño",
       "lockedUntil": "2026-10-06T16:44:03+02:00"
@@ -277,7 +277,7 @@
     },
     "3155": {
       "teamId": "40640228",
-      "clause": 82023094,
+      "clause": 84023094,
       "marketValue": 78968373,
       "name": "Grimaldo",
       "lockedUntil": "2026-10-11T12:55:05+02:00"
@@ -326,9 +326,33 @@
   },
   "costes": {
     "40631220": 1000000,
-    "40640228": 11980000
+    "40640228": 13130000
   },
   "historial": [
+    {
+      "playerId": "3147",
+      "playerName": "Fer Niño",
+      "teamId": "40640228",
+      "clauseAnterior": 45129107,
+      "clauseActual": 45429107,
+      "subida": 300000,
+      "coste": 150000,
+      "desde": "2026-10-13T01:18:05.201Z",
+      "hasta": "2026-10-13T09:20:17.017Z",
+      "fecha": "2026-10-13T09:20:17.017Z"
+    },
+    {
+      "playerId": "3155",
+      "playerName": "Grimaldo",
+      "teamId": "40640228",
+      "clauseAnterior": 82023094,
+      "clauseActual": 84023094,
+      "subida": 2000000,
+      "coste": 1000000,
+      "desde": "2026-10-13T01:18:05.201Z",
+      "hasta": "2026-10-13T09:20:17.017Z",
+      "fecha": "2026-10-13T09:20:17.017Z"
+    },
     {
       "playerId": "1056",
       "playerName": "Pedrosa",
