@@ -367,8 +367,11 @@ export const useAuthStore = create(
                 throw new Error('La sesión guardada ha caducado o no es válida. Vuelve a iniciar sesión cuando expire tu sesión.');
               }
 
-              // For other errors, logout user
-              get().logout();
+              // Cualquier otro fallo (sin cobertura, caída del servidor, un
+              // 500 pasajero) NO es motivo para cerrar la sesión: eso borraba
+              // también la liga elegida y dejaba al usuario en la pantalla de
+              // entrada por haber abierto la app en un ascensor. Se deja la
+              // sesión como está y ya se reintentará en la próxima renovación.
               throw error;
             }
           } finally {

@@ -111,3 +111,34 @@ describe('refreshToken: cliente emisor', () => {
         expect(authService.refreshToken).toHaveBeenCalledTimes(1);
     });
 });
+
+describe('un fallo pasajero no debe cerrar la sesión', () => {
+    beforeEach(() => {
+        authService.AUTH_CONFIG = { CLIENT_ID: 'web', OAUTH_CLIENT_ID: 'nativo', EMAIL_CLIENT_ID: 'email' };
+        authService.isTokenExpired.mockReturnValue(true);
+        useAuthStore.setState({
+            isAuthenticated: true, user: { userId: '1' }, inflightRefresh: null,
+            leagueId: '018592924', leagueName: 'Xixarito', hasSelectedLeague: true,
+            tokens: { access_token: 'viejo', refresh_token: 'rt', client_id: 'nativo' },
+        });
+    });
+
+    test('sin cobertura se conserva la liga y la sesión', async () => {
+        authService.refreshToken.mockRejectedValue(new Error('Failed to fetch'));
+
+        await expect(useAuthStore.getState().refreshToken()).rejects.toThrow();
+
+        const estado = useAuthStore.getState();
+        expect(estado.leagueId).toBe('018592924');
+        expect(estado.hasSelectedLeague).toBe(true);
+        expect(estado.isAuthenticated).toBe(true);
+    });
+
+    test('si la sesión ya no vale de verdad, se avisa pero tampoco se pierde la liga', async () => {
+        authService.refreshToken.mockRejectedValue(new Error('invalid_grant'));
+
+        await expect(useAuthStore.getState().refreshToken()).rejects.toThrow(/caducado|válida/i);
+
+        expect(useAuthStore.getState().leagueId).toBe('018592924');
+    });
+});
