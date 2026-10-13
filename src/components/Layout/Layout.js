@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   Home, Trophy, ShoppingCart, Users, Calendar, Search, X, Moon, Sun,
-  Activity, LogOut, Shield, User, Target, RefreshCw, Clock, Bug, FileText, Edit3, Settings,
+  Activity, LogOut, Shield, User, Target, RefreshCw, Clock, Bug, FileText, Edit3, Settings, Tag,
 } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -31,6 +31,7 @@ const MENU_ITEMS = [
   { path: '/matches', icon: Calendar, label: 'Jornadas' },
   { path: '/players', icon: User, label: 'Jugadores' },
   { path: '/clauses', icon: Shield, label: 'Cláusulas' },
+  { path: '/venta', icon: Tag, label: 'Venta' },
   { path: '/laliga-teams', icon: Trophy, label: 'Equipos de la Liga' },
   { path: '/settings', icon: Settings, label: 'Configuración' },
 ];

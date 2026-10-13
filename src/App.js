@@ -26,6 +26,7 @@ const LaLigaTeams = React.lazy(() => import(/* webpackChunkName: "laliga-teams" 
 const MarketTrends = React.lazy(() => import(/* webpackChunkName: "market-trends" */ './components/Market/MarketTrends'));
 const AlertManager = React.lazy(() => import(/* webpackChunkName: "alerts" */ './components/Alerts/AlertManager'));
 const Settings = React.lazy(() => import(/* webpackChunkName: "settings" */ './components/Settings/Settings'));
+const Sales = React.lazy(() => import(/* webpackChunkName: "sales" */ './components/Sales/Sales'));
 const OncesProbles = React.lazy(() => import(/* webpackChunkName: "onces" */ './components/OncesProbles/OncesProbles'));
 
 function App() {
@@ -119,6 +120,7 @@ function AppRoutes() {
         <Route path="/clauses" element={<Clauses />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/alerts" element={<AlertManager />} />
+        <Route path="/venta" element={<Sales />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/onces-probables" element={<OncesProbles />} />
         <Route path="*" element={<Navigate to="/" />} />
