@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-14T07:31:17.450Z",
+  "tomadaEn": "2026-10-14T13:39:00.768Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -162,6 +162,13 @@
       "marketValue": 12836638,
       "name": "Luismi Cruz",
       "lockedUntil": "2026-10-15T12:55:24+02:00"
+    },
+    "2977": {
+      "teamId": "40640228",
+      "clause": 1000000,
+      "marketValue": 584719,
+      "name": "Riki",
+      "lockedUntil": "2026-10-28T12:55:08+01:00"
     },
     "2990": {
       "teamId": "40639639",
