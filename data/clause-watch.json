@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-15T07:21:30.928Z",
+  "tomadaEn": "2026-10-15T13:21:49.792Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -36,6 +36,13 @@
       "marketValue": 13944192,
       "name": "Sergio Gómez",
       "lockedUntil": "2026-10-08T12:55:15+02:00"
+    },
+    "2005": {
+      "teamId": "40640228",
+      "clause": 5968000,
+      "marketValue": 5867321,
+      "name": "Abel Bretones",
+      "lockedUntil": "2026-10-29T12:55:27+01:00"
     },
     "2078": {
       "teamId": "40639639",
@@ -79,6 +86,13 @@
       "name": "Sucic",
       "lockedUntil": "2026-10-20T12:55:24+02:00"
     },
+    "2464": {
+      "teamId": "40640228",
+      "clause": 20520000,
+      "marketValue": 18978598,
+      "name": "Pepelu",
+      "lockedUntil": "2026-10-29T12:55:27+01:00"
+    },
     "2504": {
       "teamId": "40639639",
       "clause": 28488225,
@@ -87,11 +101,11 @@
       "lockedUntil": "2026-10-27T12:55:30+01:00"
     },
     "2529": {
-      "teamId": "40639639",
+      "teamId": "40636623",
       "clause": 1000000,
       "marketValue": 542648,
       "name": "Rubén S.",
-      "lockedUntil": "2026-10-06T16:31:50+02:00"
+      "lockedUntil": "2026-10-29T13:21:56+01:00"
     },
     "2548": {
       "teamId": "40639639",
