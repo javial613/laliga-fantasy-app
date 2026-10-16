@@ -45,17 +45,17 @@ describe('cruce de plantilla y mercado', () => {
 });
 
 describe('precio de salida', () => {
-    test('aplica el porcentaje y redondea al millar', () => {
+    test('es el valor de mercado exacto, sin redondear', () => {
         expect(precioDeVenta(10_000_000)).toBe(10_000_000);
-        expect(precioDeVenta(10_000_000, 110)).toBe(11_000_000);
-        expect(precioDeVenta(7_507_168, 100)).toBe(7_507_000);
-        expect(precioDeVenta(1_234_567, 125)).toBe(1_543_000);
+        expect(precioDeVenta(7_507_168)).toBe(7_507_168);
+        expect(precioDeVenta(1_234_567)).toBe(1_234_567);
     });
 
     test('un valor inservible da 0 en vez de NaN', () => {
         expect(precioDeVenta(null)).toBe(0);
-        expect(precioDeVenta(undefined, 150)).toBe(0);
+        expect(precioDeVenta(undefined)).toBe(0);
         expect(precioDeVenta(-5)).toBe(0);
+        expect(precioDeVenta('no es un número')).toBe(0);
     });
 });
 

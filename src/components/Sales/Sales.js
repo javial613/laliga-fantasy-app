@@ -11,8 +11,6 @@ import {
     cruzarPlantillaConMercado, precioDeVenta, repartirAcciones, ejecutarEnSerie,
 } from '../../utils/ventaMasiva';
 
-const PORCENTAJES = [100, 110, 125, 150];
-
 /**
  * Venta: poner y quitar jugadores del mercado en bloque.
  *
@@ -25,7 +23,6 @@ const Sales = () => {
     const { teamId, leagueId, isLoading: cargandoEquipo } = useMyTeamId();
 
     const [seleccion, setSeleccion] = useState(new Set());
-    const [porcentaje, setPorcentaje] = useState(100);
     const [progreso, setProgreso] = useState(null);
 
     const { data: teamData, isLoading: cargandoPlantilla, refetch } = useQuery({
@@ -66,14 +63,14 @@ const Sales = () => {
         return ejecutarEnSerie(
             lista,
             async (j) => {
-                const precio = precioDeVenta(j.valor, porcentaje);
+                const precio = precioDeVenta(j.valor);
                 if (!precio) throw new Error('sin valor de mercado');
                 const respuesta = await fantasyAPI.sellPlayerToMarket(leagueId, j.playerTeamId, precio);
                 if (!isSuccessResponse(respuesta)) throw new Error('la liga rechazó la venta');
             },
             (hechos, total, j) => setProgreso({ texto: `Poniendo ${j.nombre}…`, hechos, total }),
         );
-    }, [leagueId, porcentaje]);
+    }, [leagueId]);
 
     const quitar = useCallback(async (lista) => {
         if (lista.length === 0) return null;
@@ -145,27 +142,9 @@ const Sales = () => {
             </div>
 
             <div className="card p-4 sm:p-6 space-y-4">
-                <div>
-                    <span className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Precio al poner a la venta
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                        {PORCENTAJES.map((p) => (
-                            <button
-                                key={p}
-                                type="button"
-                                onClick={() => setPorcentaje(p)}
-                                className={`px-3 py-1.5 rounded-lg text-sm font-medium border-2 transition-colors ${
-                                    porcentaje === p
-                                        ? 'border-primary-400 bg-primary-100 text-primary-800 dark:border-primary-600 dark:bg-primary-900/30 dark:text-primary-200'
-                                        : 'border-gray-200 text-gray-600 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800'
-                                }`}
-                            >
-                                {p === 100 ? 'Valor de mercado' : `+${p - 100}%`}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                    Los jugadores se anuncian por su valor de mercado del momento.
+                </p>
 
                 <div className="flex flex-wrap gap-2">
                     <button type="button" onClick={ponerTodos} disabled={ocupado || fuera.length === 0}
@@ -259,7 +238,7 @@ const Sales = () => {
                                         <td className="py-2 pr-4 whitespace-nowrap text-gray-700 dark:text-gray-300">
                                             {j.enVenta
                                                 ? formatCurrency(j.precioActual || 0)
-                                                : <span className="text-gray-400">{formatCurrency(precioDeVenta(j.valor, porcentaje))}</span>}
+                                                : <span className="text-gray-400">{formatCurrency(precioDeVenta(j.valor))}</span>}
                                         </td>
                                     </tr>
                                 );

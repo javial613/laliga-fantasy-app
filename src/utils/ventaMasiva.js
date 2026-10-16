@@ -56,14 +56,14 @@ export const cruzarPlantillaConMercado = (plantilla, anuncios) => {
 };
 
 /**
- * Precio de salida a partir del valor de mercado.
- * Se redondea al millar: la API acepta el céntimo, pero un precio con seis
- * cifras raras canta mucho en el mercado y no aporta nada.
+ * Precio de salida: el valor de mercado del jugador, tal cual.
+ * Devuelve 0 si no hay valor utilizable, para que quien llame no intente
+ * anunciar a un precio inventado.
  */
-export const precioDeVenta = (valor, porcentaje = 100) => {
+export const precioDeVenta = (valor) => {
     const base = Number(valor);
     if (!Number.isFinite(base) || base <= 0) return 0;
-    return Math.round((base * porcentaje) / 100 / 1000) * 1000;
+    return Math.round(base);
 };
 
 /**
