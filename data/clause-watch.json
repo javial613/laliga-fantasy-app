@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-17T09:16:34.027Z",
+  "tomadaEn": "2026-10-17T13:41:33.453Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -281,13 +281,6 @@
       "marketValue": 35686744,
       "name": "Y. Zabiri",
       "lockedUntil": "2026-10-21T12:55:12+02:00"
-    },
-    "3155": {
-      "teamId": "40640228",
-      "clause": 84023094,
-      "marketValue": 83915910,
-      "name": "Grimaldo",
-      "lockedUntil": "2026-10-11T12:55:05+02:00"
     },
     "3156": {
       "teamId": "40636623",
