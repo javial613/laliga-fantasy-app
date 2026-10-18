@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-18T18:02:53.824Z",
+  "tomadaEn": "2026-10-18T20:35:34.994Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -113,13 +113,6 @@
       "marketValue": 561677,
       "name": "Rubén S.",
       "lockedUntil": "2026-10-29T13:21:56+01:00"
-    },
-    "2548": {
-      "teamId": "40639639",
-      "clause": 17231174,
-      "marketValue": 14626091,
-      "name": "Riquelme",
-      "lockedUntil": "2026-10-17T12:55:33+02:00"
     },
     "2549": {
       "teamId": "40631220",
