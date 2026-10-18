@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-18T10:56:53.118Z",
+  "tomadaEn": "2026-10-18T14:32:11.527Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -162,13 +162,6 @@
       "marketValue": 611044,
       "name": "J. Vertrouwd",
       "lockedUntil": "2026-10-30T12:55:05+01:00"
-    },
-    "2698": {
-      "teamId": "40631220",
-      "clause": 3519924,
-      "marketValue": 3160717,
-      "name": "Pau Navarro",
-      "lockedUntil": "2026-10-10T12:55:18+02:00"
     },
     "2714": {
       "teamId": "40640228",
