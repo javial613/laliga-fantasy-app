@@ -13,4 +13,26 @@ const isOriginAllowed = (origin, allowedOrigins) => {
   });
 };
 
-module.exports = { isOriginAllowed };
+/**
+ * ¿La petición viene de la propia página que sirve este servidor?
+ *
+ * Los navegadores no mandan `Origin` al leer, pero sí en cada escritura, así
+ * que una app servida desde el mismo sitio se veía rechazada por su propio
+ * proxy en cuanto intentaba hacer algo: leer funcionaba y actuar no. Detrás
+ * de un CDN el host público llega en x-forwarded-host.
+ */
+const isSameOrigin = (origin, headers = {}) => {
+  if (!origin) return false;
+  const reenviado = headers['x-forwarded-host'];
+  const anfitrion = (Array.isArray(reenviado) ? reenviado[0] : reenviado) || headers.host;
+  if (!anfitrion) return false;
+  // Con varios saltos la cabecera puede traer una lista; vale el primero.
+  const esperado = String(anfitrion).split(',')[0].trim().toLowerCase();
+  try {
+    return new URL(origin).host.toLowerCase() === esperado;
+  } catch (error) {
+    return false;
+  }
+};
+
+module.exports = { isOriginAllowed, isSameOrigin };

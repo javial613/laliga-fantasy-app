@@ -12,7 +12,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const axiosPackagePath = require.resolve('axios/package.json');
 const axios = require(path.join(path.dirname(axiosPackagePath), 'dist/node/axios.cjs'));
 const { loadConfig } = require('./config');
-const { isOriginAllowed } = require('./security');
+const { isOriginAllowed, isSameOrigin } = require('./security');
 
 // Ensure axios uses the Node http adapter even when XMLHttpRequest is present.
 axios.defaults.adapter = 'http';
@@ -20,24 +20,27 @@ axios.defaults.adapter = 'http';
 const buildCorsMiddleware = (config) => {
   const allowedOrigins = config.security.allowedOrigins;
   const allowNull = config.security.allowNullOrigin;
-  const corsOptions = {
-    origin: (origin, cb) => {
-      if (!origin) {
-        return allowNull ? cb(null, true) : cb(new Error('Origin header is required'));
-      }
-      if (isOriginAllowed(origin, allowedOrigins)) {
-        return cb(null, true);
-      }
-      return cb(new Error(`Origin ${origin} is not allowed`));
-    },
-    credentials: true,
-    methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization', 'x-lang', 'x-app'],
-    exposedHeaders: ['Content-Type'],
-    maxAge: 86400,
-  };
+  // Delegado por petición, y no una lista fija, para poder comparar el origen
+  // con el anfitrión de la propia petición: así la página servida por este
+  // mismo servidor se acepta sin tener que apuntar su dirección en ningún
+  // sitio, esté donde esté alojada.
+  const corsMiddleware = cors((req, cb) => {
+    const origin = req.headers.origin;
+    const permitido = !origin
+      ? allowNull
+      : (isSameOrigin(origin, req.headers) || isOriginAllowed(origin, allowedOrigins));
 
-  const corsMiddleware = cors(corsOptions);
+    cb(permitido ? null : new Error(
+      origin ? `Origin ${origin} is not allowed` : 'Origin header is required'
+    ), {
+      origin: true,
+      credentials: true,
+      methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+      allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization', 'x-lang', 'x-app'],
+      exposedHeaders: ['Content-Type'],
+      maxAge: 86400,
+    });
+  });
 
   return (req, res, next) => {
     corsMiddleware(req, res, (err) => {
