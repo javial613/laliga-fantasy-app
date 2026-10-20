@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-20T11:27:42.962Z",
+  "tomadaEn": "2026-10-20T16:55:15.857Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -130,7 +130,7 @@
     },
     "2607": {
       "teamId": "40640228",
-      "clause": 28430376,
+      "clause": 31430376,
       "marketValue": 28430376,
       "name": "Ilaix Moriba",
       "lockedUntil": "2026-10-20T12:56:00+02:00"
@@ -289,13 +289,6 @@
       "name": "Dubasin",
       "lockedUntil": "2026-10-22T12:55:16+02:00"
     },
-    "3197": {
-      "teamId": "40631220",
-      "clause": 67983185,
-      "marketValue": 67983185,
-      "name": "Cuti Romero",
-      "lockedUntil": "2026-10-25T13:44:45+01:00"
-    },
     "3205": {
       "teamId": "40636623",
       "clause": 7020000,
@@ -327,9 +320,21 @@
   "costes": {
     "40631220": 1000816,
     "40636623": 1437,
-    "40640228": 13880596
+    "40640228": 15380596
   },
   "historial": [
+    {
+      "playerId": "2607",
+      "playerName": "Ilaix Moriba",
+      "teamId": "40640228",
+      "clauseAnterior": 28430376,
+      "clauseActual": 31430376,
+      "subida": 3000000,
+      "coste": 1500000,
+      "desde": "2026-10-20T11:27:42.962Z",
+      "hasta": "2026-10-20T16:55:15.857Z",
+      "fecha": "2026-10-20T16:55:15.857Z"
+    },
     {
       "playerId": "3089",
       "playerName": "Ez Abde",
