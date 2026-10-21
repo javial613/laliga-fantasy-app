@@ -1,10 +1,10 @@
 {
-  "tomadaEn": "2026-10-21T15:12:03.176Z",
+  "tomadaEn": "2026-10-21T20:05:45.080Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
       "teamId": "40639639",
-      "clause": 45000000,
+      "clause": 51000000,
       "marketValue": 37904236,
       "name": "Unai Simón",
       "lockedUntil": "2026-10-22T12:55:16+02:00"
@@ -60,7 +60,7 @@
     },
     "2078": {
       "teamId": "40639639",
-      "clause": 5109321,
+      "clause": 8109321,
       "marketValue": 5109321,
       "name": "Hugo Alvarez",
       "lockedUntil": "2026-10-22T12:58:05+02:00"
@@ -85,13 +85,6 @@
       "marketValue": 17889888,
       "name": "Bellerín",
       "lockedUntil": "2026-10-09T12:55:23+02:00"
-    },
-    "2444": {
-      "teamId": "40636623",
-      "clause": 28082379,
-      "marketValue": 28082379,
-      "name": "Sucic",
-      "lockedUntil": "2026-10-20T12:55:24+02:00"
     },
     "2464": {
       "teamId": "40640228",
@@ -254,13 +247,6 @@
       "name": "Ez Abde",
       "lockedUntil": "2026-10-24T12:55:21+02:00"
     },
-    "3104": {
-      "teamId": "40636623",
-      "clause": 195241618,
-      "marketValue": 195241618,
-      "name": "Lamine Yamal",
-      "lockedUntil": "2026-10-26T12:55:08+01:00"
-    },
     "3125": {
       "teamId": "40631220",
       "clause": 25378107,
@@ -295,13 +281,6 @@
       "marketValue": 955421,
       "name": "Valentini",
       "lockedUntil": "2026-10-27T12:55:30+01:00"
-    },
-    "3169": {
-      "teamId": "40640228",
-      "clause": 1000000,
-      "marketValue": 586080,
-      "name": "Bauza",
-      "lockedUntil": "2026-10-22T12:55:16+02:00"
     },
     "3183": {
       "teamId": "40639639",
@@ -341,9 +320,34 @@
   "costes": {
     "40631220": 1000816,
     "40636623": 1437,
+    "40639639": 4500000,
     "40640228": 17980596
   },
   "historial": [
+    {
+      "playerId": "68",
+      "playerName": "Unai Simón",
+      "teamId": "40639639",
+      "clauseAnterior": 45000000,
+      "clauseActual": 51000000,
+      "subida": 6000000,
+      "coste": 3000000,
+      "desde": "2026-10-21T15:12:03.176Z",
+      "hasta": "2026-10-21T20:05:45.080Z",
+      "fecha": "2026-10-21T20:05:45.080Z"
+    },
+    {
+      "playerId": "2078",
+      "playerName": "Hugo Alvarez",
+      "teamId": "40639639",
+      "clauseAnterior": 5109321,
+      "clauseActual": 8109321,
+      "subida": 3000000,
+      "coste": 1500000,
+      "desde": "2026-10-21T15:12:03.176Z",
+      "hasta": "2026-10-21T20:05:45.080Z",
+      "fecha": "2026-10-21T20:05:45.080Z"
+    },
     {
       "playerId": "3152",
       "playerName": "Y. Zabiri",
