@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-21T10:04:04.270Z",
+  "tomadaEn": "2026-10-21T15:12:03.176Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -15,6 +15,13 @@
       "marketValue": 600452,
       "name": "Guevara",
       "lockedUntil": "2026-10-17T12:55:33+02:00"
+    },
+    "652": {
+      "teamId": "40636623",
+      "clause": 13100009,
+      "marketValue": 11358592,
+      "name": "Rubén García",
+      "lockedUntil": "2026-11-04T12:55:05+01:00"
     },
     "1056": {
       "teamId": "40640228",
@@ -65,12 +72,12 @@
       "name": "Yoel Lago",
       "lockedUntil": "2026-11-02T14:06:50+01:00"
     },
-    "2324": {
+    "2363": {
       "teamId": "40640228",
-      "clause": 22830742,
-      "marketValue": 22830742,
-      "name": "Giménez",
-      "lockedUntil": "2026-11-01T12:54:42+01:00"
+      "clause": 1000000,
+      "marketValue": 571552,
+      "name": "Letacek",
+      "lockedUntil": "2026-11-04T12:55:05+01:00"
     },
     "2414": {
       "teamId": "40631220",
@@ -115,11 +122,11 @@
       "lockedUntil": "2026-10-29T13:21:56+01:00"
     },
     "2549": {
-      "teamId": "40631220",
+      "teamId": "40639639",
       "clause": 28483361,
       "marketValue": 28483361,
       "name": "Navarro",
-      "lockedUntil": "2026-10-21T12:55:12+02:00"
+      "lockedUntil": "2026-11-04T13:50:40+01:00"
     },
     "2603": {
       "teamId": "40631220",
@@ -149,12 +156,26 @@
       "name": "M. Dituro",
       "lockedUntil": "2026-10-26T12:55:08+01:00"
     },
+    "2656": {
+      "teamId": "40640228",
+      "clause": 22350000,
+      "marketValue": 19828166,
+      "name": "Jon Martin",
+      "lockedUntil": "2026-11-04T12:55:05+01:00"
+    },
     "2678": {
       "teamId": "40636623",
       "clause": 1000000,
       "marketValue": 611250,
       "name": "J. Vertrouwd",
       "lockedUntil": "2026-10-30T12:55:05+01:00"
+    },
+    "2680": {
+      "teamId": "40640228",
+      "clause": 11136619,
+      "marketValue": 11036610,
+      "name": "A. Castrín",
+      "lockedUntil": "2026-11-04T12:55:05+01:00"
     },
     "2714": {
       "teamId": "40640228",
@@ -263,7 +284,7 @@
     },
     "3152": {
       "teamId": "40640228",
-      "clause": 37941508,
+      "clause": 43141508,
       "marketValue": 37941508,
       "name": "Y. Zabiri",
       "lockedUntil": "2026-10-21T12:55:12+02:00"
@@ -320,9 +341,21 @@
   "costes": {
     "40631220": 1000816,
     "40636623": 1437,
-    "40640228": 15380596
+    "40640228": 17980596
   },
   "historial": [
+    {
+      "playerId": "3152",
+      "playerName": "Y. Zabiri",
+      "teamId": "40640228",
+      "clauseAnterior": 37941508,
+      "clauseActual": 43141508,
+      "subida": 5200000,
+      "coste": 2600000,
+      "desde": "2026-10-21T10:04:04.270Z",
+      "hasta": "2026-10-21T15:12:03.176Z",
+      "fecha": "2026-10-21T15:12:03.176Z"
+    },
     {
       "playerId": "2607",
       "playerName": "Ilaix Moriba",
