@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-23T14:59:50.994Z",
+  "tomadaEn": "2026-10-23T19:08:25.245Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -281,13 +281,6 @@
       "marketValue": 863175,
       "name": "Mantilla",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
-    },
-    "3002": {
-      "teamId": "40640228",
-      "clause": 27827406,
-      "marketValue": 27827406,
-      "name": "Iñigo Vicente",
-      "lockedUntil": "2026-11-02T12:58:55+01:00"
     },
     "3036": {
       "teamId": "40631220",
