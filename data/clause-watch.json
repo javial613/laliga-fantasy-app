@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-24T12:38:25.029Z",
+  "tomadaEn": "2026-10-24T16:33:21.684Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -198,26 +198,12 @@
       "name": "M. Dituro",
       "lockedUntil": "2026-10-26T12:55:08+01:00"
     },
-    "2614": {
-      "teamId": "40639639",
-      "clause": 9596451,
-      "marketValue": 9124096,
-      "name": "C. Romero",
-      "lockedUntil": "2026-11-06T12:55:12+01:00"
-    },
     "2656": {
       "teamId": "40640228",
       "clause": 22350000,
       "marketValue": 21179362,
       "name": "Jon Martin",
       "lockedUntil": "2026-11-04T12:55:05+01:00"
-    },
-    "2665": {
-      "teamId": "40631220",
-      "clause": 1000000,
-      "marketValue": 627517,
-      "name": "Marín",
-      "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
     "2671": {
       "teamId": "40631220",
@@ -361,7 +347,7 @@
     },
     "3152": {
       "teamId": "40640228",
-      "clause": 45141508,
+      "clause": 50041508,
       "marketValue": 38441841,
       "name": "Y. Zabiri",
       "lockedUntil": "2026-10-21T12:55:12+02:00"
@@ -387,13 +373,6 @@
       "name": "Dubasin",
       "lockedUntil": "2026-11-05T14:07:40+01:00"
     },
-    "3191": {
-      "teamId": "40631220",
-      "clause": 1000000,
-      "marketValue": 606610,
-      "name": "Á. Padilla",
-      "lockedUntil": "2026-11-06T12:55:12+01:00"
-    },
     "3205": {
       "teamId": "40636623",
       "clause": 7020000,
@@ -415,13 +394,6 @@
       "name": "Saliba",
       "lockedUntil": "2026-11-05T14:41:08+01:00"
     },
-    "3243": {
-      "teamId": "40639639",
-      "clause": 1000000,
-      "marketValue": 655972,
-      "name": "Rockson",
-      "lockedUntil": "2026-11-06T12:55:12+01:00"
-    },
     "3265": {
       "teamId": "40636623",
       "clause": 36260954,
@@ -440,9 +412,21 @@
     "40631220": 1000816,
     "40636623": 1437,
     "40639639": 4500000,
-    "40640228": 24480596
+    "40640228": 26930596
   },
   "historial": [
+    {
+      "playerId": "3152",
+      "playerName": "Y. Zabiri",
+      "teamId": "40640228",
+      "clauseAnterior": 45141508,
+      "clauseActual": 50041508,
+      "subida": 4900000,
+      "coste": 2450000,
+      "desde": "2026-10-24T12:38:25.029Z",
+      "hasta": "2026-10-24T16:33:21.684Z",
+      "fecha": "2026-10-24T16:33:21.684Z"
+    },
     {
       "playerId": "3089",
       "playerName": "Ez Abde",
