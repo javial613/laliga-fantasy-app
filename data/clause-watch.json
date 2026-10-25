@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-25T11:17:46.292Z",
+  "tomadaEn": "2026-10-25T16:06:53.472Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -23,12 +23,12 @@
       "name": "Rubén García",
       "lockedUntil": "2026-11-04T12:55:05+01:00"
     },
-    "1056": {
-      "teamId": "40639639",
-      "clause": 5088000,
-      "marketValue": 3494314,
-      "name": "Pedrosa",
-      "lockedUntil": "2026-11-05T13:18:12+01:00"
+    "701": {
+      "teamId": "40631220",
+      "clause": 34500000,
+      "marketValue": 32514089,
+      "name": "Barrenetxea",
+      "lockedUntil": "2026-11-08T12:55:31+01:00"
     },
     "1480": {
       "teamId": "40631220",
@@ -296,6 +296,13 @@
       "name": "A. Herrero",
       "lockedUntil": "2026-11-05T12:55:23+01:00"
     },
+    "3045": {
+      "teamId": "40639639",
+      "clause": 3500000,
+      "marketValue": 1132815,
+      "name": "Niño",
+      "lockedUntil": "2026-11-08T12:55:31+01:00"
+    },
     "3061": {
       "teamId": "40639639",
       "clause": 1000000,
@@ -316,6 +323,13 @@
       "marketValue": 70821702,
       "name": "Ez Abde",
       "lockedUntil": "2026-10-24T12:55:21+02:00"
+    },
+    "3090": {
+      "teamId": "40631220",
+      "clause": 60500000,
+      "marketValue": 51442352,
+      "name": "Isco",
+      "lockedUntil": "2026-11-08T12:55:31+01:00"
     },
     "3107": {
       "teamId": "40631220",
@@ -393,6 +407,13 @@
       "marketValue": 4985988,
       "name": "Saliba",
       "lockedUntil": "2026-11-05T14:41:08+01:00"
+    },
+    "3262": {
+      "teamId": "40631220",
+      "clause": 6500000,
+      "marketValue": 5570145,
+      "name": "Félix Correia",
+      "lockedUntil": "2026-11-08T12:55:31+01:00"
     },
     "3265": {
       "teamId": "40636623",
