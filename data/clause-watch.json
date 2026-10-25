@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-25T16:06:53.472Z",
+  "tomadaEn": "2026-10-25T19:02:31.646Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -85,13 +85,6 @@
       "marketValue": 579569,
       "name": "Letacek",
       "lockedUntil": "2026-11-04T12:55:05+01:00"
-    },
-    "2414": {
-      "teamId": "40631220",
-      "clause": 20300000,
-      "marketValue": 17002671,
-      "name": "Bellerín",
-      "lockedUntil": "2026-10-09T12:55:23+02:00"
     },
     "2426": {
       "teamId": "40636623",
@@ -185,11 +178,11 @@
       "lockedUntil": "2026-11-05T13:07:23+01:00"
     },
     "2609": {
-      "teamId": "40636623",
+      "teamId": "40631220",
       "clause": 5071015,
       "marketValue": 5071015,
       "name": "Valentín Gómez",
-      "lockedUntil": "2026-10-25T12:55:12+01:00"
+      "lockedUntil": "2026-11-08T18:13:11+01:00"
     },
     "2613": {
       "teamId": "40631220",
