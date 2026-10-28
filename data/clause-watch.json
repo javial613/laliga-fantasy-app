@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-28T08:21:49.660Z",
+  "tomadaEn": "2026-10-28T15:57:39.303Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -144,7 +144,7 @@
     },
     "2588": {
       "teamId": "40636623",
-      "clause": 5160000,
+      "clause": 5160002,
       "marketValue": 4373483,
       "name": "Danjuma",
       "lockedUntil": "2026-11-07T12:55:37+01:00"
@@ -176,6 +176,13 @@
       "marketValue": 12560776,
       "name": "M. Dituro",
       "lockedUntil": "2026-11-09T12:55:10+01:00"
+    },
+    "2626": {
+      "teamId": "40636623",
+      "clause": 16530000,
+      "marketValue": 15424177,
+      "name": "Deossa",
+      "lockedUntil": "2026-11-11T12:55:06+01:00"
     },
     "2656": {
       "teamId": "40640228",
@@ -282,12 +289,26 @@
       "name": "Andrés",
       "lockedUntil": "2026-11-05T13:29:08+01:00"
     },
+    "3068": {
+      "teamId": "40631220",
+      "clause": 10339298,
+      "marketValue": 10339298,
+      "name": "Cabrera",
+      "lockedUntil": "2026-11-11T12:55:06+01:00"
+    },
     "3069": {
       "teamId": "40639639",
       "clause": 14000000,
       "marketValue": 12654382,
       "name": "Blanco",
       "lockedUntil": "2026-11-10T12:55:09+01:00"
+    },
+    "3072": {
+      "teamId": "40639639",
+      "clause": 14500000,
+      "marketValue": 13156673,
+      "name": "Larrubia",
+      "lockedUntil": "2026-11-11T12:55:06+01:00"
     },
     "3085": {
       "teamId": "40636623",
@@ -316,6 +337,13 @@
       "marketValue": 31169581,
       "name": "Konaté",
       "lockedUntil": "2026-11-07T12:55:37+01:00"
+    },
+    "3109": {
+      "teamId": "40631220",
+      "clause": 24362057,
+      "marketValue": 24362057,
+      "name": "Leo Román",
+      "lockedUntil": "2026-11-11T12:55:06+01:00"
     },
     "3125": {
       "teamId": "40631220",
