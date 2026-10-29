@@ -12,6 +12,8 @@ import useMarketTrends from '../../hooks/useMarketTrends';
 import useTeamMarketIncreases from '../../hooks/useTeamMarketIncreases';
 import useTeamBudgets from '../../hooks/useTeamBudgets';
 import { getAjusteManual } from '../../utils/ajustesSaldo';
+import useSquadViability from '../../hooks/useSquadViability';
+import { Composicion, AvisoVulnerabilidad, ResumenVulnerabilidad } from './VulnerabilidadAlineacion';
 import ClauseIncreasesModal from './ClauseIncreasesModal';
 
 const Teams = () => {
@@ -56,6 +58,9 @@ const Teams = () => {
 
   const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe, managerIdByTeamId, valorPorEquipo,
     descartarDeteccion, restaurarDetecciones, nDescartadas } = useTeamBudgets(leagueId, standings, userTeamId);
+
+  // Quién puede quedarse sin poder alinear si le pagan cláusulas.
+  const { porEquipo: viabilidad, isLoading: cargandoViabilidad } = useSquadViability(leagueId, standings);
   const [clausulasDe, setClausulasDe] = useState(null); // teamId cuyas subidas se están viendo
 
   const subidasDe = (teamId) =>
@@ -446,6 +451,13 @@ const Teams = () => {
         );
       })()}
 
+      <ResumenVulnerabilidad
+        analisisPorEquipo={viabilidad}
+        nombrePorEquipo={nombrePorEquipo}
+        miTeamId={userTeamId}
+        isLoading={cargandoViabilidad}
+      />
+
       {/* Teams List */}
       <div className="card divide-y divide-gray-200 dark:divide-dark-border">
         {filteredTeams.map((item, index) => {
@@ -523,6 +535,15 @@ const Teams = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs xl:text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider truncate">
+                      Jugadores
+                    </p>
+                    <p className="text-sm xl:text-lg font-semibold text-gray-900 dark:text-white truncate"
+                       title="Total y reparto: porteros·defensas·medios·delanteros">
+                      <Composicion analisis={viabilidad.get(String(teamId))} />
+                    </p>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs xl:text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider truncate">
                       Valor
                     </p>
                     <p className="text-sm xl:text-lg font-semibold text-gray-900 dark:text-white truncate">
@@ -574,6 +595,11 @@ const Teams = () => {
                     </p>
                   </div>
                 </div>
+
+                <AvisoVulnerabilidad
+                  analisis={viabilidad.get(String(teamId))}
+                  esMio={userTeamId != null && String(teamId) === String(userTeamId)}
+                />
 
                 {/* Actions - Desktop */}
                 <div className="hidden md:flex items-center gap-3 flex-shrink-0">
