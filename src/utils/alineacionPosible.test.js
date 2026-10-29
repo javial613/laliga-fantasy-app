@@ -176,3 +176,36 @@ describe('analizarPlantilla', () => {
         expect(analizarPlantilla(null).vulnerable).toBe(false);
     });
 });
+
+describe('el cierre de cláusulas manda', () => {
+    const ahora = Date.parse('2026-10-29T10:00:00+01:00');
+    const limite = Date.parse('2026-10-29T21:00:00+01:00');
+
+    // Plantilla justa de medios: si se le quita uno, no hay formación.
+    const plantilla = (lockDelMedio) => [
+        jugador('p1', 1, 1_000_000, '2099-01-01T00:00:00Z'),
+        ...Array.from({ length: 8 }, (_, n) => jugador(`d${n}`, 2, 1_000_000, '2099-01-01T00:00:00Z')),
+        jugador('m1', 3, 1_000_000, '2099-01-01T00:00:00Z'),
+        jugador('m2', 3, 1_000_000, '2099-01-01T00:00:00Z'),
+        jugador('m3', 3, 4_000_000, lockDelMedio),
+        ...Array.from({ length: 5 }, (_, n) => jugador(`f${n}`, 4, 1_000_000, '2099-01-01T00:00:00Z')),
+    ];
+
+    test('cuenta a quien se desbloquea antes del cierre, aunque ahora esté protegido', () => {
+        const r = analizarPlantilla(plantilla('2026-10-29T18:00:00+01:00'), { ahora, limite });
+        expect(r.vulnerable).toBe(true);
+        expect(r.jugada.jugadores.map((j) => j.playerId)).toEqual(['m3']);
+    });
+
+    test('no cuenta a quien se desbloquea cuando ya no da tiempo', () => {
+        // Se abre dos horas después del cierre: para esa jornada es intocable.
+        const r = analizarPlantilla(plantilla('2026-10-29T23:00:00+01:00'), { ahora, limite });
+        expect(r.vulnerable).toBe(false);
+        expect(r.clausulables).toBe(0);
+    });
+
+    test('sin cierre conocido se mira solo lo que ya está abierto', () => {
+        const r = analizarPlantilla(plantilla('2026-10-29T18:00:00+01:00'), { ahora });
+        expect(r.vulnerable).toBe(false);
+    });
+});

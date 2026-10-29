@@ -9,8 +9,11 @@ import { analizarPlantilla } from '../utils/alineacionPosible';
  *
  * Reutiliza la caché de plantillas que ya llenan Cláusulas y el cálculo de
  * saldos, así que no añade peticiones propias salvo que no haya nada cacheado.
+ *
+ * `limite` es el cierre de cláusulas (24 h antes de la jornada): con él entran
+ * en el cálculo los que todavía están protegidos pero se desbloquean a tiempo.
  */
-const useSquadViability = (leagueId, standings) => {
+const useSquadViability = (leagueId, standings, limite = null) => {
     const queryClient = useQueryClient();
     const [porEquipo, setPorEquipo] = useState(() => new Map());
     const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +38,7 @@ const useSquadViability = (leagueId, standings) => {
                         clausula: pt.buyoutClause || 0,
                         lockedUntil: pt.buyoutClauseLockedEndTime || null,
                     }));
-                    mapa.set(String(teamId), analizarPlantilla(jugadores, { ahora }));
+                    mapa.set(String(teamId), analizarPlantilla(jugadores, { ahora, limite }));
                 }
                 setPorEquipo(mapa);
             } finally {
@@ -44,7 +47,7 @@ const useSquadViability = (leagueId, standings) => {
         })();
 
         return () => { cancelado = true; };
-    }, [leagueId, standings, queryClient]);
+    }, [leagueId, standings, queryClient, limite]);
 
     return { porEquipo, isLoading };
 };

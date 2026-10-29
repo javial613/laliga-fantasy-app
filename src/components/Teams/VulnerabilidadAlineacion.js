@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldAlert, ShieldCheck, Users } from 'lucide-react';
+import { ShieldAlert, ShieldCheck, Users, Clock } from 'lucide-react';
 import { formatCurrency } from '../../utils/helpers';
 
 /** Reparto de la plantilla, en el orden en que se nombran las formaciones. */
@@ -69,8 +69,18 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
 };
 
 /** Resumen de toda la liga, para no tener que repasar equipo por equipo. */
-export const ResumenVulnerabilidad = ({ analisisPorEquipo, nombrePorEquipo, miTeamId, isLoading }) => {
+export const ResumenVulnerabilidad = ({ analisisPorEquipo, nombrePorEquipo, miTeamId, isLoading, ventana }) => {
     if (isLoading || !analisisPorEquipo || analisisPorEquipo.size === 0) return null;
+
+    // El plazo condiciona todo lo de abajo, así que se enuncia aparte.
+    const plazo = ventana?.texto ? (
+        <p className="mt-2 flex items-center gap-1.5 text-xs text-gray-600 dark:text-gray-400">
+            <Clock className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+            {ventana.cerradaLaEnCurso
+                ? `Ya no se puede clausular para esta jornada. Próximo plazo ${ventana.texto}.`
+                : `Se puede clausular ${ventana.texto}. Cuentan los que se desbloqueen antes de esa hora.`}
+        </p>
+    ) : null;
 
     const vulnerables = [];
     let yoVulnerable = null;
@@ -85,9 +95,10 @@ export const ResumenVulnerabilidad = ({ analisisPorEquipo, nombrePorEquipo, miTe
             <div className="card border border-green-300 dark:border-green-800 bg-green-50 dark:bg-green-900/20 p-4 flex items-start gap-2">
                 <ShieldCheck className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" aria-hidden="true" />
                 <div className="text-sm text-green-800 dark:text-green-300">
-                    <strong>Nadie puede dejar a nadie sin alinear.</strong> Ahora mismo ninguna
-                    plantilla de la liga, ni la tuya, se queda sin formación posible por muchas
-                    cláusulas abiertas que tenga.
+                    <strong>Nadie puede dejar a nadie sin alinear.</strong> Ninguna plantilla de la
+                    liga, ni la tuya, se queda sin formación posible con las cláusulas que se
+                    pueden pagar dentro de plazo.
+                    {plazo}
                 </div>
             </div>
         );
@@ -125,9 +136,10 @@ export const ResumenVulnerabilidad = ({ analisisPorEquipo, nombrePorEquipo, miTe
                 </ul>
             ) : (
                 <p className="text-sm text-amber-900 dark:text-amber-300">
-                    A ningún rival se le puede hacer ahora mismo.
+                    A ningún rival se le puede hacer dentro de plazo.
                 </p>
             )}
+            {plazo}
         </div>
     );
 };

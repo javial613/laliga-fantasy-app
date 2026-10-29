@@ -46,12 +46,19 @@ export const puedeAlinear = ({ porteros = 0, defensas = 0, medios = 0, delantero
     porteros >= 1
     && FORMACIONES.some(([d, m, f]) => defensas >= d && medios >= m && delanteros >= f);
 
-/** Un jugador se puede clausular si su protección no existe o ya venció. */
-export const esClausulable = (jugador, ahora = Date.now()) => {
+/**
+ * ¿Se le puede pagar la cláusula a tiempo?
+ *
+ * Con `limite` (el cierre de 24 h antes de la jornada) cuenta también quien
+ * está protegido ahora pero se desbloquea antes de ese momento: para la
+ * jornada que viene es igual de alcanzable. Sin `limite` se mira solo si ya
+ * está abierta.
+ */
+export const esClausulable = (jugador, ahora = Date.now(), limite = null) => {
     if (!jugador?.clausula) return false;
     const fin = jugador.lockedUntil ? new Date(jugador.lockedUntil).getTime() : null;
     if (fin === null || Number.isNaN(fin)) return true;
-    return fin <= ahora;
+    return fin <= (limite ?? ahora);
 };
 
 const CLAVES = ['porteros', 'defensas', 'medios', 'delanteros'];
@@ -85,14 +92,16 @@ const repartos = (total, tope) => {
  * Analiza una plantilla.
  *
  * @param {Array<{playerId, nombre, positionId, clausula, lockedUntil}>} jugadores
- * @param {{ahora?:number, topeGasto?:number}} opciones
+ * @param {{ahora?:number, topeGasto?:number, limite?:number|null}} opciones -
+ *   `limite` es el cierre de cláusulas (24 h antes de la jornada): con él se
+ *   cuentan también los que se desbloquean antes de esa hora.
  * @returns {{
  *   total:number, porPosicion:Object, puedeAlinear:boolean,
  *   vulnerable:boolean, jugada:{jugadores:Array, coste:number}|null,
  *   clausulables:number
  * }}
  */
-export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = Infinity } = {}) => {
+export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = Infinity, limite = null } = {}) => {
     const lista = Array.isArray(jugadores) ? jugadores : [];
     const porPosicion = contarPorPosicion(lista);
     const alineable = puedeAlinear(porPosicion);
@@ -102,7 +111,7 @@ export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = I
     const candidatos = { porteros: [], defensas: [], medios: [], delanteros: [] };
     for (const j of lista) {
         const clave = CLAVE_DE_POSICION[Number(j?.positionId)];
-        if (clave && esClausulable(j, ahora)) candidatos[clave].push(j);
+        if (clave && esClausulable(j, ahora, limite)) candidatos[clave].push(j);
     }
     for (const clave of CLAVES) candidatos[clave].sort((a, b) => a.clausula - b.clausula);
 

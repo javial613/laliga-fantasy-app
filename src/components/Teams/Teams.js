@@ -13,6 +13,7 @@ import useTeamMarketIncreases from '../../hooks/useTeamMarketIncreases';
 import useTeamBudgets from '../../hooks/useTeamBudgets';
 import { getAjusteManual } from '../../utils/ajustesSaldo';
 import useSquadViability from '../../hooks/useSquadViability';
+import useClauseWindow from '../../hooks/useClauseWindow';
 import { Composicion, AvisoVulnerabilidad, ResumenVulnerabilidad } from './VulnerabilidadAlineacion';
 import ClauseIncreasesModal from './ClauseIncreasesModal';
 
@@ -59,8 +60,11 @@ const Teams = () => {
   const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe, managerIdByTeamId, valorPorEquipo,
     descartarDeteccion, restaurarDetecciones, nDescartadas } = useTeamBudgets(leagueId, standings, userTeamId);
 
-  // Quién puede quedarse sin poder alinear si le pagan cláusulas.
-  const { porEquipo: viabilidad, isLoading: cargandoViabilidad } = useSquadViability(leagueId, standings);
+  // Quién puede quedarse sin poder alinear si le pagan cláusulas antes del
+  // cierre (24 h antes de la jornada).
+  const ventana = useClauseWindow();
+  const { porEquipo: viabilidad, isLoading: cargandoViabilidad } =
+    useSquadViability(leagueId, standings, ventana.limite);
   const [clausulasDe, setClausulasDe] = useState(null); // teamId cuyas subidas se están viendo
 
   const subidasDe = (teamId) =>
@@ -456,6 +460,7 @@ const Teams = () => {
         nombrePorEquipo={nombrePorEquipo}
         miTeamId={userTeamId}
         isLoading={cargandoViabilidad}
+        ventana={ventana}
       />
 
       {/* Teams List */}
