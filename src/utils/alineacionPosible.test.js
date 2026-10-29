@@ -209,3 +209,41 @@ describe('el cierre de cláusulas manda', () => {
         expect(r.vulnerable).toBe(false);
     });
 });
+
+describe('elige la jugada más barata, no la más corta', () => {
+    // Portero único a 60M (una cláusula basta) frente a cinco medios a 2M
+    // (hacen falta tres, pero salen por 6M). Lo barato es lo que va a pasar.
+    const caraOBaratas = () => [
+        jugador('p1', 1, 60_000_000),
+        ...Array.from({ length: 6 }, (_, n) => jugador(`d${n}`, 2, 1_000_000, '2099-01-01T00:00:00Z')),
+        ...Array.from({ length: 5 }, (_, n) => jugador(`m${n}`, 3, 2_000_000)),
+        ...Array.from({ length: 3 }, (_, n) => jugador(`f${n}`, 4, 1_000_000, '2099-01-01T00:00:00Z')),
+    ];
+
+    test('tres cláusulas baratas pesan más que una cara', () => {
+        const r = analizarPlantilla(caraOBaratas());
+        expect(r.vulnerable).toBe(true);
+        expect(r.jugada.coste).toBe(6_000_000);
+        expect(r.jugada.jugadores).toHaveLength(3);
+    });
+
+    test('a igual precio, prefiere la de menos jugadores', () => {
+        const plantilla = [
+            jugador('p1', 1, 6_000_000),
+            ...Array.from({ length: 5 }, (_, n) => jugador(`d${n}`, 2, 1_000_000, '2099-01-01T00:00:00Z')),
+            ...Array.from({ length: 5 }, (_, n) => jugador(`m${n}`, 3, 2_000_000)),
+            ...Array.from({ length: 3 }, (_, n) => jugador(`f${n}`, 4, 1_000_000, '2099-01-01T00:00:00Z')),
+        ];
+        const r = analizarPlantilla(plantilla);
+        // Portero único por 6M, o tres medios por 6M: gana el portero.
+        expect(r.jugada.coste).toBe(6_000_000);
+        expect(r.jugada.jugadores).toHaveLength(1);
+    });
+
+    test('el tope de gasto no esconde una jugada más larga que sí cabe', () => {
+        // Con tope de 10M la de 60M queda fuera, pero la de tres medios cabe.
+        const r = analizarPlantilla(caraOBaratas(), { topeGasto: 10_000_000 });
+        expect(r.vulnerable).toBe(true);
+        expect(r.jugada.coste).toBe(6_000_000);
+    });
+});

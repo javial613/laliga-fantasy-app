@@ -125,22 +125,29 @@ export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = I
     // Si ya no puede alinear, no hay nada que provocar.
     if (!alineable || clausulables === 0) return vacio;
 
+    // Se examinan TODAS las combinaciones, de cualquier tamaño, y gana la más
+    // barata: a quien ataca lo que le limita es el dinero, no el número de
+    // fichajes. Quedarse con la jugada más corta escondía amenazas reales
+    // —una cláusula de 60 millones tapaba a tres de dos—. A igual precio se
+    // prefiere la de menos jugadores, que depende menos de que el otro no
+    // reaccione entre medias.
+    let mejor = null;
     for (let tamano = 1; tamano <= clausulables; tamano += 1) {
-        let mejor = null;
         for (const reparto of repartos(tamano, tope)) {
             const quedan = CLAVES.reduce((acc, k) => ({ ...acc, [k]: porPosicion[k] - reparto[k] }), {});
             if (puedeAlinear(quedan)) continue;
 
             const elegidos = CLAVES.flatMap((k) => candidatos[k].slice(0, reparto[k]));
             const coste = elegidos.reduce((s, j) => s + (j.clausula || 0), 0);
-            if (!mejor || coste < mejor.coste) mejor = { jugadores: elegidos, coste };
-        }
-        // Se recorre por número de fichajes: la jugada más corta es la que
-        // menos depende de que el rival no reaccione entre medias.
-        if (mejor) {
-            if (mejor.coste > topeGasto) return { ...vacio, vulnerable: false, jugada: null };
-            return { ...vacio, vulnerable: true, jugada: mejor };
+            if (coste > topeGasto) continue;
+
+            const mejorHastaAhora = !mejor
+                || coste < mejor.coste
+                || (coste === mejor.coste && elegidos.length < mejor.jugadores.length);
+            if (mejorHastaAhora) mejor = { jugadores: elegidos, coste };
         }
     }
-    return vacio;
+
+    if (!mejor) return vacio;
+    return { ...vacio, vulnerable: true, jugada: mejor };
 };

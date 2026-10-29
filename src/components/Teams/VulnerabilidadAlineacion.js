@@ -2,6 +2,12 @@ import React from 'react';
 import { ShieldAlert, ShieldCheck, Users, Clock } from 'lucide-react';
 import { formatCurrency } from '../../utils/helpers';
 
+/** "A", "A y B", "A, B y C": con tres o más, la coma evita el trabalenguas. */
+export const enumerar = (nombres) => {
+    if (nombres.length <= 1) return nombres[0] || '';
+    return `${nombres.slice(0, -1).join(', ')} y ${nombres[nombres.length - 1]}`;
+};
+
 /** Reparto de la plantilla, en el orden en que se nombran las formaciones. */
 export const Composicion = ({ analisis }) => {
     if (!analisis) return <span className="text-gray-400">—</span>;
@@ -40,7 +46,10 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
     if (!analisis.vulnerable) return null;
 
     const { jugadores, coste } = analisis.jugada;
-    const nombres = jugadores.map((j) => j.nombre).join(' y ');
+    const nombres = enumerar(jugadores.map((j) => j.nombre));
+    const cuantas = jugadores.length === 1
+        ? 'una cláusula'
+        : `${jugadores.length} cláusulas a la vez`;
 
     return (
         <div className={`mt-2 flex items-start gap-2 rounded-lg border p-2 text-xs ${
@@ -52,15 +61,15 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
             <span>
                 {esMio ? (
                     <>
-                        <strong>Te pueden dejar sin puntuar.</strong> Si te clausulan a{' '}
-                        <strong>{nombres}</strong> ({formatCurrency(coste)}) y no fichas antes de la
-                        jornada, no podrás formar alineación.
+                        <strong>Te pueden dejar sin puntuar.</strong> Con {cuantas}:{' '}
+                        <strong>{nombres}</strong> ({formatCurrency(coste)}). Si no fichas antes de
+                        la jornada, no podrás formar alineación.
                     </>
                 ) : (
                     <>
-                        <strong>Se le puede dejar sin puntuar.</strong> Clausulando a{' '}
-                        <strong>{nombres}</strong> por {formatCurrency(coste)}, no podrá formar
-                        alineación salvo que fiche antes de la jornada.
+                        <strong>Se le puede dejar sin puntuar.</strong> Con {cuantas}:{' '}
+                        <strong>{nombres}</strong>, por {formatCurrency(coste)} en total. No podrá
+                        formar alineación salvo que fiche antes de la jornada.
                     </>
                 )}
             </span>
@@ -120,7 +129,8 @@ export const ResumenVulnerabilidad = ({ analisisPorEquipo, nombrePorEquipo, miTe
                     <strong>Cuidado: a ti también.</strong> Te bastan{' '}
                     {yoVulnerable.jugada.jugadores.length} cláusula
                     {yoVulnerable.jugada.jugadores.length === 1 ? '' : 's'} para quedarte sin
-                    alineación ({yoVulnerable.jugada.jugadores.map((j) => j.nombre).join(' y ')}).
+                    alineación ({enumerar(yoVulnerable.jugada.jugadores.map((j) => j.nombre))}),
+                    por {formatCurrency(yoVulnerable.jugada.coste)}.
                 </p>
             )}
 
@@ -129,8 +139,10 @@ export const ResumenVulnerabilidad = ({ analisisPorEquipo, nombrePorEquipo, miTe
                     {vulnerables.map(({ teamId, analisis }) => (
                         <li key={teamId}>
                             <strong>{nombrePorEquipo?.get?.(String(teamId)) || `Equipo ${teamId}`}</strong>:{' '}
-                            {analisis.jugada.jugadores.map((j) => j.nombre).join(' y ')} ·{' '}
+                            {enumerar(analisis.jugada.jugadores.map((j) => j.nombre))} ·{' '}
                             {formatCurrency(analisis.jugada.coste)}
+                            {analisis.jugada.jugadores.length > 1
+                                && ` (${analisis.jugada.jugadores.length} cláusulas)`}
                         </li>
                     ))}
                 </ul>
