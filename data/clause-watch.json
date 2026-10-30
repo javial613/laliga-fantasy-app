@@ -1,417 +1,417 @@
 {
-  "tomadaEn": "2026-10-30T19:17:33.003Z",
+  "tomadaEn": "2026-10-30T23:41:12.483Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
       "teamId": "40639639",
       "clause": 51000000,
-      "marketValue": 40230899,
+      "marketValue": 40454774,
       "name": "Unai Simón",
       "lockedUntil": "2026-10-22T12:55:16+02:00"
     },
     "74": {
       "teamId": "40640228",
       "clause": 26150000,
-      "marketValue": 20845765,
+      "marketValue": 21386310,
       "name": "Yuri",
       "lockedUntil": "2026-11-13T12:55:26+01:00"
     },
     "652": {
       "teamId": "40636623",
-      "clause": 14020055,
-      "marketValue": 14020055,
+      "clause": 14172737,
+      "marketValue": 14172737,
       "name": "Rubén García",
       "lockedUntil": "2026-11-04T12:55:05+01:00"
     },
     "1480": {
       "teamId": "40631220",
       "clause": 33000000,
-      "marketValue": 27581516,
+      "marketValue": 28032833,
       "name": "Tchouaméni",
       "lockedUntil": "2026-11-05T14:07:47+01:00"
     },
     "1989": {
       "teamId": "40631220",
       "clause": 17250020,
-      "marketValue": 11700223,
+      "marketValue": 11610014,
       "name": "Sergio Gómez",
       "lockedUntil": "2026-11-05T14:08:19+01:00"
     },
     "2005": {
       "teamId": "40640228",
       "clause": 8668000,
-      "marketValue": 5394079,
+      "marketValue": 5346747,
       "name": "Abel Bretones",
       "lockedUntil": "2026-10-29T12:55:27+01:00"
     },
     "2074": {
       "teamId": "40640228",
-      "clause": 5623797,
-      "marketValue": 5623797,
+      "clause": 5912093,
+      "marketValue": 5912093,
       "name": "Javi Rodríguez",
       "lockedUntil": "2026-11-02T12:55:08+01:00"
     },
     "2078": {
       "teamId": "40640228",
       "clause": 8109321,
-      "marketValue": 5891941,
+      "marketValue": 5985304,
       "name": "Hugo Alvarez",
       "lockedUntil": "2026-11-05T13:25:22+01:00"
     },
     "2206": {
       "teamId": "40639639",
-      "clause": 26077958,
-      "marketValue": 26077958,
+      "clause": 26439082,
+      "marketValue": 26439082,
       "name": "Yoel Lago",
       "lockedUntil": "2026-11-02T14:06:50+01:00"
     },
     "2303": {
       "teamId": "40639639",
       "clause": 10000000,
-      "marketValue": 8094435,
+      "marketValue": 8100192,
       "name": "I. Romero",
       "lockedUntil": "2026-11-13T12:55:26+01:00"
     },
     "2355": {
       "teamId": "40639639",
       "clause": 21282567,
-      "marketValue": 18996546,
+      "marketValue": 18581089,
       "name": "Kounde",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
     "2363": {
       "teamId": "40640228",
       "clause": 1000000,
-      "marketValue": 587865,
+      "marketValue": 589151,
       "name": "Letacek",
       "lockedUntil": "2026-11-04T12:55:05+01:00"
     },
     "2426": {
       "teamId": "40636623",
       "clause": 8500000,
-      "marketValue": 6729900,
+      "marketValue": 6730682,
       "name": "E. Militão",
       "lockedUntil": "2026-11-07T12:55:37+01:00"
     },
     "2448": {
       "teamId": "40640228",
       "clause": 5310000,
-      "marketValue": 3646571,
+      "marketValue": 3758098,
       "name": "Oskarsson",
       "lockedUntil": "2026-11-05T12:55:23+01:00"
     },
     "2464": {
       "teamId": "40631220",
       "clause": 40585182,
-      "marketValue": 34129784,
+      "marketValue": 35299952,
       "name": "Pepelu",
       "lockedUntil": "2026-11-12T12:56:27+01:00"
     },
     "2469": {
       "teamId": "40639639",
       "clause": 1200000,
-      "marketValue": 616286,
+      "marketValue": 616435,
       "name": "Costa",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
     "2470": {
       "teamId": "40639639",
       "clause": 13500000,
-      "marketValue": 12152623,
+      "marketValue": 12342868,
       "name": "Foyth",
       "lockedUntil": "2026-11-05T12:55:23+01:00"
     },
     "2479": {
       "teamId": "40636623",
       "clause": 16700000,
-      "marketValue": 16319143,
+      "marketValue": 16646463,
       "name": "Kike Salas",
       "lockedUntil": "2026-11-07T12:55:37+01:00"
     },
     "2529": {
       "teamId": "40636623",
       "clause": 1000000,
-      "marketValue": 585110,
+      "marketValue": 586506,
       "name": "Rubén S.",
       "lockedUntil": "2026-10-29T13:21:56+01:00"
     },
     "2549": {
       "teamId": "40639639",
-      "clause": 28855919,
-      "marketValue": 28855919,
+      "clause": 28682452,
+      "marketValue": 28682452,
       "name": "Navarro",
       "lockedUntil": "2026-11-04T13:50:40+01:00"
     },
     "2588": {
       "teamId": "40636623",
       "clause": 5160002,
-      "marketValue": 4351509,
+      "marketValue": 4340330,
       "name": "Danjuma",
       "lockedUntil": "2026-11-07T12:55:37+01:00"
     },
     "2603": {
       "teamId": "40639639",
       "clause": 15772973,
-      "marketValue": 13929664,
+      "marketValue": 14066676,
       "name": "Ferran Jutglà",
       "lockedUntil": "2026-11-05T13:02:13+01:00"
     },
     "2607": {
       "teamId": "40636623",
-      "clause": 31435007,
-      "marketValue": 31435007,
+      "clause": 31968777,
+      "marketValue": 31968777,
       "name": "Ilaix Moriba",
       "lockedUntil": "2026-11-05T13:07:23+01:00"
     },
     "2609": {
       "teamId": "40631220",
-      "clause": 6192367,
-      "marketValue": 6192367,
+      "clause": 6464756,
+      "marketValue": 6464756,
       "name": "Valentín Gómez",
       "lockedUntil": "2026-11-08T18:13:11+01:00"
     },
     "2613": {
       "teamId": "40640228",
-      "clause": 13138883,
-      "marketValue": 13138883,
+      "clause": 13428574,
+      "marketValue": 13428574,
       "name": "M. Dituro",
       "lockedUntil": "2026-11-09T12:55:10+01:00"
     },
     "2626": {
       "teamId": "40636623",
       "clause": 16530000,
-      "marketValue": 15650724,
+      "marketValue": 15780494,
       "name": "Deossa",
       "lockedUntil": "2026-11-11T12:55:06+01:00"
     },
     "2656": {
       "teamId": "40640228",
-      "clause": 22469473,
-      "marketValue": 22469473,
+      "clause": 22585286,
+      "marketValue": 22585286,
       "name": "Jon Martin",
       "lockedUntil": "2026-11-04T12:55:05+01:00"
     },
     "2678": {
       "teamId": "40636623",
       "clause": 1000000,
-      "marketValue": 615357,
+      "marketValue": 615543,
       "name": "J. Vertrouwd",
       "lockedUntil": "2026-10-30T12:55:05+01:00"
     },
     "2680": {
       "teamId": "40640228",
       "clause": 11136619,
-      "marketValue": 10865210,
+      "marketValue": 11070825,
       "name": "A. Castrín",
       "lockedUntil": "2026-11-04T12:55:05+01:00"
     },
     "2776": {
       "teamId": "40631220",
       "clause": 5000000,
-      "marketValue": 1372597,
+      "marketValue": 1342493,
       "name": "A. Abqar",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
     "2949": {
       "teamId": "40636623",
       "clause": 2100300,
-      "marketValue": 1971815,
+      "marketValue": 2010159,
       "name": "B. Sangare",
       "lockedUntil": "2026-10-30T12:55:05+01:00"
     },
     "2958": {
       "teamId": "40640228",
-      "clause": 1360583,
-      "marketValue": 1360583,
+      "clause": 1422309,
+      "marketValue": 1422309,
       "name": "Morcillo",
       "lockedUntil": "2026-11-02T12:55:08+01:00"
     },
     "2977": {
       "teamId": "40639639",
       "clause": 5000000,
-      "marketValue": 653300,
+      "marketValue": 651968,
       "name": "Riki",
       "lockedUntil": "2026-11-06T13:04:46+01:00"
     },
     "2995": {
       "teamId": "40640228",
-      "clause": 41174793,
-      "marketValue": 41174793,
+      "clause": 41701337,
+      "marketValue": 41701337,
       "name": "Mario Soriano",
       "lockedUntil": "2026-11-10T12:55:09+01:00"
     },
     "2999": {
       "teamId": "40631220",
       "clause": 1000000,
-      "marketValue": 805948,
+      "marketValue": 798510,
       "name": "Mantilla",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
     "3036": {
       "teamId": "40631220",
       "clause": 17668761,
-      "marketValue": 9543849,
+      "marketValue": 9538928,
       "name": "Dani Lorenzo",
       "lockedUntil": "2026-11-05T14:07:58+01:00"
     },
     "3045": {
       "teamId": "40639639",
       "clause": 3500000,
-      "marketValue": 1627043,
+      "marketValue": 1734310,
       "name": "Niño",
       "lockedUntil": "2026-11-08T12:55:31+01:00"
     },
     "3061": {
       "teamId": "40639639",
       "clause": 1000000,
-      "marketValue": 555805,
+      "marketValue": 558373,
       "name": "Andrés",
       "lockedUntil": "2026-11-05T13:29:08+01:00"
     },
     "3068": {
       "teamId": "40631220",
-      "clause": 10527129,
-      "marketValue": 10527129,
+      "clause": 10634542,
+      "marketValue": 10634542,
       "name": "Cabrera",
       "lockedUntil": "2026-11-11T12:55:06+01:00"
     },
     "3069": {
       "teamId": "40639639",
       "clause": 14000000,
-      "marketValue": 12487300,
+      "marketValue": 12430375,
       "name": "Blanco",
       "lockedUntil": "2026-11-10T12:55:09+01:00"
     },
     "3072": {
       "teamId": "40639639",
       "clause": 14500000,
-      "marketValue": 12892725,
+      "marketValue": 12799256,
       "name": "Larrubia",
       "lockedUntil": "2026-11-11T12:55:06+01:00"
     },
     "3085": {
       "teamId": "40636623",
-      "clause": 25751247,
-      "marketValue": 25751247,
+      "clause": 26432086,
+      "marketValue": 26432086,
       "name": "Guedes",
       "lockedUntil": "2026-11-07T12:55:37+01:00"
     },
     "3089": {
       "teamId": "40636623",
       "clause": 81679980,
-      "marketValue": 74082240,
+      "marketValue": 74226444,
       "name": "Ez Abde",
       "lockedUntil": "2026-11-09T13:12:35+01:00"
     },
     "3090": {
       "teamId": "40631220",
       "clause": 60500000,
-      "marketValue": 57651236,
+      "marketValue": 58746621,
       "name": "Isco",
       "lockedUntil": "2026-11-08T12:55:31+01:00"
     },
     "3106": {
       "teamId": "40640228",
       "clause": 38150000,
-      "marketValue": 34482640,
+      "marketValue": 35133385,
       "name": "Cucurella",
       "lockedUntil": "2026-11-13T12:55:26+01:00"
     },
     "3107": {
       "teamId": "40631220",
-      "clause": 31901856,
-      "marketValue": 31901856,
+      "clause": 32220317,
+      "marketValue": 32220317,
       "name": "Konaté",
       "lockedUntil": "2026-11-07T12:55:37+01:00"
     },
     "3109": {
       "teamId": "40631220",
       "clause": 24362057,
-      "marketValue": 23706077,
+      "marketValue": 23381815,
       "name": "Leo Román",
       "lockedUntil": "2026-11-11T12:55:06+01:00"
     },
     "3125": {
       "teamId": "40631220",
       "clause": 25378107,
-      "marketValue": 14407665,
+      "marketValue": 14357006,
       "name": "Canales",
       "lockedUntil": "2026-10-09T12:55:23+02:00"
     },
     "3130": {
       "teamId": "40636623",
-      "clause": 14355267,
-      "marketValue": 14355267,
+      "clause": 14577236,
+      "marketValue": 14577236,
       "name": "Gulácsi",
       "lockedUntil": "2026-11-03T12:56:19+01:00"
     },
     "3131": {
       "teamId": "40636623",
       "clause": 2100000,
-      "marketValue": 1225636,
+      "marketValue": 1207744,
       "name": "Marcos",
       "lockedUntil": "2026-10-23T12:55:15+02:00"
     },
     "3147": {
       "teamId": "40640228",
-      "clause": 45723831,
-      "marketValue": 45723831,
+      "clause": 46896666,
+      "marketValue": 46896666,
       "name": "Fer Niño",
       "lockedUntil": "2026-11-10T12:55:09+01:00"
     },
     "3152": {
       "teamId": "40640228",
       "clause": 54441508,
-      "marketValue": 43488304,
+      "marketValue": 43977345,
       "name": "Y. Zabiri",
       "lockedUntil": "2026-10-21T12:55:12+02:00"
     },
     "3156": {
       "teamId": "40640228",
       "clause": 1000000,
-      "marketValue": 912458,
+      "marketValue": 902360,
       "name": "Valentini",
       "lockedUntil": "2026-11-12T12:59:45+01:00"
     },
     "3166": {
       "teamId": "40631220",
       "clause": 1000000,
-      "marketValue": 592501,
+      "marketValue": 593601,
       "name": "Manel Usedo",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
     "3183": {
       "teamId": "40631220",
       "clause": 4031821,
-      "marketValue": 2710344,
+      "marketValue": 2705726,
       "name": "Dubasin",
       "lockedUntil": "2026-11-05T14:07:40+01:00"
     },
     "3205": {
       "teamId": "40636623",
       "clause": 7020000,
-      "marketValue": 5287574,
+      "marketValue": 5318680,
       "name": "Iván Martín",
       "lockedUntil": "2026-10-30T12:55:05+01:00"
     },
     "3262": {
       "teamId": "40631220",
       "clause": 6500000,
-      "marketValue": 5997757,
+      "marketValue": 6199728,
       "name": "Félix Correia",
       "lockedUntil": "2026-11-08T12:55:31+01:00"
     },
     "3265": {
       "teamId": "40636623",
-      "clause": 36290130,
-      "marketValue": 36290130,
+      "clause": 37103395,
+      "marketValue": 37103395,
       "name": "Fofana",
       "lockedUntil": "2026-11-05T12:56:21+01:00"
     },
     "3267": {
       "teamId": "40636623",
       "clause": 5100006,
-      "marketValue": 4726099,
+      "marketValue": 4719387,
       "name": "Emil Audero",
       "lockedUntil": "2026-11-09T12:55:14+01:00"
     }
