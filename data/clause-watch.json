@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-30T07:02:48.539Z",
+  "tomadaEn": "2026-10-30T14:03:42.511Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -8,6 +8,13 @@
       "marketValue": 40230899,
       "name": "Unai Simón",
       "lockedUntil": "2026-10-22T12:55:16+02:00"
+    },
+    "74": {
+      "teamId": "40640228",
+      "clause": 26150000,
+      "marketValue": 20845765,
+      "name": "Yuri",
+      "lockedUntil": "2026-11-13T12:55:26+01:00"
     },
     "652": {
       "teamId": "40636623",
@@ -57,6 +64,13 @@
       "marketValue": 26077958,
       "name": "Yoel Lago",
       "lockedUntil": "2026-11-02T14:06:50+01:00"
+    },
+    "2303": {
+      "teamId": "40639639",
+      "clause": 10000000,
+      "marketValue": 8094435,
+      "name": "I. Romero",
+      "lockedUntil": "2026-11-13T12:55:26+01:00"
     },
     "2355": {
       "teamId": "40639639",
@@ -212,26 +226,12 @@
       "name": "Morcillo",
       "lockedUntil": "2026-11-02T12:55:08+01:00"
     },
-    "2962": {
-      "teamId": "40636623",
-      "clause": 13000000,
-      "marketValue": 11571582,
-      "name": "Luismi Cruz",
-      "lockedUntil": "2026-11-05T13:01:23+01:00"
-    },
     "2977": {
       "teamId": "40639639",
       "clause": 5000000,
       "marketValue": 653300,
       "name": "Riki",
       "lockedUntil": "2026-11-06T13:04:46+01:00"
-    },
-    "2990": {
-      "teamId": "40636623",
-      "clause": 3922039,
-      "marketValue": 3164500,
-      "name": "Ximo Navarro",
-      "lockedUntil": "2026-11-05T13:00:29+01:00"
     },
     "2995": {
       "teamId": "40640228",
@@ -309,6 +309,13 @@
       "marketValue": 57651236,
       "name": "Isco",
       "lockedUntil": "2026-11-08T12:55:31+01:00"
+    },
+    "3106": {
+      "teamId": "40640228",
+      "clause": 38150000,
+      "marketValue": 34482640,
+      "name": "Cucurella",
+      "lockedUntil": "2026-11-13T12:55:26+01:00"
     },
     "3107": {
       "teamId": "40631220",
