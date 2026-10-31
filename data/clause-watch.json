@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-10-31T05:29:08.811Z",
+  "tomadaEn": "2026-10-31T12:16:03.348Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -15,6 +15,13 @@
       "marketValue": 21386310,
       "name": "Yuri",
       "lockedUntil": "2026-11-13T12:55:26+01:00"
+    },
+    "204": {
+      "teamId": "40640228",
+      "clause": 1246494,
+      "marketValue": 1246494,
+      "name": "Aitor Fdez",
+      "lockedUntil": "2026-11-14T12:55:12+01:00"
     },
     "652": {
       "teamId": "40636623",
@@ -213,11 +220,11 @@
       "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
     "2949": {
-      "teamId": "40636623",
+      "teamId": "40640228",
       "clause": 2100300,
       "marketValue": 2010159,
       "name": "B. Sangare",
-      "lockedUntil": "2026-10-30T12:55:05+01:00"
+      "lockedUntil": "2026-11-14T13:12:45+01:00"
     },
     "2958": {
       "teamId": "40640228",
@@ -387,12 +394,26 @@
       "name": "Dubasin",
       "lockedUntil": "2026-11-05T14:07:40+01:00"
     },
+    "3193": {
+      "teamId": "40640228",
+      "clause": 74700000,
+      "marketValue": 74622117,
+      "name": "Kang-In Lee",
+      "lockedUntil": "2026-11-14T12:55:13+01:00"
+    },
     "3205": {
       "teamId": "40636623",
       "clause": 7020000,
       "marketValue": 5318680,
       "name": "Iván Martín",
       "lockedUntil": "2026-10-30T12:55:05+01:00"
+    },
+    "3238": {
+      "teamId": "40640228",
+      "clause": 4650000,
+      "marketValue": 4127054,
+      "name": "M. Sarr",
+      "lockedUntil": "2026-11-14T12:55:13+01:00"
     },
     "3262": {
       "teamId": "40631220",
