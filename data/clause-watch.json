@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-01T15:00:59.819Z",
+  "tomadaEn": "2026-11-01T19:36:07.533Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -240,13 +240,6 @@
       "name": "Mario Soriano",
       "lockedUntil": "2026-11-10T12:55:09+01:00"
     },
-    "2999": {
-      "teamId": "40631220",
-      "clause": 1000000,
-      "marketValue": 794550,
-      "name": "Mantilla",
-      "lockedUntil": "2026-11-06T12:55:12+01:00"
-    },
     "3036": {
       "teamId": "40631220",
       "clause": 17668761,
@@ -337,13 +330,6 @@
       "marketValue": 23007578,
       "name": "Leo Román",
       "lockedUntil": "2026-11-11T12:55:06+01:00"
-    },
-    "3125": {
-      "teamId": "40631220",
-      "clause": 25378107,
-      "marketValue": 14251960,
-      "name": "Canales",
-      "lockedUntil": "2026-10-09T12:55:23+02:00"
     },
     "3130": {
       "teamId": "40636623",
