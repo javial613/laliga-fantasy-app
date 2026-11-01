@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-01T07:29:01.424Z",
+  "tomadaEn": "2026-11-01T15:00:59.819Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -79,13 +79,6 @@
       "name": "I. Romero",
       "lockedUntil": "2026-11-13T12:55:26+01:00"
     },
-    "2355": {
-      "teamId": "40639639",
-      "clause": 21282567,
-      "marketValue": 18207061,
-      "name": "Kounde",
-      "lockedUntil": "2026-11-06T12:55:12+01:00"
-    },
     "2363": {
       "teamId": "40640228",
       "clause": 1000000,
@@ -121,13 +114,6 @@
       "name": "Costa",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
-    "2470": {
-      "teamId": "40639639",
-      "clause": 13500000,
-      "marketValue": 12114795,
-      "name": "Foyth",
-      "lockedUntil": "2026-11-05T12:55:23+01:00"
-    },
     "2479": {
       "teamId": "40636623",
       "clause": 16888037,
@@ -148,6 +134,13 @@
       "marketValue": 28367434,
       "name": "Navarro",
       "lockedUntil": "2026-11-04T13:50:40+01:00"
+    },
+    "2565": {
+      "teamId": "40640228",
+      "clause": 3250000,
+      "marketValue": 1532513,
+      "name": "A. Fortuño",
+      "lockedUntil": "2026-11-15T12:55:29+01:00"
     },
     "2588": {
       "teamId": "40636623",
@@ -186,7 +179,7 @@
     },
     "2626": {
       "teamId": "40636623",
-      "clause": 16530000,
+      "clause": 16530002,
       "marketValue": 15768397,
       "name": "Deossa",
       "lockedUntil": "2026-11-11T12:55:06+01:00"
@@ -295,6 +288,13 @@
       "marketValue": 12626531,
       "name": "Larrubia",
       "lockedUntil": "2026-11-11T12:55:06+01:00"
+    },
+    "3074": {
+      "teamId": "40640228",
+      "clause": 21550000,
+      "marketValue": 18385303,
+      "name": "Germán V.",
+      "lockedUntil": "2026-11-15T12:55:29+01:00"
     },
     "3085": {
       "teamId": "40636623",
