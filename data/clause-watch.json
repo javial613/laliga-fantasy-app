@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-02T05:54:10.540Z",
+  "tomadaEn": "2026-11-02T15:39:35.250Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -53,7 +53,7 @@
     },
     "2074": {
       "teamId": "40640228",
-      "clause": 6242428,
+      "clause": 9082428,
       "marketValue": 6242428,
       "name": "Javi Rodríguez",
       "lockedUntil": "2026-11-02T12:55:08+01:00"
@@ -66,11 +66,11 @@
       "lockedUntil": "2026-11-05T13:25:22+01:00"
     },
     "2206": {
-      "teamId": "40639639",
+      "teamId": "40640228",
       "clause": 27291199,
       "marketValue": 27291199,
       "name": "Yoel Lago",
-      "lockedUntil": "2026-11-02T14:06:50+01:00"
+      "lockedUntil": "2026-11-16T14:08:53+01:00"
     },
     "2303": {
       "teamId": "40639639",
@@ -212,6 +212,13 @@
       "name": "A. Abqar",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
+    "2934": {
+      "teamId": "40636623",
+      "clause": 15200000,
+      "marketValue": 11786258,
+      "name": "Freeman",
+      "lockedUntil": "2026-11-16T12:55:09+01:00"
+    },
     "2949": {
       "teamId": "40640228",
       "clause": 2100300,
@@ -221,7 +228,7 @@
     },
     "2958": {
       "teamId": "40640228",
-      "clause": 1484346,
+      "clause": 4084346,
       "marketValue": 1484346,
       "name": "Morcillo",
       "lockedUntil": "2026-11-02T12:55:08+01:00"
@@ -433,9 +440,33 @@
     "40631220": 1000816,
     "40636623": 1437,
     "40639639": 4500000,
-    "40640228": 30480596
+    "40640228": 33200596
   },
   "historial": [
+    {
+      "playerId": "2074",
+      "playerName": "Javi Rodríguez",
+      "teamId": "40640228",
+      "clauseAnterior": 6242428,
+      "clauseActual": 9082428,
+      "subida": 2840000,
+      "coste": 1420000,
+      "desde": "2026-11-02T05:54:10.540Z",
+      "hasta": "2026-11-02T15:39:35.250Z",
+      "fecha": "2026-11-02T15:39:35.250Z"
+    },
+    {
+      "playerId": "2958",
+      "playerName": "Morcillo",
+      "teamId": "40640228",
+      "clauseAnterior": 1484346,
+      "clauseActual": 4084346,
+      "subida": 2600000,
+      "coste": 1300000,
+      "desde": "2026-11-02T05:54:10.540Z",
+      "hasta": "2026-11-02T15:39:35.250Z",
+      "fecha": "2026-11-02T15:39:35.250Z"
+    },
     {
       "playerId": "2005",
       "playerName": "Abel Bretones",
