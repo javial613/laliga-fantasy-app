@@ -200,3 +200,37 @@ export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = I
     }
     return base;
 };
+
+/**
+ * ¿Sale a cuenta pagar esta cláusula? Compara lo que cuesta con lo que vale
+ * el jugador. Positivo = se paga por encima del valor de mercado.
+ */
+export const compararConValor = (jugador) => {
+    const clausula = Number(jugador?.clausula) || 0;
+    const valor = jugador?.valor;
+    if (valor == null || !Number.isFinite(Number(valor))) {
+        return { clausula, valor: null, diferencia: null, porcentaje: null };
+    }
+    const v = Number(valor);
+    const diferencia = clausula - v;
+    return {
+        clausula,
+        valor: v,
+        diferencia,
+        porcentaje: v > 0 ? Math.round((diferencia / v) * 100) : null,
+    };
+};
+
+/** Totales de una jugada, para la última fila del desglose. */
+export const totalesDeJugada = (jugadores = []) => {
+    const clausula = jugadores.reduce((s, j) => s + (Number(j?.clausula) || 0), 0);
+    const conValor = jugadores.filter((j) => j?.valor != null && Number.isFinite(Number(j.valor)));
+    const valor = conValor.reduce((s, j) => s + Number(j.valor), 0);
+    // Si de alguno no se sabe el valor, el total sería engañoso: mejor nada.
+    const completo = conValor.length === jugadores.length && jugadores.length > 0;
+    return {
+        clausula,
+        valor: completo ? valor : null,
+        diferencia: completo ? clausula - valor : null,
+    };
+};

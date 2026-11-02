@@ -45,6 +45,9 @@ const useSquadViability = (leagueId, standings, limite = null) => {
                         nombre: pt.playerMaster?.nickname || pt.playerMaster?.name || 'Jugador',
                         positionId: pt.playerMaster?.positionId,
                         clausula: pt.buyoutClause || 0,
+                        // Para poder juzgar si clausular sale a cuenta: lo que
+                        // cuesta frente a lo que vale.
+                        valor: pt.playerMaster?.marketValue ?? null,
                         lockedUntil: pt.buyoutClauseLockedEndTime || null,
                     })));
                 }

@@ -1,5 +1,6 @@
 import {
     puedeAlinear, contarPorPosicion, esClausulable, analizarPlantilla, FORMACIONES,
+    compararConValor, totalesDeJugada,
 } from './alineacionPosible';
 
 const jugador = (id, positionId, clausula, lockedUntil = null) =>
@@ -284,5 +285,48 @@ describe('en una jugada mixta se distingue quién falta', () => {
         expect(r.jugadaProxima.jugadores).toHaveLength(3);
         expect(r.jugadaProxima.pendientes.map((j) => j.playerId)).toEqual(['cerrado']);
         expect(r.jugadaProxima.desde).toBe(Date.parse('2026-11-05T12:55:00+01:00'));
+    });
+});
+
+describe('¿renta clausularlo?', () => {
+    test('pagar por encima del valor sale como sobreprecio', () => {
+        expect(compararConValor({ clausula: 60_000_000, valor: 50_000_000 }))
+            .toMatchObject({ diferencia: 10_000_000, porcentaje: 20 });
+    });
+
+    test('pagar por debajo del valor sale en negativo: es ganga', () => {
+        expect(compararConValor({ clausula: 8_000_000, valor: 10_000_000 }))
+            .toMatchObject({ diferencia: -2_000_000, porcentaje: -20 });
+    });
+
+    test('sin valor de mercado no se inventa la comparación', () => {
+        expect(compararConValor({ clausula: 2_000_000, valor: null }).diferencia).toBeNull();
+        expect(compararConValor({ clausula: 2_000_000 }).porcentaje).toBeNull();
+        expect(compararConValor(null).clausula).toBe(0);
+    });
+
+    test('un valor de cero no provoca una división imposible', () => {
+        expect(compararConValor({ clausula: 1_000_000, valor: 0 }).porcentaje).toBeNull();
+    });
+
+    test('los totales suman cláusula y valor', () => {
+        expect(totalesDeJugada([
+            { clausula: 5_000_000, valor: 4_000_000 },
+            { clausula: 3_000_000, valor: 3_500_000 },
+        ])).toEqual({ clausula: 8_000_000, valor: 7_500_000, diferencia: 500_000 });
+    });
+
+    test('si falta el valor de alguno, el total sería engañoso y no se da', () => {
+        const t = totalesDeJugada([
+            { clausula: 5_000_000, valor: 4_000_000 },
+            { clausula: 3_000_000, valor: null },
+        ]);
+        expect(t.clausula).toBe(8_000_000);
+        expect(t.valor).toBeNull();
+        expect(t.diferencia).toBeNull();
+    });
+
+    test('lista vacía no revienta', () => {
+        expect(totalesDeJugada([])).toEqual({ clausula: 0, valor: null, diferencia: null });
     });
 });

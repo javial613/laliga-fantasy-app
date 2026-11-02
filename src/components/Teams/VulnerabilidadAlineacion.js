@@ -1,11 +1,78 @@
 import React from 'react';
 import { ShieldAlert, ShieldCheck, Users, Clock, Hourglass } from 'lucide-react';
-import { formatCurrency } from '../../utils/helpers';
+import { formatCurrency, formatCurrencyWithSign } from '../../utils/helpers';
+import { compararConValor, totalesDeJugada } from '../../utils/alineacionPosible';
 
 /** "A", "A y B", "A, B y C": con tres o más, la coma evita el trabalenguas. */
 export const enumerar = (nombres) => {
     if (nombres.length <= 1) return nombres[0] || '';
     return `${nombres.slice(0, -1).join(', ')} y ${nombres[nombres.length - 1]}`;
+};
+
+/**
+ * Cláusula frente a valor de mercado, jugador a jugador.
+ *
+ * Sin esto el aviso dice cuánto cuesta la jugada pero no si sale a cuenta:
+ * pagar 60 millones por alguien que vale 55 es muy distinto a pagarlos por
+ * alguien que vale 62, aunque la cifra que se desembolsa sea la misma.
+ */
+export const DesgloseJugada = ({ jugadores }) => {
+    const totales = totalesDeJugada(jugadores);
+
+    return (
+        <table className="mt-2 w-full text-[11px] leading-tight">
+            <thead>
+                <tr className="text-left text-gray-500 dark:text-gray-400">
+                    <th className="font-normal pr-3 py-0.5">Jugador</th>
+                    <th className="font-normal pr-3 py-0.5">Cláusula</th>
+                    <th className="font-normal pr-3 py-0.5">Valor</th>
+                    <th className="font-normal py-0.5">Sobreprecio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {jugadores.map((j) => {
+                    const { diferencia, porcentaje } = compararConValor(j);
+                    return (
+                        <tr key={j.playerId || j.nombre} className="align-top">
+                            <td className="pr-3 py-0.5 font-medium">{j.nombre}</td>
+                            <td className="pr-3 py-0.5 whitespace-nowrap">{formatCurrency(j.clausula)}</td>
+                            <td className="pr-3 py-0.5 whitespace-nowrap">
+                                {j.valor != null ? formatCurrency(j.valor) : '—'}
+                            </td>
+                            <td className={`py-0.5 whitespace-nowrap ${
+                                diferencia == null ? ''
+                                    : diferencia > 0 ? 'text-red-600 dark:text-red-400'
+                                    : 'text-green-700 dark:text-green-400'
+                            }`}>
+                                {diferencia == null ? '—' : (
+                                    <>
+                                        {formatCurrencyWithSign(diferencia)}
+                                        {porcentaje != null && (
+                                            <span className="opacity-70">
+                                                {' '}({porcentaje > 0 ? '+' : ''}{porcentaje}%)
+                                            </span>
+                                        )}
+                                    </>
+                                )}
+                            </td>
+                        </tr>
+                    );
+                })}
+                {jugadores.length > 1 && (
+                    <tr className="font-semibold border-t border-current/20">
+                        <td className="pr-3 py-0.5">Total</td>
+                        <td className="pr-3 py-0.5 whitespace-nowrap">{formatCurrency(totales.clausula)}</td>
+                        <td className="pr-3 py-0.5 whitespace-nowrap">
+                            {totales.valor != null ? formatCurrency(totales.valor) : '—'}
+                        </td>
+                        <td className="py-0.5 whitespace-nowrap">
+                            {totales.diferencia != null ? formatCurrencyWithSign(totales.diferencia) : '—'}
+                        </td>
+                    </tr>
+                )}
+            </tbody>
+        </table>
+    );
 };
 
 /** Reparto de la plantilla, en el orden en que se nombran las formaciones. */
@@ -70,6 +137,7 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
                     {esMio ? 'te' : 'le'} pueden dejar sin puntuar clausulando a{' '}
                     <strong>{enumerar(jugadores.map((j) => j.nombre))}</strong>
                     {' '}por {formatCurrency(coste)}.
+                    <DesgloseJugada jugadores={jugadores} />
                 </span>
             </div>
         );
@@ -102,6 +170,7 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
                         formar alineación salvo que fiche antes de la jornada.
                     </>
                 )}
+                <DesgloseJugada jugadores={jugadores} />
             </span>
         </div>
     );
