@@ -24,8 +24,8 @@ export const DesgloseJugada = ({ jugadores }) => {
             <thead>
                 <tr className="text-left text-gray-500 dark:text-gray-400">
                     <th className="font-normal pr-3 py-0.5">Jugador</th>
-                    <th className="font-normal pr-3 py-0.5">Cláusula</th>
                     <th className="font-normal pr-3 py-0.5">Valor</th>
+                    <th className="font-normal pr-3 py-0.5">Cláusula</th>
                     <th className="font-normal py-0.5">Sobreprecio</th>
                 </tr>
             </thead>
@@ -35,10 +35,10 @@ export const DesgloseJugada = ({ jugadores }) => {
                     return (
                         <tr key={j.playerId || j.nombre} className="align-top">
                             <td className="pr-3 py-0.5 font-medium">{j.nombre}</td>
-                            <td className="pr-3 py-0.5 whitespace-nowrap">{formatCurrency(j.clausula)}</td>
                             <td className="pr-3 py-0.5 whitespace-nowrap">
                                 {j.valor != null ? formatCurrency(j.valor) : '—'}
                             </td>
+                            <td className="pr-3 py-0.5 whitespace-nowrap">{formatCurrency(j.clausula)}</td>
                             <td className={`py-0.5 whitespace-nowrap ${
                                 diferencia == null ? ''
                                     : diferencia > 0 ? 'text-red-600 dark:text-red-400'
@@ -61,10 +61,10 @@ export const DesgloseJugada = ({ jugadores }) => {
                 {jugadores.length > 1 && (
                     <tr className="font-semibold border-t border-current/20">
                         <td className="pr-3 py-0.5">Total</td>
-                        <td className="pr-3 py-0.5 whitespace-nowrap">{formatCurrency(totales.clausula)}</td>
                         <td className="pr-3 py-0.5 whitespace-nowrap">
                             {totales.valor != null ? formatCurrency(totales.valor) : '—'}
                         </td>
+                        <td className="pr-3 py-0.5 whitespace-nowrap">{formatCurrency(totales.clausula)}</td>
                         <td className="py-0.5 whitespace-nowrap">
                             {totales.diferencia != null ? formatCurrencyWithSign(totales.diferencia) : '—'}
                         </td>
