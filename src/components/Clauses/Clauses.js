@@ -22,6 +22,7 @@ import useMarketTrends from '../../hooks/useMarketTrends';
 import useTeamService from '../../hooks/useTeamService';
 
 import ClauseCard from './ClauseCard';
+import useNextFixtures from '../../hooks/useNextFixtures';
 import ClauseFilters from './ClauseFilters';
 import PaymentFlow from './PaymentFlow';
 import PaymentConfirmModal from './PaymentConfirmModal';
@@ -81,6 +82,7 @@ const Clauses = () => {
   // key por servicio en toda la app; initialize() respeta la caché de 24h en
   // vez de forzar un scrape).
   const { trendsReady } = useMarketTrends();
+  const nextFixtures = useNextFixtures();
   const { teamReady } = useTeamService(leagueId, user);
 
   const handlePlayerClick = useCallback((clause) => {
@@ -269,6 +271,9 @@ const Clauses = () => {
               playerImage: player.images?.transparent?.['256x256'] || null,
               teamName: player.team?.name || 'N/D',
               teamBadge: player.team?.badgeColor || null,
+              // Equipo de fútbol real: `teamId` (más abajo) es el del equipo
+              // fantasy del dueño, que no sirve para buscar el próximo partido.
+              footballTeamId: player.team?.id ?? player.teamId ?? null,
               position: getPositionName(player.positionId),
               positionId: player.positionId,
               points: player.points || 0,
@@ -535,6 +540,7 @@ const Clauses = () => {
                 <ClauseCard
                   key={`${clause.playerId}-${index}`}
                   clause={clause}
+                  nextFixtures={nextFixtures}
                   onClick={() => handlePlayerClick(clause)}
                   onPayClause={() => handlePayClause(clause)}
                 />

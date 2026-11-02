@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldAlert, ShieldCheck, Users, Clock } from 'lucide-react';
+import { ShieldAlert, ShieldCheck, Users, Clock, Hourglass } from 'lucide-react';
 import { formatCurrency } from '../../utils/helpers';
 
 /** "A", "A y B", "A, B y C": con tres o más, la coma evita el trabalenguas. */
@@ -43,7 +43,30 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
         );
     }
 
-    if (!analisis.vulnerable) return null;
+    // Amenaza futura: hoy no se puede, pero se podrá al vencer una protección
+    // antes del cierre. Va aparte y en otro tono, porque decir "te pueden
+    // clausular" de alguien con la cláusula cerrada sería falso.
+    if (!analisis.vulnerable) {
+        if (!analisis.jugadaProxima) return null;
+        const { jugadores, coste, desde } = analisis.jugadaProxima;
+        const cuando = desde
+            ? new Date(desde).toLocaleString('es-ES', {
+                timeZone: 'Europe/Madrid',
+                weekday: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit',
+            })
+            : null;
+        return (
+            <div className="mt-2 flex items-start gap-2 rounded-lg border border-blue-300 bg-blue-50 p-2 text-xs text-blue-900 dark:border-blue-800 dark:bg-blue-900/20 dark:text-blue-300">
+                <Hourglass className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <span>
+                    <strong>Ojo, todavía no.</strong> Ahora esas cláusulas están cerradas, pero{' '}
+                    {cuando ? <>el <strong>{cuando}</strong> se abre</> : 'cuando se abra'}{' '}
+                    la de <strong>{enumerar(jugadores.map((j) => j.nombre))}</strong>, y entonces{' '}
+                    {esMio ? 'te' : 'le'} podrían dejar sin puntuar por {formatCurrency(coste)}.
+                </span>
+            </div>
+        );
+    }
 
     const { jugadores, coste } = analisis.jugada;
     const nombres = enumerar(jugadores.map((j) => j.nombre));
@@ -61,13 +84,13 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
             <span>
                 {esMio ? (
                     <>
-                        <strong>Te pueden dejar sin puntuar.</strong> Con {cuantas}:{' '}
+                        <strong>Te pueden dejar sin puntuar ya mismo.</strong> Con {cuantas}:{' '}
                         <strong>{nombres}</strong> ({formatCurrency(coste)}). Si no fichas antes de
                         la jornada, no podrás formar alineación.
                     </>
                 ) : (
                     <>
-                        <strong>Se le puede dejar sin puntuar.</strong> Con {cuantas}:{' '}
+                        <strong>Se le puede dejar sin puntuar ya mismo.</strong> Con {cuantas}:{' '}
                         <strong>{nombres}</strong>, por {formatCurrency(coste)} en total. No podrá
                         formar alineación salvo que fiche antes de la jornada.
                     </>
@@ -93,7 +116,9 @@ export const ResumenVulnerabilidad = ({ analisisPorEquipo, nombrePorEquipo, miTe
 
     const vulnerables = [];
     let yoVulnerable = null;
+    let proximos = 0;
     for (const [teamId, analisis] of analisisPorEquipo) {
+        if (analisis?.jugadaProxima) proximos += 1;
         if (!analisis?.vulnerable) continue;
         if (miTeamId && String(teamId) === String(miTeamId)) yoVulnerable = analisis;
         else vulnerables.push({ teamId, analisis });
@@ -104,9 +129,13 @@ export const ResumenVulnerabilidad = ({ analisisPorEquipo, nombrePorEquipo, miTe
             <div className="card border border-green-300 dark:border-green-800 bg-green-50 dark:bg-green-900/20 p-4 flex items-start gap-2">
                 <ShieldCheck className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" aria-hidden="true" />
                 <div className="text-sm text-green-800 dark:text-green-300">
-                    <strong>Nadie puede dejar a nadie sin alinear.</strong> Ninguna plantilla de la
-                    liga, ni la tuya, se queda sin formación posible con las cláusulas que se
-                    pueden pagar dentro de plazo.
+                    <strong>Nadie puede dejar a nadie sin alinear ahora mismo.</strong> Ninguna
+                    plantilla de la liga, ni la tuya, se queda sin formación posible con las
+                    cláusulas que están abiertas.
+                    {proximos > 0 && (
+                        <> Hay {proximos} equipo{proximos === 1 ? '' : 's'} que sí quedarían
+                        expuestos al abrirse alguna cláusula: mira el aviso de su ficha.</>
+                    )}
                     {plazo}
                 </div>
             </div>

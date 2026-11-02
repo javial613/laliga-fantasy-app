@@ -3,12 +3,18 @@ import { motion } from '../../utils/motionShim';
 import { Shield, Clock, TrendingUp, User, Euro, Lock } from 'lucide-react';
 import { formatNumber, formatNumberWithDots, getPositionColor } from '../../utils/helpers';
 import ProgressiveImage from '../Common/ProgressiveImage';
-import { getClauseStatusColor, getClauseTimeRemaining } from '../../utils/clauseUtils';
+import { getClauseStatusColor } from '../../utils/clauseUtils';
+import NextFixture from '../Common/NextFixture';
+import useCountdown from '../../hooks/useCountdown';
 
 const getPositionBackgroundColor = () => 'bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800';
 
 const ClauseCard = React.memo(
-  ({ clause, onClick, onPayClause }) => {
+  ({ clause, onClick, onPayClause, nextFixtures }) => {
+    // Cuenta atrás viva hasta que se abra la cláusula, al segundo en la
+    // última hora: con "en 1h" no se sabe si conviene esperar delante.
+    const cuentaAtras = useCountdown(clause.isLocked ? clause.unlockTime : null);
+
     return (
       <motion.div
         className={`hover-scale overflow-hidden cursor-pointer transition-all duration-200 rounded-lg border border-gray-200 dark:border-gray-700 ${
@@ -63,6 +69,11 @@ const ClauseCard = React.memo(
                 />
               )}
             </div>
+            <NextFixture
+              teamId={clause.footballTeamId}
+              nextFixtures={nextFixtures}
+              className="mt-1"
+            />
           </div>
 
           {/* Clause Amount */}
@@ -151,7 +162,7 @@ const ClauseCard = React.memo(
                     Se libera en
                   </span>
                   <span className="text-sm font-bold text-red-600 dark:text-red-400">
-                    {getClauseTimeRemaining(clause.unlockTime, { noTimeValue: 'Disponible' })}
+                    {cuentaAtras.texto === 'expirado' ? 'Disponible' : (cuentaAtras.texto || 'Disponible')}
                   </span>
                 </div>
                 {clause.unlockTime && (

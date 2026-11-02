@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Clock, User, Shield, Euro, X, Edit, TrendingUp } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { formatNumber, formatNumberWithDots, getPositionColor } from '../../utils/helpers';
+import useCountdown from '../../hooks/useCountdown';
 import teamService from '../../services/teamService';
 import { getClauseStatusColor } from '../../utils/clauseUtils';
 import NextFixture from '../Common/NextFixture';
@@ -31,8 +32,10 @@ const PlayerListItem = ({
   const [isCanceling, setIsCanceling] = useState(false);
   const player = item.playerMaster;
   const isClausePlayer = item.discr === 'marketPlayerTeam';
-  const expirationDate = new Date(item.expirationDate);
-  const hoursLeft = Math.max(0, Math.ceil((expirationDate - new Date()) / (1000 * 60 * 60)));
+  // Cuenta atrás al segundo: "1h" se quedaba fijo casi una hora entera, que
+  // es justo cuando importa saber si quedan cincuenta minutos o cuarenta
+  // segundos para decidir si pujas.
+  const cuentaAtras = useCountdown(item.expirationDate);
 
   const trendData = marketTrendsService ? marketTrendsService.resolveTrendForPlayer(player) : null;
   const actualOwner = playerOwnershipService ? playerOwnershipService.getPlayerOwner(player.id) : null;
@@ -89,9 +92,12 @@ const PlayerListItem = ({
           <span className={`badge ${getPositionColor(player.positionId)}`}>
             {positions[player.positionId]}
           </span>
-          <span className="badge bg-red-900 text-white flex items-center">
+          <span className={`badge text-white flex items-center whitespace-nowrap ${
+            cuentaAtras.restante != null && cuentaAtras.restante < 60 * 60 * 1000
+              ? 'bg-red-600' : 'bg-red-900'
+          }`}>
             <Clock className="w-3 h-3 mr-1" />
-            {hoursLeft}h
+            {cuentaAtras.texto || '—'}
           </span>
         </div>
 

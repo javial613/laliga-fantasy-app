@@ -191,22 +191,36 @@ describe('el cierre de cláusulas manda', () => {
         ...Array.from({ length: 5 }, (_, n) => jugador(`f${n}`, 4, 1_000_000, '2099-01-01T00:00:00Z')),
     ];
 
-    test('cuenta a quien se desbloquea antes del cierre, aunque ahora esté protegido', () => {
+    test('quien se desbloquea antes del cierre es amenaza futura, no actual', () => {
+        // La cláusula está cerrada ahora: decir "te pueden clausular" sería
+        // falso. Se avisa aparte, con la hora a la que se abre.
         const r = analizarPlantilla(plantilla('2026-10-29T18:00:00+01:00'), { ahora, limite });
+        expect(r.vulnerable).toBe(false);
+        expect(r.jugada).toBeNull();
+        expect(r.jugadaProxima.jugadores.map((j) => j.playerId)).toEqual(['m3']);
+        expect(r.jugadaProxima.desde).toBe(Date.parse('2026-10-29T18:00:00+01:00'));
+    });
+
+    test('con la cláusula ya abierta, la amenaza es actual', () => {
+        const r = analizarPlantilla(plantilla(null), { ahora, limite });
         expect(r.vulnerable).toBe(true);
         expect(r.jugada.jugadores.map((j) => j.playerId)).toEqual(['m3']);
+        expect(r.jugadaProxima).toBeNull();
     });
 
     test('no cuenta a quien se desbloquea cuando ya no da tiempo', () => {
-        // Se abre dos horas después del cierre: para esa jornada es intocable.
+        // Se abre dos horas después del cierre: para esa jornada es intocable,
+        // así que no se avisa ni como amenaza futura.
         const r = analizarPlantilla(plantilla('2026-10-29T23:00:00+01:00'), { ahora, limite });
         expect(r.vulnerable).toBe(false);
+        expect(r.jugadaProxima).toBeNull();
         expect(r.clausulables).toBe(0);
     });
 
     test('sin cierre conocido se mira solo lo que ya está abierto', () => {
         const r = analizarPlantilla(plantilla('2026-10-29T18:00:00+01:00'), { ahora });
         expect(r.vulnerable).toBe(false);
+        expect(r.jugadaProxima).toBeNull();
     });
 });
 

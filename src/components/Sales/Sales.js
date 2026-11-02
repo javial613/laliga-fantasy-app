@@ -4,6 +4,8 @@ import toast from 'react-hot-toast';
 import { ShoppingCart, XCircle, Loader2, Tag } from 'lucide-react';
 import { fantasyAPI } from '../../services/api';
 import useMyTeamId from '../../hooks/useMyTeamId';
+import useNextFixtures from '../../hooks/useNextFixtures';
+import NextFixture from '../Common/NextFixture';
 import LoadingSpinner from '../Common/LoadingSpinner';
 import { formatCurrency, getPositionName, isSuccessResponse, extractArray } from '../../utils/helpers';
 import { invalidateAfterMarketListing } from '../../utils/cacheInvalidation';
@@ -21,6 +23,7 @@ import {
 const Sales = () => {
     const queryClient = useQueryClient();
     const { teamId, leagueId, isLoading: cargandoEquipo } = useMyTeamId();
+    const nextFixtures = useNextFixtures();
 
     const [seleccion, setSeleccion] = useState(new Set());
     const [progreso, setProgreso] = useState(null);
@@ -223,6 +226,7 @@ const Sales = () => {
                                                 {j.escudo && <img src={j.escudo} alt="" className="w-4 h-4 object-contain" />}
                                                 {j.nombre}
                                             </span>
+                                            <NextFixture teamId={j.footballTeamId} nextFixtures={nextFixtures} />
                                         </td>
                                         <td className="py-2 pr-4 text-gray-600 dark:text-gray-400">
                                             {j.posicionId != null ? getPositionName(j.posicionId) : '—'}

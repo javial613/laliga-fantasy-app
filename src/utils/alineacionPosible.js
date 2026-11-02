@@ -101,29 +101,14 @@ const repartos = (total, tope) => {
  *   clausulables:number
  * }}
  */
-export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = Infinity, limite = null } = {}) => {
-    const lista = Array.isArray(jugadores) ? jugadores : [];
-    const porPosicion = contarPorPosicion(lista);
-    const alineable = puedeAlinear(porPosicion);
-
-    // Candidatos por posición, de cláusula más barata a más cara: si hay que
-    // llevarse dos centrocampistas, interesan los dos más baratos.
-    const candidatos = { porteros: [], defensas: [], medios: [], delanteros: [] };
-    for (const j of lista) {
-        const clave = CLAVE_DE_POSICION[Number(j?.positionId)];
-        if (clave && esClausulable(j, ahora, limite)) candidatos[clave].push(j);
-    }
-    for (const clave of CLAVES) candidatos[clave].sort((a, b) => a.clausula - b.clausula);
-
+/**
+ * Jugada más barata que deja a la plantilla sin alineación posible, usando
+ * solo los candidatos que se le pasen.
+ */
+const buscarJugada = (porPosicion, candidatos, topeGasto) => {
     const tope = CLAVES.reduce((acc, k) => ({ ...acc, [k]: candidatos[k].length }), {});
-    const clausulables = CLAVES.reduce((n, k) => n + tope[k], 0);
-
-    const vacio = {
-        total: lista.length, porPosicion, puedeAlinear: alineable, clausulables,
-        vulnerable: false, jugada: null,
-    };
-    // Si ya no puede alinear, no hay nada que provocar.
-    if (!alineable || clausulables === 0) return vacio;
+    const disponibles = CLAVES.reduce((n, k) => n + tope[k], 0);
+    if (disponibles === 0) return null;
 
     // Se examinan TODAS las combinaciones, de cualquier tamaño, y gana la más
     // barata: a quien ataca lo que le limita es el dinero, no el número de
@@ -132,7 +117,7 @@ export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = I
     // prefiere la de menos jugadores, que depende menos de que el otro no
     // reaccione entre medias.
     let mejor = null;
-    for (let tamano = 1; tamano <= clausulables; tamano += 1) {
+    for (let tamano = 1; tamano <= disponibles; tamano += 1) {
         for (const reparto of repartos(tamano, tope)) {
             const quedan = CLAVES.reduce((acc, k) => ({ ...acc, [k]: porPosicion[k] - reparto[k] }), {});
             if (puedeAlinear(quedan)) continue;
@@ -147,7 +132,60 @@ export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = I
             if (mejorHastaAhora) mejor = { jugadores: elegidos, coste };
         }
     }
+    return mejor;
+};
 
-    if (!mejor) return vacio;
-    return { ...vacio, vulnerable: true, jugada: mejor };
+/** Instante en que la jugada entera queda ejecutable (la última en abrirse). */
+const disponibleDesde = (jugada, ahora) => {
+    const esperas = jugada.jugadores
+        .map((j) => (j.lockedUntil ? new Date(j.lockedUntil).getTime() : 0))
+        .filter((t) => Number.isFinite(t) && t > ahora);
+    return esperas.length ? Math.max(...esperas) : null;
+};
+
+export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = Infinity, limite = null } = {}) => {
+    const lista = Array.isArray(jugadores) ? jugadores : [];
+    const porPosicion = contarPorPosicion(lista);
+    const alineable = puedeAlinear(porPosicion);
+
+    // Dos conjuntos distintos, y esa diferencia es la clave del aviso:
+    //  - abiertas: a quien se le puede pagar la cláusula AHORA MISMO.
+    //  - enPlazo: además, quien se desbloquea antes del cierre de la jornada.
+    // Decir "te pueden dejar sin puntuar" por alguien con la cláusula cerrada
+    // es sencillamente falso: hay que distinguir la amenaza real de la futura.
+    const abiertas = { porteros: [], defensas: [], medios: [], delanteros: [] };
+    const enPlazo = { porteros: [], defensas: [], medios: [], delanteros: [] };
+    for (const j of lista) {
+        const clave = CLAVE_DE_POSICION[Number(j?.positionId)];
+        if (!clave) continue;
+        if (esClausulable(j, ahora)) abiertas[clave].push(j);
+        if (esClausulable(j, ahora, limite)) enPlazo[clave].push(j);
+    }
+    for (const clave of CLAVES) {
+        abiertas[clave].sort((a, b) => a.clausula - b.clausula);
+        enPlazo[clave].sort((a, b) => a.clausula - b.clausula);
+    }
+
+    const clausulables = CLAVES.reduce((n, k) => n + abiertas[k].length, 0);
+    const clausulablesEnPlazo = CLAVES.reduce((n, k) => n + enPlazo[k].length, 0);
+
+    const base = {
+        total: lista.length, porPosicion, puedeAlinear: alineable,
+        clausulables, clausulablesEnPlazo,
+        vulnerable: false, jugada: null, jugadaProxima: null,
+    };
+    if (!alineable) return base;
+
+    const jugadaAhora = buscarJugada(porPosicion, abiertas, topeGasto);
+    if (jugadaAhora) return { ...base, vulnerable: true, jugada: jugadaAhora };
+
+    // Nadie puede hacerlo todavía: ¿lo podrá cuando venza alguna protección?
+    const jugadaEnPlazo = buscarJugada(porPosicion, enPlazo, topeGasto);
+    if (jugadaEnPlazo) {
+        return {
+            ...base,
+            jugadaProxima: { ...jugadaEnPlazo, desde: disponibleDesde(jugadaEnPlazo, ahora) },
+        };
+    }
+    return base;
 };
