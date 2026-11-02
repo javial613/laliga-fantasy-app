@@ -234,3 +234,60 @@ export const totalesDeJugada = (jugadores = []) => {
         diferencia: completo ? clausula - valor : null,
     };
 };
+
+export const NOMBRE_POSICION = {
+    porteros: { singular: 'portero', plural: 'porteros' },
+    defensas: { singular: 'defensa', plural: 'defensas' },
+    medios: { singular: 'centrocampista', plural: 'centrocampistas' },
+    delanteros: { singular: 'delantero', plural: 'delanteros' },
+};
+
+const POSICION_DE_CLAVE = {
+    porteros: POSICIONES.PORTERO,
+    defensas: POSICIONES.DEFENSA,
+    medios: POSICIONES.MEDIO,
+    delanteros: POSICIONES.DELANTERO,
+};
+
+// Tope de fichajes a considerar: si hacen falta más de tres, el consejo deja
+// de ser accionable y lo que toca es rehacer la plantilla.
+const MAX_FICHAJES = 3;
+
+/**
+ * Qué fichar para que no puedan dejarte sin alineación.
+ *
+ * Se simula añadir jugadores por posición y se mira cuántos hacen falta para
+ * que no quede ninguna combinación posible. El fichado se cuenta como
+ * protegido, que es como llega un jugador recién comprado.
+ *
+ * @returns {Array<{clave:string, cuantos:number}>} una opción por posición,
+ *   de menos fichajes a más. Vacío si ya está a salvo o si no basta con tres.
+ */
+export const consejosParaProtegerse = (jugadores, { ahora = Date.now(), limite = null } = {}) => {
+    const lista = Array.isArray(jugadores) ? jugadores : [];
+    const actual = analizarPlantilla(lista, { ahora, limite });
+    if (actual.puedeAlinear && !actual.vulnerable && !actual.jugadaProxima) return [];
+
+    const protegidoLejano = new Date(ahora + 365 * 24 * 60 * 60 * 1000).toISOString();
+    const opciones = [];
+
+    for (const clave of CLAVES) {
+        for (let cuantos = 1; cuantos <= MAX_FICHAJES; cuantos += 1) {
+            const refuerzos = Array.from({ length: cuantos }, (_, n) => ({
+                playerId: `simulado-${clave}-${n}`,
+                nombre: 'fichaje',
+                positionId: POSICION_DE_CLAVE[clave],
+                clausula: 0,
+                valor: null,
+                lockedUntil: protegidoLejano,
+            }));
+            const conRefuerzos = analizarPlantilla([...lista, ...refuerzos], { ahora, limite });
+            if (conRefuerzos.puedeAlinear && !conRefuerzos.vulnerable && !conRefuerzos.jugadaProxima) {
+                opciones.push({ clave, cuantos });
+                break;
+            }
+        }
+    }
+
+    return opciones.sort((a, b) => a.cuantos - b.cuantos);
+};

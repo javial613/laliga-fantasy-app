@@ -1,6 +1,6 @@
 import {
     puedeAlinear, contarPorPosicion, esClausulable, analizarPlantilla, FORMACIONES,
-    compararConValor, totalesDeJugada,
+    compararConValor, totalesDeJugada, consejosParaProtegerse,
 } from './alineacionPosible';
 
 const jugador = (id, positionId, clausula, lockedUntil = null) =>
@@ -328,5 +328,56 @@ describe('¿renta clausularlo?', () => {
 
     test('lista vacía no revienta', () => {
         expect(totalesDeJugada([])).toEqual({ clausula: 0, valor: null, diferencia: null });
+    });
+});
+
+describe('consejos para no quedarse sin alineación', () => {
+    const ahora = Date.parse('2026-11-02T13:00:00+01:00');
+    const limite = Date.parse('2026-11-05T21:00:00+01:00');
+    const protegido = '2099-01-01T00:00:00Z';
+
+    test('con una plantilla a salvo no da consejos', () => {
+        const plantilla = [
+            jugador('p1', 1, 1_000_000, protegido),
+            ...Array.from({ length: 6 }, (_, n) => jugador(`d${n}`, 2, 1_000_000, protegido)),
+            ...Array.from({ length: 6 }, (_, n) => jugador(`m${n}`, 3, 1_000_000, protegido)),
+            ...Array.from({ length: 4 }, (_, n) => jugador(`f${n}`, 4, 1_000_000, protegido)),
+        ];
+        expect(consejosParaProtegerse(plantilla, { ahora, limite })).toEqual([]);
+    });
+
+    test('con pocos delanteros, aconseja fichar donde hace falta', () => {
+        // 3 delanteros, dos alcanzables: quitando esos dos y un medio, cae.
+        const plantilla = [
+            jugador('p1', 1, 1_000_000, protegido),
+            ...Array.from({ length: 10 }, (_, n) => jugador(`d${n}`, 2, 1_000_000, protegido)),
+            jugador('m1', 3, 1_000_000),
+            ...Array.from({ length: 4 }, (_, n) => jugador(`m${n + 2}`, 3, 1_000_000, protegido)),
+            jugador('f1', 4, 1_000_000, protegido),
+            jugador('f2', 4, 1_000_000),
+            jugador('f3', 4, 1_000_000),
+        ];
+        const consejos = consejosParaProtegerse(plantilla, { ahora, limite });
+        expect(consejos.length).toBeGreaterThan(0);
+        // Un delantero o un centrocampista cierran el agujero.
+        const claves = consejos.filter((c) => c.cuantos === 1).map((c) => c.clave);
+        expect(claves).toEqual(expect.arrayContaining(['delanteros']));
+    });
+
+    test('los consejos van de menos fichajes a más', () => {
+        const plantilla = [
+            jugador('p1', 1, 1_000_000),
+            ...Array.from({ length: 5 }, (_, n) => jugador(`d${n}`, 2, 1_000_000, protegido)),
+            ...Array.from({ length: 5 }, (_, n) => jugador(`m${n}`, 3, 1_000_000, protegido)),
+            ...Array.from({ length: 3 }, (_, n) => jugador(`f${n}`, 4, 1_000_000, protegido)),
+        ];
+        const consejos = consejosParaProtegerse(plantilla, { ahora, limite });
+        // Portero único y desprotegido: con un segundo portero se cierra.
+        expect(consejos[0]).toEqual({ clave: 'porteros', cuantos: 1 });
+    });
+
+    test('plantilla vacía o nula no revienta', () => {
+        expect(Array.isArray(consejosParaProtegerse([], { ahora, limite }))).toBe(true);
+        expect(Array.isArray(consejosParaProtegerse(null, { ahora, limite }))).toBe(true);
     });
 });

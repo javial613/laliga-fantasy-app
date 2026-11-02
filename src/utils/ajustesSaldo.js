@@ -42,20 +42,26 @@ const AJUSTES = {
     '018592924': {
         // Positivo resta (la subida de cláusula que el vigilante no vio el
         // 06-10-2026); el porDia negativo suma lo que la liga le da a diario.
+        // Ve los anuncios 3 días de cada 7, así que son 300.000 por semana:
+        // se reparten como media diaria en vez de intentar adivinar qué días
+        // concretos lo hace. El 2,5M positivo es la subida de cláusula que el
+        // vigilante no vio.
         'juanitoooo21': {
             importe: 2500000,
-            motivo: 'subida de cláusula no detectada, menos los ingresos diarios',
-            porDia: -50000,
+            motivo: 'subida de cláusula no detectada, menos los anuncios (3 días de cada 7)',
+            porDia: -42857,
             desde: '2026-10-16',
         },
-        // Ve los anuncios que dan 100.000 al día. El millón de salida cubre
-        // los que ya llevaba vistos antes de empezar a contarlos.
+        // Ve los anuncios todos los días. El millón de salida cubre los que
+        // ya llevaba vistos antes de empezar a contarlos.
         'perogu': {
             importe: -1000000,
             motivo: 'ingresos por ver anuncios',
             porDia: -100000,
             desde: '2026-10-16',
         },
+        // gonsalo3007 no ve los anuncios, así que no lleva ajuste: su saldo
+        // sale tal cual del histórico.
     },
 };
 

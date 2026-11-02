@@ -64,7 +64,7 @@ const Teams = () => {
   // cierre (24 h antes de la jornada).
   const ventana = useClauseWindow();
   const { porEquipo: viabilidad, isLoading: cargandoViabilidad } =
-    useSquadViability(leagueId, standings, ventana.limite);
+    useSquadViability(leagueId, standings, ventana.limite, userTeamId);
   const [clausulasDe, setClausulasDe] = useState(null); // teamId cuyas subidas se están viendo
 
   const subidasDe = (teamId) =>

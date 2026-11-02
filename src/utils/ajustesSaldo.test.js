@@ -15,9 +15,21 @@ describe('getAjusteManual', () => {
         expect(getAjusteManual('Yaguettou', '017842199').importe).toBe(-2700000);
     });
 
+    test('quien no ve los anuncios no lleva ajuste', () => {
+        expect(getAjusteManual('gonsalo3007', '018592924')).toBeNull();
+    });
+
+    test('tres días de cada siete se reparten como media diaria', () => {
+        const dia = (d) => new Date(`${d}T12:00:00Z`);
+        // Siete días después, lo acumulado son seis cuotas más: 42.857 x 6.
+        const alEmpezar = getAjusteManual('Juanitoooo21', '018592924', dia('2026-10-16')).importe;
+        const unaSemana = getAjusteManual('Juanitoooo21', '018592924', dia('2026-10-22')).importe;
+        expect(alEmpezar - unaSemana).toBe(42857 * 6);
+    });
+
     test('cada liga tiene sus propias correcciones', () => {
         // Con fecha fija: su ajuste ya incluye los ingresos diarios.
-        expect(getAjusteManual('Juanitoooo21', '018592924', new Date('2026-10-16T12:00:00Z')).importe).toBe(2450000);
+        expect(getAjusteManual('Juanitoooo21', '018592924', new Date('2026-10-16T12:00:00Z')).importe).toBe(2457143);
         // El mismo manager, otra liga, otra cifra.
         expect(getAjusteManual('Juanitoooo21', '017842199').importe).toBe(27000000);
         expect(getAjusteManual('Yaguettou', '018592924')).toBeNull();
@@ -56,9 +68,10 @@ describe('ajustes que se acumulan por días', () => {
     });
 
     test('se combina con el importe fijo sin perderlo', () => {
-        // Juanito: 2,5M a restar y 50.000 diarios que suman.
-        expect(getAjusteManual('Juanitoooo21', '018592924', el('2026-10-16')).importe).toBe(2450000);
-        expect(getAjusteManual('Juanitoooo21', '018592924', el('2026-10-20')).importe).toBe(2250000);
+        // Juanito: 2,5M a restar y los anuncios de 3 días por semana, que son
+        // 42.857 de media diaria y suman.
+        expect(getAjusteManual('Juanitoooo21', '018592924', el('2026-10-16')).importe).toBe(2457143);
+        expect(getAjusteManual('Juanitoooo21', '018592924', el('2026-10-22')).importe).toBe(2200001);
     });
 
     test('antes de la fecha de inicio no acumula nada', () => {

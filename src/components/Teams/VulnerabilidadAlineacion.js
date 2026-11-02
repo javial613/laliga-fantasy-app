@@ -1,7 +1,7 @@
 import React from 'react';
-import { ShieldAlert, ShieldCheck, Users, Clock, Hourglass } from 'lucide-react';
+import { ShieldAlert, ShieldCheck, Users, Clock, Hourglass, Wrench } from 'lucide-react';
 import { formatCurrency, formatCurrencyWithSign } from '../../utils/helpers';
-import { compararConValor, totalesDeJugada } from '../../utils/alineacionPosible';
+import { compararConValor, totalesDeJugada, NOMBRE_POSICION } from '../../utils/alineacionPosible';
 
 /** "A", "A y B", "A, B y C": con tres o más, la coma evita el trabalenguas. */
 export const enumerar = (nombres) => {
@@ -75,6 +75,38 @@ export const DesgloseJugada = ({ jugadores }) => {
     );
 };
 
+/**
+ * Qué fichar para cerrar el agujero. Solo aparece en el equipo propio: saber
+ * que te pueden dejar sin puntuar no sirve de nada sin saber qué hacer.
+ */
+export const Consejos = ({ consejos, pendientes = [] }) => {
+    if (!consejos || consejos.length === 0) return null;
+
+    const comoTexto = ({ clave, cuantos }) => {
+        const nombre = NOMBRE_POSICION[clave];
+        if (!nombre) return null;
+        return cuantos === 1 ? `un ${nombre.singular}` : `${cuantos} ${nombre.plural}`;
+    };
+
+    const opciones = consejos.map(comoTexto).filter(Boolean);
+    if (opciones.length === 0) return null;
+
+    return (
+        <div className="mt-2 flex items-start gap-2 rounded-lg border border-emerald-300 bg-emerald-50 p-2 text-xs text-emerald-900 dark:border-emerald-800 dark:bg-emerald-900/20 dark:text-emerald-300">
+            <Wrench className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
+            <span>
+                <strong>Cómo cerrarlo:</strong> ficha{' '}
+                {opciones.length === 1 ? opciones[0] : <>{enumerar(opciones.map((o) => o))} (con cualquiera vale)</>}
+                . Un jugador recién fichado llega protegido, así que tapa el hueco de inmediato.
+                {pendientes.length > 0 && (
+                    <> También puedes blindar a <strong>{enumerar(pendientes.map((j) => j.nombre))}</strong>,
+                    pero eso solo lo aplaza 24 horas.</>
+                )}
+            </span>
+        </div>
+    );
+};
+
 /** Reparto de la plantilla, en el orden en que se nombran las formaciones. */
 export const Composicion = ({ analisis }) => {
     if (!analisis) return <span className="text-gray-400">—</span>;
@@ -105,6 +137,7 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
                 <span>
                     {esMio ? 'No puedes' : 'No puede'} formar alineación con esta plantilla.
                     {esMio ? ' No puntuarás' : ' No puntuará'} hasta {esMio ? 'que fiches' : 'que fiche'}.
+                    {esMio && <Consejos consejos={analisis.consejos} />}
                 </span>
             </div>
         );
@@ -138,6 +171,7 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
                     <strong>{enumerar(jugadores.map((j) => j.nombre))}</strong>
                     {' '}por {formatCurrency(coste)}.
                     <DesgloseJugada jugadores={jugadores} />
+                    {esMio && <Consejos consejos={analisis.consejos} pendientes={pendientes} />}
                 </span>
             </div>
         );
@@ -171,6 +205,7 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
                     </>
                 )}
                 <DesgloseJugada jugadores={jugadores} />
+                {esMio && <Consejos consejos={analisis.consejos} />}
             </span>
         </div>
     );
