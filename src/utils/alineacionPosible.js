@@ -135,12 +135,23 @@ const buscarJugada = (porPosicion, candidatos, topeGasto) => {
     return mejor;
 };
 
-/** Instante en que la jugada entera queda ejecutable (la última en abrirse). */
-const disponibleDesde = (jugada, ahora) => {
-    const esperas = jugada.jugadores
-        .map((j) => (j.lockedUntil ? new Date(j.lockedUntil).getTime() : 0))
-        .filter((t) => Number.isFinite(t) && t > ahora);
-    return esperas.length ? Math.max(...esperas) : null;
+/**
+ * Qué falta para que una jugada sea ejecutable.
+ *
+ * Importa separar quién tiene ya la cláusula abierta de quién no: una jugada
+ * de tres jugadores donde dos están abiertos y solo falta uno se explica mal
+ * si se nombran los tres como si estuvieran todos cerrados.
+ *
+ * @returns {{desde:number|null, pendientes:Array}} `desde` es cuando se abre
+ *   el último que falta; `pendientes`, los que todavía están protegidos.
+ */
+const loQueFalta = (jugada, ahora) => {
+    const pendientes = jugada.jugadores.filter((j) => {
+        const fin = j.lockedUntil ? new Date(j.lockedUntil).getTime() : null;
+        return fin != null && Number.isFinite(fin) && fin > ahora;
+    });
+    const esperas = pendientes.map((j) => new Date(j.lockedUntil).getTime());
+    return { desde: esperas.length ? Math.max(...esperas) : null, pendientes };
 };
 
 export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = Infinity, limite = null } = {}) => {
@@ -184,7 +195,7 @@ export const analizarPlantilla = (jugadores, { ahora = Date.now(), topeGasto = I
     if (jugadaEnPlazo) {
         return {
             ...base,
-            jugadaProxima: { ...jugadaEnPlazo, desde: disponibleDesde(jugadaEnPlazo, ahora) },
+            jugadaProxima: { ...jugadaEnPlazo, ...loQueFalta(jugadaEnPlazo, ahora) },
         };
     }
     return base;

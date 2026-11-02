@@ -48,21 +48,28 @@ export const AvisoVulnerabilidad = ({ analisis, esMio }) => {
     // clausular" de alguien con la cláusula cerrada sería falso.
     if (!analisis.vulnerable) {
         if (!analisis.jugadaProxima) return null;
-        const { jugadores, coste, desde } = analisis.jugadaProxima;
+        const { jugadores, coste, desde, pendientes = [] } = analisis.jugadaProxima;
         const cuando = desde
             ? new Date(desde).toLocaleString('es-ES', {
                 timeZone: 'Europe/Madrid',
                 weekday: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit',
             })
             : null;
+        // Se nombra solo a quien sigue protegido: en una jugada de tres donde
+        // dos ya están abiertos, decir que las tres están cerradas es falso.
+        const faltan = pendientes.length ? pendientes : jugadores;
+        const hayAbiertos = pendientes.length > 0 && pendientes.length < jugadores.length;
         return (
             <div className="mt-2 flex items-start gap-2 rounded-lg border border-blue-300 bg-blue-50 p-2 text-xs text-blue-900 dark:border-blue-800 dark:bg-blue-900/20 dark:text-blue-300">
                 <Hourglass className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span>
-                    <strong>Ojo, todavía no.</strong> Ahora esas cláusulas están cerradas, pero{' '}
-                    {cuando ? <>el <strong>{cuando}</strong> se abre</> : 'cuando se abra'}{' '}
-                    la de <strong>{enumerar(jugadores.map((j) => j.nombre))}</strong>, y entonces{' '}
-                    {esMio ? 'te' : 'le'} podrían dejar sin puntuar por {formatCurrency(coste)}.
+                    <strong>Ojo, todavía no.</strong>{' '}
+                    {cuando ? <>El <strong>{cuando}</strong> se abre</> : <>Cuando se abra</>}{' '}
+                    la cláusula de <strong>{enumerar(faltan.map((j) => j.nombre))}</strong>
+                    {hayAbiertos && <> —las demás ya están abiertas—</>}, y a partir de ahí{' '}
+                    {esMio ? 'te' : 'le'} pueden dejar sin puntuar clausulando a{' '}
+                    <strong>{enumerar(jugadores.map((j) => j.nombre))}</strong>
+                    {' '}por {formatCurrency(coste)}.
                 </span>
             </div>
         );

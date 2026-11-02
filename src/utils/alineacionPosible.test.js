@@ -199,6 +199,7 @@ describe('el cierre de cláusulas manda', () => {
         expect(r.jugada).toBeNull();
         expect(r.jugadaProxima.jugadores.map((j) => j.playerId)).toEqual(['m3']);
         expect(r.jugadaProxima.desde).toBe(Date.parse('2026-10-29T18:00:00+01:00'));
+        expect(r.jugadaProxima.pendientes.map((j) => j.playerId)).toEqual(['m3']);
     });
 
     test('con la cláusula ya abierta, la amenaza es actual', () => {
@@ -259,5 +260,29 @@ describe('elige la jugada más barata, no la más corta', () => {
         const r = analizarPlantilla(caraOBaratas(), { topeGasto: 10_000_000 });
         expect(r.vulnerable).toBe(true);
         expect(r.jugada.coste).toBe(6_000_000);
+    });
+});
+
+describe('en una jugada mixta se distingue quién falta', () => {
+    test('nombra solo a los que siguen protegidos', () => {
+        const ahora = Date.parse('2026-11-02T13:00:00+01:00');
+        const limite = Date.parse('2026-11-05T21:00:00+01:00');
+        // Dos abiertos y uno protegido hasta el día 5: la jugada necesita a
+        // los tres, pero lo que falta es solo el tercero.
+        const plantilla = [
+            jugador('p1', 1, 1_000_000, '2099-01-01T00:00:00Z'),
+            ...Array.from({ length: 6 }, (_, n) => jugador(`d${n}`, 2, 1_000_000, '2099-01-01T00:00:00Z')),
+            jugador('abierto1', 3, 1_000_000, '2026-10-21T12:55:00+02:00'),
+            jugador('abierto2', 3, 1_000_000, '2026-11-02T12:55:00+01:00'),
+            jugador('cerrado', 3, 1_000_000, '2026-11-05T12:55:00+01:00'),
+            jugador('m4', 3, 1_000_000, '2099-01-01T00:00:00Z'),
+            jugador('m5', 3, 1_000_000, '2099-01-01T00:00:00Z'),
+            ...Array.from({ length: 3 }, (_, n) => jugador(`f${n}`, 4, 1_000_000, '2099-01-01T00:00:00Z')),
+        ];
+        const r = analizarPlantilla(plantilla, { ahora, limite });
+        expect(r.vulnerable).toBe(false);
+        expect(r.jugadaProxima.jugadores).toHaveLength(3);
+        expect(r.jugadaProxima.pendientes.map((j) => j.playerId)).toEqual(['cerrado']);
+        expect(r.jugadaProxima.desde).toBe(Date.parse('2026-11-05T12:55:00+01:00'));
     });
 });
