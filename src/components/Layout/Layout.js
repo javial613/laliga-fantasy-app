@@ -17,6 +17,7 @@ import updateService from '../../services/updateService';
 import { sanitizeSearchTerm } from '../../utils/validation';
 import { setImageFallback, getPositionName, extractArray, formatCurrencyCompact as formatCurrency } from '../../utils/helpers';
 import MobileNav from './MobileNav';
+import AutoSellRunner from '../Common/AutoSellRunner';
 
 // ---------- menu config ----------
 const MENU_ITEMS = [
@@ -607,6 +608,8 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-bg overflow-x-hidden">
       <ApiStatus />
+      {/* No pinta nada: vigila los fichajes desde cualquier pantalla. */}
+      <AutoSellRunner />
 
       <aside
         id="primary-sidebar"
