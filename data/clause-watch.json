@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-04T09:03:43.570Z",
+  "tomadaEn": "2026-11-04T17:10:23.240Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -79,26 +79,12 @@
       "name": "I. Romero",
       "lockedUntil": "2026-11-13T12:55:26+01:00"
     },
-    "2363": {
-      "teamId": "40640228",
-      "clause": 1000000,
-      "marketValue": 599899,
-      "name": "Letacek",
-      "lockedUntil": "2026-11-04T12:55:05+01:00"
-    },
     "2426": {
       "teamId": "40636623",
       "clause": 8500000,
       "marketValue": 6494190,
       "name": "E. Militão",
       "lockedUntil": "2026-11-07T12:55:37+01:00"
-    },
-    "2448": {
-      "teamId": "40640228",
-      "clause": 5310000,
-      "marketValue": 3832291,
-      "name": "Oskarsson",
-      "lockedUntil": "2026-11-05T12:55:23+01:00"
     },
     "2464": {
       "teamId": "40631220",
@@ -130,7 +116,7 @@
     },
     "2549": {
       "teamId": "40639639",
-      "clause": 28483361,
+      "clause": 34483361,
       "marketValue": 27628018,
       "name": "Navarro",
       "lockedUntil": "2026-11-04T13:50:40+01:00"
@@ -170,6 +156,13 @@
       "name": "M. Dituro",
       "lockedUntil": "2026-11-09T12:55:10+01:00"
     },
+    "2621": {
+      "teamId": "40640228",
+      "clause": 2550006,
+      "marketValue": 1189000,
+      "name": "Gorrotxa",
+      "lockedUntil": "2026-11-18T12:55:23+01:00"
+    },
     "2626": {
       "teamId": "40636623",
       "clause": 16530002,
@@ -179,7 +172,7 @@
     },
     "2656": {
       "teamId": "40640228",
-      "clause": 22352942,
+      "clause": 25052942,
       "marketValue": 22352942,
       "name": "Jon Martin",
       "lockedUntil": "2026-11-04T12:55:05+01:00"
@@ -193,7 +186,7 @@
     },
     "2680": {
       "teamId": "40640228",
-      "clause": 11366848,
+      "clause": 14066848,
       "marketValue": 11366848,
       "name": "A. Castrín",
       "lockedUntil": "2026-11-04T12:55:05+01:00"
@@ -288,6 +281,13 @@
       "marketValue": 19130191,
       "name": "Germán V.",
       "lockedUntil": "2026-11-15T12:55:29+01:00"
+    },
+    "3077": {
+      "teamId": "40639639",
+      "clause": 46200000,
+      "marketValue": 39844267,
+      "name": "Edu Expósito",
+      "lockedUntil": "2026-11-18T12:55:23+01:00"
     },
     "3083": {
       "teamId": "40636623",
@@ -425,10 +425,46 @@
   "costes": {
     "40631220": 1000816,
     "40636623": 1437,
-    "40639639": 4500000,
-    "40640228": 33200596
+    "40639639": 7500000,
+    "40640228": 35900596
   },
   "historial": [
+    {
+      "playerId": "2549",
+      "playerName": "Navarro",
+      "teamId": "40639639",
+      "clauseAnterior": 28483361,
+      "clauseActual": 34483361,
+      "subida": 6000000,
+      "coste": 3000000,
+      "desde": "2026-11-04T09:03:43.570Z",
+      "hasta": "2026-11-04T17:10:23.240Z",
+      "fecha": "2026-11-04T17:10:23.240Z"
+    },
+    {
+      "playerId": "2656",
+      "playerName": "Jon Martin",
+      "teamId": "40640228",
+      "clauseAnterior": 22352942,
+      "clauseActual": 25052942,
+      "subida": 2700000,
+      "coste": 1350000,
+      "desde": "2026-11-04T09:03:43.570Z",
+      "hasta": "2026-11-04T17:10:23.240Z",
+      "fecha": "2026-11-04T17:10:23.240Z"
+    },
+    {
+      "playerId": "2680",
+      "playerName": "A. Castrín",
+      "teamId": "40640228",
+      "clauseAnterior": 11366848,
+      "clauseActual": 14066848,
+      "subida": 2700000,
+      "coste": 1350000,
+      "desde": "2026-11-04T09:03:43.570Z",
+      "hasta": "2026-11-04T17:10:23.240Z",
+      "fecha": "2026-11-04T17:10:23.240Z"
+    },
     {
       "playerId": "2074",
       "playerName": "Javi Rodríguez",
