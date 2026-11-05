@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-05T06:35:50.572Z",
+  "tomadaEn": "2026-11-05T15:25:00.944Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -23,6 +23,13 @@
       "name": "Rubén García",
       "lockedUntil": "2026-11-04T12:55:05+01:00"
     },
+    "680": {
+      "teamId": "40640228",
+      "clause": 5650000,
+      "marketValue": 4138235,
+      "name": "Moi Gómez",
+      "lockedUntil": "2026-11-19T12:55:05+01:00"
+    },
     "886": {
       "teamId": "40640228",
       "clause": 14550000,
@@ -30,12 +37,26 @@
       "name": "De Frutos",
       "lockedUntil": "2026-11-17T12:55:27+01:00"
     },
+    "927": {
+      "teamId": "40636623",
+      "clause": 31050000,
+      "marketValue": 23966687,
+      "name": "Berenguer",
+      "lockedUntil": "2026-11-19T12:55:06+01:00"
+    },
     "1480": {
       "teamId": "40631220",
-      "clause": 33000000,
+      "clause": 45000000,
       "marketValue": 31311801,
       "name": "Tchouaméni",
       "lockedUntil": "2026-11-05T14:07:47+01:00"
+    },
+    "1787": {
+      "teamId": "40636623",
+      "clause": 1000000,
+      "marketValue": 630941,
+      "name": "Prados",
+      "lockedUntil": "2026-11-19T12:55:06+01:00"
     },
     "1989": {
       "teamId": "40631220",
@@ -72,13 +93,6 @@
       "name": "Yoel Lago",
       "lockedUntil": "2026-11-16T14:08:53+01:00"
     },
-    "2303": {
-      "teamId": "40639639",
-      "clause": 10000000,
-      "marketValue": 7852481,
-      "name": "I. Romero",
-      "lockedUntil": "2026-11-13T12:55:26+01:00"
-    },
     "2426": {
       "teamId": "40636623",
       "clause": 8500000,
@@ -108,11 +122,11 @@
       "lockedUntil": "2026-11-07T12:55:37+01:00"
     },
     "2529": {
-      "teamId": "40636623",
+      "teamId": "40639639",
       "clause": 1000000,
       "marketValue": 599276,
       "name": "Rubén S.",
-      "lockedUntil": "2026-10-29T13:21:56+01:00"
+      "lockedUntil": "2026-11-19T14:09:19+01:00"
     },
     "2549": {
       "teamId": "40639639",
@@ -163,19 +177,12 @@
       "name": "Gorrotxa",
       "lockedUntil": "2026-11-18T12:55:23+01:00"
     },
-    "2626": {
-      "teamId": "40636623",
-      "clause": 16530002,
-      "marketValue": 14820180,
-      "name": "Deossa",
-      "lockedUntil": "2026-11-11T12:55:06+01:00"
-    },
     "2656": {
-      "teamId": "40640228",
+      "teamId": "40639639",
       "clause": 25052942,
       "marketValue": 22214564,
       "name": "Jon Martin",
-      "lockedUntil": "2026-11-04T12:55:05+01:00"
+      "lockedUntil": "2026-11-19T14:08:58+01:00"
     },
     "2678": {
       "teamId": "40636623",
@@ -185,11 +192,11 @@
       "lockedUntil": "2026-10-30T12:55:05+01:00"
     },
     "2680": {
-      "teamId": "40640228",
+      "teamId": "40636623",
       "clause": 14066848,
       "marketValue": 11478284,
       "name": "A. Castrín",
-      "lockedUntil": "2026-11-04T12:55:05+01:00"
+      "lockedUntil": "2026-11-19T09:09:41+01:00"
     },
     "2776": {
       "teamId": "40631220",
@@ -213,11 +220,11 @@
       "lockedUntil": "2026-11-14T13:12:45+01:00"
     },
     "2958": {
-      "teamId": "40640228",
+      "teamId": "40639639",
       "clause": 4084346,
       "marketValue": 1567403,
       "name": "Morcillo",
-      "lockedUntil": "2026-11-02T12:55:08+01:00"
+      "lockedUntil": "2026-11-19T14:08:50+01:00"
     },
     "2977": {
       "teamId": "40639639",
@@ -375,14 +382,14 @@
     },
     "3183": {
       "teamId": "40631220",
-      "clause": 4031821,
+      "clause": 4431821,
       "marketValue": 2582283,
       "name": "Dubasin",
       "lockedUntil": "2026-11-05T14:07:40+01:00"
     },
     "3205": {
       "teamId": "40636623",
-      "clause": 7020000,
+      "clause": 9020000,
       "marketValue": 5305437,
       "name": "Iván Martín",
       "lockedUntil": "2026-10-30T12:55:05+01:00"
@@ -402,11 +409,11 @@
       "lockedUntil": "2026-11-08T12:55:31+01:00"
     },
     "3265": {
-      "teamId": "40636623",
+      "teamId": "40640228",
       "clause": 39935985,
       "marketValue": 39935985,
       "name": "Fofana",
-      "lockedUntil": "2026-11-05T12:56:21+01:00"
+      "lockedUntil": "2026-11-19T12:56:29+01:00"
     },
     "3267": {
       "teamId": "40636623",
@@ -423,12 +430,48 @@
     "40640228": "Yaguettou"
   },
   "costes": {
-    "40631220": 1000816,
-    "40636623": 1437,
+    "40631220": 7200816,
+    "40636623": 1001437,
     "40639639": 7500000,
     "40640228": 35900596
   },
   "historial": [
+    {
+      "playerId": "1480",
+      "playerName": "Tchouaméni",
+      "teamId": "40631220",
+      "clauseAnterior": 33000000,
+      "clauseActual": 45000000,
+      "subida": 12000000,
+      "coste": 6000000,
+      "desde": "2026-11-05T06:35:50.572Z",
+      "hasta": "2026-11-05T15:25:00.944Z",
+      "fecha": "2026-11-05T15:25:00.944Z"
+    },
+    {
+      "playerId": "3183",
+      "playerName": "Dubasin",
+      "teamId": "40631220",
+      "clauseAnterior": 4031821,
+      "clauseActual": 4431821,
+      "subida": 400000,
+      "coste": 200000,
+      "desde": "2026-11-05T06:35:50.572Z",
+      "hasta": "2026-11-05T15:25:00.944Z",
+      "fecha": "2026-11-05T15:25:00.944Z"
+    },
+    {
+      "playerId": "3205",
+      "playerName": "Iván Martín",
+      "teamId": "40636623",
+      "clauseAnterior": 7020000,
+      "clauseActual": 9020000,
+      "subida": 2000000,
+      "coste": 1000000,
+      "desde": "2026-11-05T06:35:50.572Z",
+      "hasta": "2026-11-05T15:25:00.944Z",
+      "fecha": "2026-11-05T15:25:00.944Z"
+    },
     {
       "playerId": "2549",
       "playerName": "Navarro",
