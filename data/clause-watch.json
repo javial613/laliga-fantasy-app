@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-07T09:58:00.934Z",
+  "tomadaEn": "2026-11-07T16:22:49.522Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -44,19 +44,19 @@
       "name": "Tchouaméni",
       "lockedUntil": "2026-11-05T14:07:47+01:00"
     },
+    "1674": {
+      "teamId": "40636623",
+      "clause": 133500000,
+      "marketValue": 129263669,
+      "name": "Arda Güler",
+      "lockedUntil": "2026-11-21T12:55:18+01:00"
+    },
     "1787": {
       "teamId": "40636623",
       "clause": 1000000,
       "marketValue": 633539,
       "name": "Prados",
       "lockedUntil": "2026-11-19T12:55:06+01:00"
-    },
-    "1989": {
-      "teamId": "40631220",
-      "clause": 17250020,
-      "marketValue": 10712335,
-      "name": "Sergio Gómez",
-      "lockedUntil": "2026-11-05T14:08:19+01:00"
     },
     "2005": {
       "teamId": "40640228",
@@ -310,13 +310,6 @@
       "name": "Julián Alvarez",
       "lockedUntil": "2026-11-17T12:55:27+01:00"
     },
-    "3089": {
-      "teamId": "40636623",
-      "clause": 81679980,
-      "marketValue": 73576144,
-      "name": "Ez Abde",
-      "lockedUntil": "2026-11-09T13:12:35+01:00"
-    },
     "3090": {
       "teamId": "40631220",
       "clause": 69047468,
@@ -330,13 +323,6 @@
       "marketValue": 41931364,
       "name": "Cucurella",
       "lockedUntil": "2026-11-13T12:55:26+01:00"
-    },
-    "3107": {
-      "teamId": "40631220",
-      "clause": 36458889,
-      "marketValue": 36458889,
-      "name": "Konaté",
-      "lockedUntil": "2026-11-07T12:55:37+01:00"
     },
     "3109": {
       "teamId": "40631220",
