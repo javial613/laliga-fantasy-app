@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-08T07:15:17.376Z",
+  "tomadaEn": "2026-11-08T15:05:36.248Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -86,6 +86,13 @@
       "name": "Vivian",
       "lockedUntil": "2026-11-20T12:55:22+01:00"
     },
+    "2384": {
+      "teamId": "40636623",
+      "clause": 27838956,
+      "marketValue": 27838956,
+      "name": "Unai Lopez",
+      "lockedUntil": "2026-11-22T12:55:22+01:00"
+    },
     "2426": {
       "teamId": "40636623",
       "clause": 8500000,
@@ -148,13 +155,6 @@
       "marketValue": 13611534,
       "name": "Ferran Jutglà",
       "lockedUntil": "2026-11-05T13:02:13+01:00"
-    },
-    "2609": {
-      "teamId": "40631220",
-      "clause": 6869094,
-      "marketValue": 6869094,
-      "name": "Valentín Gómez",
-      "lockedUntil": "2026-11-08T18:13:11+01:00"
     },
     "2613": {
       "teamId": "40640228",
@@ -248,11 +248,11 @@
       "lockedUntil": "2026-11-05T14:07:58+01:00"
     },
     "3045": {
-      "teamId": "40639639",
+      "teamId": "40640228",
       "clause": 3500000,
       "marketValue": 3076700,
       "name": "Niño",
-      "lockedUntil": "2026-11-08T12:55:31+01:00"
+      "lockedUntil": "2026-11-22T12:59:35+01:00"
     },
     "3061": {
       "teamId": "40639639",
@@ -312,7 +312,7 @@
     },
     "3090": {
       "teamId": "40631220",
-      "clause": 70339776,
+      "clause": 90339776,
       "marketValue": 70339776,
       "name": "Isco",
       "lockedUntil": "2026-11-08T12:55:31+01:00"
@@ -380,16 +380,9 @@
       "name": "Iván Martín",
       "lockedUntil": "2026-10-30T12:55:05+01:00"
     },
-    "3238": {
-      "teamId": "40640228",
-      "clause": 4650000,
-      "marketValue": 3879656,
-      "name": "M. Sarr",
-      "lockedUntil": "2026-11-14T12:55:13+01:00"
-    },
     "3262": {
       "teamId": "40631220",
-      "clause": 8740389,
+      "clause": 15840389,
       "marketValue": 8740389,
       "name": "Félix Correia",
       "lockedUntil": "2026-11-08T12:55:31+01:00"
@@ -416,12 +409,36 @@
     "40640228": "Yaguettou"
   },
   "costes": {
-    "40631220": 7200816,
+    "40631220": 20750816,
     "40636623": 6001437,
     "40639639": 7500000,
     "40640228": 35901146
   },
   "historial": [
+    {
+      "playerId": "3090",
+      "playerName": "Isco",
+      "teamId": "40631220",
+      "clauseAnterior": 70339776,
+      "clauseActual": 90339776,
+      "subida": 20000000,
+      "coste": 10000000,
+      "desde": "2026-11-08T07:15:17.376Z",
+      "hasta": "2026-11-08T15:05:36.248Z",
+      "fecha": "2026-11-08T15:05:36.248Z"
+    },
+    {
+      "playerId": "3262",
+      "playerName": "Félix Correia",
+      "teamId": "40631220",
+      "clauseAnterior": 8740389,
+      "clauseActual": 15840389,
+      "subida": 7100000,
+      "coste": 3550000,
+      "desde": "2026-11-08T07:15:17.376Z",
+      "hasta": "2026-11-08T15:05:36.248Z",
+      "fecha": "2026-11-08T15:05:36.248Z"
+    },
     {
       "playerId": "2479",
       "playerName": "Kike Salas",
