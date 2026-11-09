@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-09T06:13:05.836Z",
+  "tomadaEn": "2026-11-09T17:25:11.000Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -10,11 +10,11 @@
       "lockedUntil": "2026-10-22T12:55:16+02:00"
     },
     "652": {
-      "teamId": "40636623",
+      "teamId": "40640228",
       "clause": 13665139,
       "marketValue": 13665139,
       "name": "Rubén García",
-      "lockedUntil": "2026-11-04T12:55:05+01:00"
+      "lockedUntil": "2026-11-23T12:51:02+01:00"
     },
     "680": {
       "teamId": "40640228",
@@ -65,13 +65,6 @@
       "name": "Abel Bretones",
       "lockedUntil": "2026-10-29T12:55:27+01:00"
     },
-    "2074": {
-      "teamId": "40640228",
-      "clause": 9082428,
-      "marketValue": 6997564,
-      "name": "Javi Rodríguez",
-      "lockedUntil": "2026-11-02T12:55:08+01:00"
-    },
     "2206": {
       "teamId": "40640228",
       "clause": 29163421,
@@ -108,18 +101,18 @@
       "lockedUntil": "2026-11-12T12:56:27+01:00"
     },
     "2469": {
-      "teamId": "40639639",
+      "teamId": "40636623",
       "clause": 1200000,
       "marketValue": 634165,
       "name": "Costa",
-      "lockedUntil": "2026-11-06T12:55:12+01:00"
+      "lockedUntil": "2026-11-23T18:09:58+01:00"
     },
     "2479": {
-      "teamId": "40636623",
+      "teamId": "40631220",
       "clause": 30880897,
       "marketValue": 23777745,
       "name": "Kike Salas",
-      "lockedUntil": "2026-11-07T12:55:37+01:00"
+      "lockedUntil": "2026-11-23T12:52:05+01:00"
     },
     "2529": {
       "teamId": "40639639",
@@ -158,7 +151,7 @@
     },
     "2613": {
       "teamId": "40640228",
-      "clause": 15610973,
+      "clause": 20210973,
       "marketValue": 15610973,
       "name": "M. Dituro",
       "lockedUntil": "2026-11-09T12:55:10+01:00"
@@ -211,13 +204,6 @@
       "marketValue": 14079528,
       "name": "Freeman",
       "lockedUntil": "2026-11-16T12:55:09+01:00"
-    },
-    "2949": {
-      "teamId": "40640228",
-      "clause": 2315101,
-      "marketValue": 2315101,
-      "name": "B. Sangare",
-      "lockedUntil": "2026-11-14T13:12:45+01:00"
     },
     "2958": {
       "teamId": "40639639",
@@ -412,9 +398,21 @@
     "40631220": 20750816,
     "40636623": 6001437,
     "40639639": 7500000,
-    "40640228": 35901146
+    "40640228": 38201146
   },
   "historial": [
+    {
+      "playerId": "2613",
+      "playerName": "M. Dituro",
+      "teamId": "40640228",
+      "clauseAnterior": 15610973,
+      "clauseActual": 20210973,
+      "subida": 4600000,
+      "coste": 2300000,
+      "desde": "2026-11-09T06:13:05.836Z",
+      "hasta": "2026-11-09T17:25:11.000Z",
+      "fecha": "2026-11-09T17:25:11.000Z"
+    },
     {
       "playerId": "3090",
       "playerName": "Isco",
