@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-10T09:41:02.503Z",
+  "tomadaEn": "2026-11-10T17:44:14.392Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -128,19 +128,19 @@
       "name": "Navarro",
       "lockedUntil": "2026-11-04T13:50:40+01:00"
     },
-    "2565": {
-      "teamId": "40640228",
-      "clause": 3250000,
-      "marketValue": 2763119,
-      "name": "A. Fortuño",
-      "lockedUntil": "2026-11-15T12:55:29+01:00"
-    },
     "2588": {
       "teamId": "40636623",
       "clause": 5160002,
       "marketValue": 4534042,
       "name": "Danjuma",
       "lockedUntil": "2026-11-07T12:55:37+01:00"
+    },
+    "2596": {
+      "teamId": "40636623",
+      "clause": 7500000,
+      "marketValue": 6632101,
+      "name": "V. Chust",
+      "lockedUntil": "2026-11-24T12:55:28+01:00"
     },
     "2603": {
       "teamId": "40639639",
@@ -156,13 +156,6 @@
       "name": "M. Dituro",
       "lockedUntil": "2026-11-09T12:55:10+01:00"
     },
-    "2621": {
-      "teamId": "40640228",
-      "clause": 2550006,
-      "marketValue": 1133257,
-      "name": "Gorrotxa",
-      "lockedUntil": "2026-11-18T12:55:23+01:00"
-    },
     "2656": {
       "teamId": "40639639",
       "clause": 25052942,
@@ -176,13 +169,6 @@
       "marketValue": 634758,
       "name": "J. Vertrouwd",
       "lockedUntil": "2026-10-30T12:55:05+01:00"
-    },
-    "2680": {
-      "teamId": "40636623",
-      "clause": 14066848,
-      "marketValue": 11231568,
-      "name": "A. Castrín",
-      "lockedUntil": "2026-11-19T09:09:41+01:00"
     },
     "2776": {
       "teamId": "40631220",
@@ -221,7 +207,7 @@
     },
     "2995": {
       "teamId": "40640228",
-      "clause": 49859138,
+      "clause": 60059138,
       "marketValue": 49859138,
       "name": "Mario Soriano",
       "lockedUntil": "2026-11-10T12:55:09+01:00"
@@ -274,6 +260,13 @@
       "marketValue": 20095270,
       "name": "Germán V.",
       "lockedUntil": "2026-11-15T12:55:29+01:00"
+    },
+    "3076": {
+      "teamId": "40631220",
+      "clause": 39669875,
+      "marketValue": 39669875,
+      "name": "Yeremay",
+      "lockedUntil": "2026-11-24T12:55:28+01:00"
     },
     "3077": {
       "teamId": "40639639",
@@ -338,13 +331,6 @@
       "name": "Diomande",
       "lockedUntil": "2026-11-20T12:55:22+01:00"
     },
-    "3156": {
-      "teamId": "40640228",
-      "clause": 1000000,
-      "marketValue": 846007,
-      "name": "Valentini",
-      "lockedUntil": "2026-11-12T12:59:45+01:00"
-    },
     "3166": {
       "teamId": "40631220",
       "clause": 1000000,
@@ -398,9 +384,21 @@
     "40631220": 20750816,
     "40636623": 6001437,
     "40639639": 7500000,
-    "40640228": 38201146
+    "40640228": 43301146
   },
   "historial": [
+    {
+      "playerId": "2995",
+      "playerName": "Mario Soriano",
+      "teamId": "40640228",
+      "clauseAnterior": 49859138,
+      "clauseActual": 60059138,
+      "subida": 10200000,
+      "coste": 5100000,
+      "desde": "2026-11-10T09:41:02.503Z",
+      "hasta": "2026-11-10T17:44:14.392Z",
+      "fecha": "2026-11-10T17:44:14.392Z"
+    },
     {
       "playerId": "2613",
       "playerName": "M. Dituro",
