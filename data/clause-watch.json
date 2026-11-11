@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-11T06:01:59.082Z",
+  "tomadaEn": "2026-11-11T14:09:07.793Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -64,13 +64,6 @@
       "marketValue": 4469159,
       "name": "Abel Bretones",
       "lockedUntil": "2026-10-29T12:55:27+01:00"
-    },
-    "2206": {
-      "teamId": "40640228",
-      "clause": 28737617,
-      "marketValue": 28737617,
-      "name": "Yoel Lago",
-      "lockedUntil": "2026-11-16T14:08:53+01:00"
     },
     "2314": {
       "teamId": "40639639",
@@ -207,7 +200,7 @@
     },
     "2995": {
       "teamId": "40640228",
-      "clause": 60059138,
+      "clause": 61059138,
       "marketValue": 51378276,
       "name": "Mario Soriano",
       "lockedUntil": "2026-11-10T12:55:09+01:00"
@@ -234,11 +227,11 @@
       "lockedUntil": "2026-11-05T13:29:08+01:00"
     },
     "3068": {
-      "teamId": "40631220",
+      "teamId": "40640228",
       "clause": 15657644,
       "marketValue": 15657644,
       "name": "Cabrera",
-      "lockedUntil": "2026-11-11T12:55:06+01:00"
+      "lockedUntil": "2026-11-25T13:01:17+01:00"
     },
     "3069": {
       "teamId": "40639639",
@@ -384,9 +377,21 @@
     "40631220": 20750816,
     "40636623": 6001437,
     "40639639": 7500000,
-    "40640228": 43301146
+    "40640228": 43801146
   },
   "historial": [
+    {
+      "playerId": "2995",
+      "playerName": "Mario Soriano",
+      "teamId": "40640228",
+      "clauseAnterior": 60059138,
+      "clauseActual": 61059138,
+      "subida": 1000000,
+      "coste": 500000,
+      "desde": "2026-11-11T06:01:59.082Z",
+      "hasta": "2026-11-11T14:09:07.793Z",
+      "fecha": "2026-11-11T14:09:07.793Z"
+    },
     {
       "playerId": "2995",
       "playerName": "Mario Soriano",
