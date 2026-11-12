@@ -17,6 +17,18 @@ import {
     cruzarPlantillaConMercado, precioDeVenta, repartirAcciones, ejecutarEnSerie,
 } from '../../utils/ventaMasiva';
 
+// Fondo suave por posición, con los mismos colores que usan las etiquetas de
+// posición en el resto de la app (ver getPositionColor): amarillo portero,
+// azul defensa, verde centrocampista, rojo delantero. Muy diluido, porque la
+// fila tiene que seguir leyéndose y en modo oscuro cualquier tinte fuerte
+// tapa el texto.
+const FONDO_POSICION = {
+    1: 'bg-yellow-50 dark:bg-yellow-900/10',
+    2: 'bg-blue-50 dark:bg-blue-900/10',
+    3: 'bg-green-50 dark:bg-green-900/10',
+    4: 'bg-red-50 dark:bg-red-900/10',
+};
+
 /**
  * Venta: poner y quitar jugadores del mercado en bloque.
  *
@@ -235,7 +247,9 @@ const Sales = () => {
                                     <tr
                                         key={j.playerMasterId || j.playerTeamId}
                                         onClick={() => alternar(j.playerMasterId)}
-                                        className="border-b border-gray-100 dark:border-gray-700/50 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                                        className={`border-b border-gray-100 dark:border-gray-700/50 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                                            FONDO_POSICION[j.posicionId] || ''
+                                        }`}
                                     >
                                         <td className="py-2 px-4">
                                             <input
