@@ -6,8 +6,6 @@ import { fantasyAPI } from '../../services/api';
 import useMyTeamId from '../../hooks/useMyTeamId';
 import useNextFixtures from '../../hooks/useNextFixtures';
 import NextFixture from '../Common/NextFixture';
-import useStarterProbabilities from '../../hooks/useStarterProbabilities';
-import StarterProbability from '../Common/StarterProbability';
 import useMarketTrends from '../../hooks/useMarketTrends';
 import marketTrendsService from '../../services/marketTrendsService';
 import LoadingSpinner from '../Common/LoadingSpinner';
@@ -63,14 +61,6 @@ const Sales = () => {
         const payload = teamData?.data || teamData;
         return cruzarPlantillaConMercado(payload?.players, extractArray(marketData));
     }, [teamData, marketData]);
-
-    // Equipos de fútbol de la plantilla: de ahí salen las alineaciones
-    // previsibles de las que se saca la probabilidad de titularidad.
-    const equipos = useMemo(
-        () => [...new Set(jugadores.map((j) => j.footballTeamId).filter((id) => id != null).map(String))],
-        [jugadores],
-    );
-    const probabilidades = useStarterProbabilities(equipos);
 
     // La tendencia vive en un singleton fuera de React Query; trendsReady
     // provoca el repintado cuando los datos llegan.
@@ -266,10 +256,6 @@ const Sales = () => {
                                                 {j.escudo && <img src={j.escudo} alt="" className="w-4 h-4 object-contain" />}
                                                 {j.nombre}
                                             </span>
-                                            <StarterProbability
-                                                playerId={j.playerMasterId}
-                                                probabilidades={probabilidades}
-                                            />
                                             <NextFixture teamId={j.footballTeamId} nextFixtures={nextFixtures} />
                                         </td>
                                         <td className="py-2 pr-4 text-gray-600 dark:text-gray-400">
