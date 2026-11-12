@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-12T10:56:57.550Z",
+  "tomadaEn": "2026-11-12T18:51:55.815Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -58,6 +58,13 @@
       "name": "Prados",
       "lockedUntil": "2026-11-19T12:55:06+01:00"
     },
+    "1938": {
+      "teamId": "40636623",
+      "clause": 1000000,
+      "marketValue": 678118,
+      "name": "Pol Lozano",
+      "lockedUntil": "2026-11-26T12:55:21+01:00"
+    },
     "2005": {
       "teamId": "40640228",
       "clause": 8668000,
@@ -88,7 +95,7 @@
     },
     "2464": {
       "teamId": "40631220",
-      "clause": 46798800,
+      "clause": 51798800,
       "marketValue": 46798800,
       "name": "Pepelu",
       "lockedUntil": "2026-11-12T12:56:27+01:00"
@@ -156,6 +163,13 @@
       "name": "Jon Martin",
       "lockedUntil": "2026-11-19T14:08:58+01:00"
     },
+    "2671": {
+      "teamId": "40636623",
+      "clause": 1000000,
+      "marketValue": 825205,
+      "name": "Jeremy Toljan",
+      "lockedUntil": "2026-11-26T12:55:21+01:00"
+    },
     "2678": {
       "teamId": "40636623",
       "clause": 1000000,
@@ -200,7 +214,7 @@
     },
     "2995": {
       "teamId": "40640228",
-      "clause": 61059138,
+      "clause": 62059138,
       "marketValue": 52808965,
       "name": "Mario Soriano",
       "lockedUntil": "2026-11-10T12:55:09+01:00"
@@ -352,13 +366,6 @@
       "name": "Félix Correia",
       "lockedUntil": "2026-11-08T12:55:31+01:00"
     },
-    "3265": {
-      "teamId": "40640228",
-      "clause": 40172072,
-      "marketValue": 40172072,
-      "name": "Fofana",
-      "lockedUntil": "2026-11-19T12:56:29+01:00"
-    },
     "3267": {
       "teamId": "40636623",
       "clause": 5100006,
@@ -374,12 +381,36 @@
     "40640228": "Yaguettou"
   },
   "costes": {
-    "40631220": 20750816,
+    "40631220": 23250816,
     "40636623": 6001437,
     "40639639": 7500000,
-    "40640228": 43801146
+    "40640228": 44301146
   },
   "historial": [
+    {
+      "playerId": "2464",
+      "playerName": "Pepelu",
+      "teamId": "40631220",
+      "clauseAnterior": 46798800,
+      "clauseActual": 51798800,
+      "subida": 5000000,
+      "coste": 2500000,
+      "desde": "2026-11-12T10:56:57.550Z",
+      "hasta": "2026-11-12T18:51:55.815Z",
+      "fecha": "2026-11-12T18:51:55.815Z"
+    },
+    {
+      "playerId": "2995",
+      "playerName": "Mario Soriano",
+      "teamId": "40640228",
+      "clauseAnterior": 61059138,
+      "clauseActual": 62059138,
+      "subida": 1000000,
+      "coste": 500000,
+      "desde": "2026-11-12T10:56:57.550Z",
+      "hasta": "2026-11-12T18:51:55.815Z",
+      "fecha": "2026-11-12T18:51:55.815Z"
+    },
     {
       "playerId": "2995",
       "playerName": "Mario Soriano",
