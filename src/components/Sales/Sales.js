@@ -6,8 +6,12 @@ import { fantasyAPI } from '../../services/api';
 import useMyTeamId from '../../hooks/useMyTeamId';
 import useNextFixtures from '../../hooks/useNextFixtures';
 import NextFixture from '../Common/NextFixture';
+import useStarterProbabilities from '../../hooks/useStarterProbabilities';
+import StarterProbability from '../Common/StarterProbability';
+import useMarketTrends from '../../hooks/useMarketTrends';
+import marketTrendsService from '../../services/marketTrendsService';
 import LoadingSpinner from '../Common/LoadingSpinner';
-import { formatCurrency, getPositionName, isSuccessResponse, extractArray } from '../../utils/helpers';
+import { formatCurrency, formatCurrencyWithSign, getPositionName, isSuccessResponse, extractArray } from '../../utils/helpers';
 import { invalidateAfterMarketListing } from '../../utils/cacheInvalidation';
 import {
     cruzarPlantillaConMercado, precioDeVenta, repartirAcciones, ejecutarEnSerie,
@@ -24,6 +28,7 @@ const Sales = () => {
     const queryClient = useQueryClient();
     const { teamId, leagueId, isLoading: cargandoEquipo } = useMyTeamId();
     const nextFixtures = useNextFixtures();
+    const { trendsReady } = useMarketTrends();
 
     const [seleccion, setSeleccion] = useState(new Set());
     const [progreso, setProgreso] = useState(null);
@@ -46,6 +51,26 @@ const Sales = () => {
         const payload = teamData?.data || teamData;
         return cruzarPlantillaConMercado(payload?.players, extractArray(marketData));
     }, [teamData, marketData]);
+
+    // Equipos de fútbol de la plantilla: de ahí salen las alineaciones
+    // previsibles de las que se saca la probabilidad de titularidad.
+    const equipos = useMemo(
+        () => [...new Set(jugadores.map((j) => j.footballTeamId).filter((id) => id != null).map(String))],
+        [jugadores],
+    );
+    const probabilidades = useStarterProbabilities(equipos);
+
+    // La tendencia vive en un singleton fuera de React Query; trendsReady
+    // provoca el repintado cuando los datos llegan.
+    const tendencias = useMemo(() => {
+        const mapa = new Map();
+        if (!trendsReady) return mapa;
+        for (const j of jugadores) {
+            const t = marketTrendsService.resolveTrendForPlayer(j.master);
+            if (typeof t?.diferencia1 === 'number') mapa.set(j.playerMasterId, t.diferencia1);
+        }
+        return mapa;
+    }, [jugadores, trendsReady]);
 
     const enVenta = jugadores.filter((j) => j.enVenta);
     const fuera = jugadores.filter((j) => !j.enVenta);
@@ -198,6 +223,7 @@ const Sales = () => {
                                 <th className="py-2 pr-4">Jugador</th>
                                 <th className="py-2 pr-4">Posición</th>
                                 <th className="py-2 pr-4">Valor</th>
+                                <th className="py-2 pr-4">Subida 24h</th>
                                 <th className="py-2 pr-4">Estado</th>
                                 <th className="py-2 pr-4">Precio</th>
                             </tr>
@@ -226,6 +252,10 @@ const Sales = () => {
                                                 {j.escudo && <img src={j.escudo} alt="" className="w-4 h-4 object-contain" />}
                                                 {j.nombre}
                                             </span>
+                                            <StarterProbability
+                                                playerId={j.playerMasterId}
+                                                probabilidades={probabilidades}
+                                            />
                                             <NextFixture teamId={j.footballTeamId} nextFixtures={nextFixtures} />
                                         </td>
                                         <td className="py-2 pr-4 text-gray-600 dark:text-gray-400">
@@ -234,6 +264,20 @@ const Sales = () => {
                                         <td className="py-2 pr-4 whitespace-nowrap text-gray-700 dark:text-gray-300">
                                             {formatCurrency(j.valor)}
                                         </td>
+                                        {(() => {
+                                            // null = sin dato, que no es lo mismo que no haberse movido.
+                                            const subida = tendencias.get(j.playerMasterId);
+                                            return (
+                                                <td className={`py-2 pr-4 whitespace-nowrap ${
+                                                    subida == null ? 'text-gray-400 dark:text-gray-500'
+                                                        : subida > 0 ? 'text-green-600 dark:text-green-400'
+                                                        : subida < 0 ? 'text-red-600 dark:text-red-400'
+                                                        : 'text-gray-500 dark:text-gray-400'}`}
+                                                >
+                                                    {subida == null ? 'sin dato' : formatCurrencyWithSign(subida)}
+                                                </td>
+                                            );
+                                        })()}
                                         <td className="py-2 pr-4">
                                             {j.enVenta
                                                 ? <span className="badge bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">En venta</span>

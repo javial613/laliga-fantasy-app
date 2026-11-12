@@ -49,6 +49,9 @@ export const cruzarPlantillaConMercado = (plantilla, anuncios) => {
             escudo: jugador.team?.badgeColor || null,
             // Equipo de fútbol real: hace falta para el próximo partido.
             footballTeamId: jugador.team?.id ?? jugador.teamId ?? null,
+            // El jugador tal cual lo da la API: la tendencia se resuelve por
+            // nombre, posición y equipo, así que no basta con el id.
+            master: jugador,
             imagen: jugador.images?.transparent?.['256x256'] || null,
             enVenta: !!anuncio,
             marketId: anuncio ? (anuncio.id ?? null) : null,
