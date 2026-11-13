@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-13T07:51:57.871Z",
+  "tomadaEn": "2026-11-13T16:14:12.248Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -95,7 +95,7 @@
     },
     "2464": {
       "teamId": "40631220",
-      "clause": 51798800,
+      "clause": 53198800,
       "marketValue": 47778626,
       "name": "Pepelu",
       "lockedUntil": "2026-11-12T12:56:27+01:00"
@@ -120,6 +120,13 @@
       "marketValue": 622579,
       "name": "Rubén S.",
       "lockedUntil": "2026-11-19T14:09:19+01:00"
+    },
+    "2540": {
+      "teamId": "40636623",
+      "clause": 1000000,
+      "marketValue": 618687,
+      "name": "C. Rivero",
+      "lockedUntil": "2026-11-27T12:55:20+01:00"
     },
     "2549": {
       "teamId": "40639639",
@@ -212,9 +219,16 @@
       "name": "Riki",
       "lockedUntil": "2026-11-06T13:04:46+01:00"
     },
+    "2991": {
+      "teamId": "40631220",
+      "clause": 1000000,
+      "marketValue": 734543,
+      "name": "D. Villares",
+      "lockedUntil": "2026-11-27T12:55:20+01:00"
+    },
     "2995": {
       "teamId": "40640228",
-      "clause": 62059138,
+      "clause": 64059138,
       "marketValue": 54084597,
       "name": "Mario Soriano",
       "lockedUntil": "2026-11-10T12:55:09+01:00"
@@ -305,7 +319,7 @@
     },
     "3106": {
       "teamId": "40640228",
-      "clause": 51613127,
+      "clause": 62613127,
       "marketValue": 51613127,
       "name": "Cucurella",
       "lockedUntil": "2026-11-13T12:55:26+01:00"
@@ -381,12 +395,48 @@
     "40640228": "Yaguettou"
   },
   "costes": {
-    "40631220": 23250816,
+    "40631220": 23950816,
     "40636623": 6001437,
     "40639639": 7500000,
-    "40640228": 44301146
+    "40640228": 50801146
   },
   "historial": [
+    {
+      "playerId": "2464",
+      "playerName": "Pepelu",
+      "teamId": "40631220",
+      "clauseAnterior": 51798800,
+      "clauseActual": 53198800,
+      "subida": 1400000,
+      "coste": 700000,
+      "desde": "2026-11-13T07:51:57.871Z",
+      "hasta": "2026-11-13T16:14:12.248Z",
+      "fecha": "2026-11-13T16:14:12.248Z"
+    },
+    {
+      "playerId": "2995",
+      "playerName": "Mario Soriano",
+      "teamId": "40640228",
+      "clauseAnterior": 62059138,
+      "clauseActual": 64059138,
+      "subida": 2000000,
+      "coste": 1000000,
+      "desde": "2026-11-13T07:51:57.871Z",
+      "hasta": "2026-11-13T16:14:12.248Z",
+      "fecha": "2026-11-13T16:14:12.248Z"
+    },
+    {
+      "playerId": "3106",
+      "playerName": "Cucurella",
+      "teamId": "40640228",
+      "clauseAnterior": 51613127,
+      "clauseActual": 62613127,
+      "subida": 11000000,
+      "coste": 5500000,
+      "desde": "2026-11-13T07:51:57.871Z",
+      "hasta": "2026-11-13T16:14:12.248Z",
+      "fecha": "2026-11-13T16:14:12.248Z"
+    },
     {
       "playerId": "2464",
       "playerName": "Pepelu",
