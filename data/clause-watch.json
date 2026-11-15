@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-15T10:43:25.163Z",
+  "tomadaEn": "2026-11-15T17:40:56.832Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -351,13 +351,6 @@
       "marketValue": 15521090,
       "name": "Gulácsi",
       "lockedUntil": "2026-11-17T12:56:40+01:00"
-    },
-    "3131": {
-      "teamId": "40636623",
-      "clause": 2100000,
-      "marketValue": 967961,
-      "name": "Marcos",
-      "lockedUntil": "2026-10-23T12:55:15+02:00"
     },
     "3143": {
       "teamId": "40640228",
