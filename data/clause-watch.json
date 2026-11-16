@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-16T02:41:55.814Z",
+  "tomadaEn": "2026-11-16T11:01:32.618Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -109,7 +109,7 @@
     },
     "2464": {
       "teamId": "40631220",
-      "clause": 54898800,
+      "clause": 55398800,
       "marketValue": 51773917,
       "name": "Pepelu",
       "lockedUntil": "2026-11-12T12:56:27+01:00"
@@ -169,13 +169,6 @@
       "marketValue": 11640241,
       "name": "Ferran Jutglà",
       "lockedUntil": "2026-11-05T13:02:13+01:00"
-    },
-    "2613": {
-      "teamId": "40640228",
-      "clause": 20210973,
-      "marketValue": 17573969,
-      "name": "M. Dituro",
-      "lockedUntil": "2026-11-09T12:55:10+01:00"
     },
     "2656": {
       "teamId": "40639639",
@@ -402,12 +395,24 @@
     "40640228": "Yaguettou"
   },
   "costes": {
-    "40631220": 24800816,
+    "40631220": 25050816,
     "40636623": 6001437,
     "40639639": 7500000,
     "40640228": 51801146
   },
   "historial": [
+    {
+      "playerId": "2464",
+      "playerName": "Pepelu",
+      "teamId": "40631220",
+      "clauseAnterior": 54898800,
+      "clauseActual": 55398800,
+      "subida": 500000,
+      "coste": 250000,
+      "desde": "2026-11-16T02:41:55.814Z",
+      "hasta": "2026-11-16T11:01:32.618Z",
+      "fecha": "2026-11-16T11:01:32.618Z"
+    },
     {
       "playerId": "2995",
       "playerName": "Mario Soriano",
