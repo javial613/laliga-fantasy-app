@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-16T11:01:32.618Z",
+  "tomadaEn": "2026-11-16T20:57:42.108Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -205,13 +205,6 @@
       "name": "Cepeda",
       "lockedUntil": "2026-11-20T12:55:22+01:00"
     },
-    "2934": {
-      "teamId": "40636623",
-      "clause": 15200000,
-      "marketValue": 13744260,
-      "name": "Freeman",
-      "lockedUntil": "2026-11-16T12:55:09+01:00"
-    },
     "2958": {
       "teamId": "40639639",
       "clause": 4084346,
@@ -305,7 +298,7 @@
     },
     "3083": {
       "teamId": "40636623",
-      "clause": 68534720,
+      "clause": 84534720,
       "marketValue": 68534720,
       "name": "Nico Williams",
       "lockedUntil": "2026-11-17T12:55:27+01:00"
@@ -396,11 +389,23 @@
   },
   "costes": {
     "40631220": 25050816,
-    "40636623": 6001437,
+    "40636623": 14001437,
     "40639639": 7500000,
     "40640228": 51801146
   },
   "historial": [
+    {
+      "playerId": "3083",
+      "playerName": "Nico Williams",
+      "teamId": "40636623",
+      "clauseAnterior": 68534720,
+      "clauseActual": 84534720,
+      "subida": 16000000,
+      "coste": 8000000,
+      "desde": "2026-11-16T11:01:32.618Z",
+      "hasta": "2026-11-16T20:57:42.108Z",
+      "fecha": "2026-11-16T20:57:42.108Z"
+    },
     {
       "playerId": "2464",
       "playerName": "Pepelu",
