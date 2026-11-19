@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-19T03:18:30.576Z",
+  "tomadaEn": "2026-11-19T12:55:00.515Z",
   "leagueId": "018592924",
   "jugadores": {
     "68": {
@@ -17,11 +17,11 @@
       "lockedUntil": "2026-11-23T12:51:02+01:00"
     },
     "680": {
-      "teamId": "40640228",
+      "teamId": "40636623",
       "clause": 6429497,
       "marketValue": 6429497,
       "name": "Moi Gómez",
-      "lockedUntil": "2026-11-19T12:55:05+01:00"
+      "lockedUntil": "2026-12-03T12:57:00+01:00"
     },
     "886": {
       "teamId": "40640228",
@@ -289,6 +289,13 @@
       "name": "Isco",
       "lockedUntil": "2026-11-08T12:55:31+01:00"
     },
+    "3091": {
+      "teamId": "40631220",
+      "clause": 44500000,
+      "marketValue": 44035638,
+      "name": "Oyarzabal",
+      "lockedUntil": "2026-12-03T12:55:16+01:00"
+    },
     "3106": {
       "teamId": "40640228",
       "clause": 65613127,
@@ -298,10 +305,17 @@
     },
     "3109": {
       "teamId": "40631220",
-      "clause": 24362057,
+      "clause": 25162057,
       "marketValue": 18929818,
       "name": "Leo Román",
       "lockedUntil": "2026-11-11T12:55:06+01:00"
+    },
+    "3119": {
+      "teamId": "40631220",
+      "clause": 6600000,
+      "marketValue": 6394631,
+      "name": "Amatucci",
+      "lockedUntil": "2026-12-03T12:55:16+01:00"
     },
     "3130": {
       "teamId": "40636623",
@@ -358,13 +372,6 @@
       "marketValue": 13977888,
       "name": "Félix Correia",
       "lockedUntil": "2026-12-02T12:57:04+01:00"
-    },
-    "3264": {
-      "teamId": "40636623",
-      "clause": 9600000,
-      "marketValue": 8513170,
-      "name": "Ceballos",
-      "lockedUntil": "2026-12-01T12:55:09+01:00"
     }
   },
   "managers": {
@@ -374,12 +381,24 @@
     "40640228": "Yaguettou"
   },
   "costes": {
-    "40631220": 26550816,
+    "40631220": 26950816,
     "40636623": 17501437,
     "40639639": 10000000,
     "40640228": 57001146
   },
   "historial": [
+    {
+      "playerId": "3109",
+      "playerName": "Leo Román",
+      "teamId": "40631220",
+      "clauseAnterior": 24362057,
+      "clauseActual": 25162057,
+      "subida": 800000,
+      "coste": 400000,
+      "desde": "2026-11-19T03:18:30.576Z",
+      "hasta": "2026-11-19T12:55:00.515Z",
+      "fecha": "2026-11-19T12:55:00.515Z"
+    },
     {
       "playerId": "886",
       "playerName": "De Frutos",
