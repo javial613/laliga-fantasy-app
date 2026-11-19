@@ -59,7 +59,7 @@ const fetchFullActivity = async (leagueId) => {
  *
  * @returns {{ balanceFor: (managerId) => number|undefined, ledger, selfCheck, isLoading }}
  */
-const useTeamBudgets = (leagueId, standings, userTeamId) => {
+const useTeamBudgets = (leagueId, standings, userTeamId, refreshKey = 0) => {
     const queryClient = useQueryClient();
 
     const nombrePorEquipo = useMemo(() => {
@@ -77,7 +77,7 @@ const useTeamBudgets = (leagueId, standings, userTeamId) => {
     // Las subidas de cláusula no salen en el histórico: se detectan aparte
     // comparando instantáneas y se restan del saldo calculado.
     const { costePorEquipo: costeLocal, historial: historialLocal, valorPorEquipo } =
-        useClauseCosts(leagueId, standings, nombrePorEquipo);
+        useClauseCosts(leagueId, standings, nombrePorEquipo, refreshKey);
 
     // El vigilante remoto corre cada hora y no se pierde ni las madrugadas ni
     // los días sin usar la app, así que cuando hay datos suyos mandan sobre el

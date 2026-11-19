@@ -13,7 +13,7 @@ import { analizarPlantilla, consejosParaProtegerse } from '../utils/alineacionPo
  * `limite` es el cierre de cláusulas (24 h antes de la jornada): con él entran
  * en el cálculo los que todavía están protegidos pero se desbloquean a tiempo.
  */
-const useSquadViability = (leagueId, standings, limite = null, miTeamId = null) => {
+const useSquadViability = (leagueId, standings, limite = null, miTeamId = null, refreshKey = 0) => {
     const queryClient = useQueryClient();
 
     // Los consejos solo se calculan para el equipo propio: simular fichajes en
@@ -44,7 +44,10 @@ const useSquadViability = (leagueId, standings, limite = null, miTeamId = null) 
         (async () => {
             setIsLoading(true);
             try {
-                const datos = await fetchAllTeamsData(queryClient, leagueId, standings);
+                // Con refreshKey se ignora la caché: es lo que hace útil al
+                // botón Actualizar después de un fichaje.
+                const datos = await fetchAllTeamsData(queryClient, leagueId, standings,
+                    refreshKey > 0 ? { staleTime: 0 } : {});
                 if (cancelado) return;
 
                 const nuevas = new Map();
@@ -73,7 +76,7 @@ const useSquadViability = (leagueId, standings, limite = null, miTeamId = null) 
         })();
 
         return () => { cancelado = true; };
-    }, [leagueId, standings, queryClient, limite, analizar]);
+    }, [leagueId, standings, queryClient, limite, analizar, refreshKey]);
 
     // Reanálisis periódico sobre las plantillas ya descargadas: no pide nada a
     // la red, solo vuelve a mirar el reloj.

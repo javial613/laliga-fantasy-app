@@ -57,14 +57,18 @@ const Teams = () => {
     return entry?.id || entry?.team?.id;
   }, [standings, user]);
 
+  // Se incrementa al pulsar Actualizar y obliga a releer plantillas y valores
+  // saltándose la caché: invalidar las consultas no bastaba, porque los hooks
+  // que las leen no se reejecutan por una invalidación.
+  const [refreshKey, setRefreshKey] = React.useState(0);
   const { balanceFor, ledger, selfCheck, costeClausulas, historialClausulas, origenClausulas, remoto, nombrePorEquipo, refreshBudgets, datosDe, managerIdByTeamId, valorPorEquipo,
-    descartarDeteccion, restaurarDetecciones, nDescartadas } = useTeamBudgets(leagueId, standings, userTeamId);
+    descartarDeteccion, restaurarDetecciones, nDescartadas } = useTeamBudgets(leagueId, standings, userTeamId, refreshKey);
 
   // Quién puede quedarse sin poder alinear si le pagan cláusulas antes del
   // cierre (24 h antes de la jornada).
   const ventana = useClauseWindow();
   const { porEquipo: viabilidad, isLoading: cargandoViabilidad } =
-    useSquadViability(leagueId, standings, ventana.limite, userTeamId);
+    useSquadViability(leagueId, standings, ventana.limite, userTeamId, refreshKey);
   const [clausulasDe, setClausulasDe] = useState(null); // teamId cuyas subidas se están viendo
 
   const subidasDe = (teamId) =>
@@ -213,7 +217,8 @@ const Teams = () => {
             // El botón debe refrescar también saldos y patrimonio: son las
             // columnas que más cambian tras vender o fichar.
             await refreshBudgets();
-            refetch();
+            await refetch();
+            setRefreshKey((n) => n + 1);
           }}
           className="btn-primary flex items-center gap-2"
         >

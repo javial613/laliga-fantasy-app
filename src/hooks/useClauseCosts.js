@@ -56,7 +56,7 @@ const escribir = (key, valor) => {
  *
  * @returns {{ costePorEquipo: Object, ultimaDeteccion: Array, listo: boolean }}
  */
-const useClauseCosts = (leagueId, standings, nombrePorEquipo) => {
+const useClauseCosts = (leagueId, standings, nombrePorEquipo, refreshKey = 0) => {
     const queryClient = useQueryClient();
     const [estado, setEstado] = useState({ costePorEquipo: {}, ultimaDeteccion: [], historial: [], valorPorEquipo: {}, listo: false });
 
@@ -66,7 +66,10 @@ const useClauseCosts = (leagueId, standings, nombrePorEquipo) => {
 
         const tomarInstantanea = async () => {
             try {
-                const porEquipo = await fetchAllTeamsData(queryClient, leagueId, standings);
+                // Al pulsar Actualizar se salta la caché de 15 minutos: si no,
+                // tras un fichaje se seguían viendo las plantillas de antes.
+                const porEquipo = await fetchAllTeamsData(queryClient, leagueId, standings,
+                    refreshKey > 0 ? { staleTime: 0 } : {});
                 if (cancelado) return;
 
                 const jugadoresPorEquipo = new Map();
@@ -129,7 +132,7 @@ const useClauseCosts = (leagueId, standings, nombrePorEquipo) => {
             cancelado = true;
             clearInterval(temporizador);
         };
-    }, [leagueId, standings, queryClient, nombrePorEquipo]);
+    }, [leagueId, standings, queryClient, nombrePorEquipo, refreshKey]);
 
     return estado;
 };
