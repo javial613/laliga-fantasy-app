@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-20T11:29:03.974Z",
+  "tomadaEn": "2026-11-20T20:03:40.415Z",
   "leagueId": "018592924",
   "jugadores": {
     "652": {
@@ -114,6 +114,13 @@
       "name": "Rubén S.",
       "lockedUntil": "2026-12-03T20:59:45+01:00"
     },
+    "2533": {
+      "teamId": "40639639",
+      "clause": 5500000,
+      "marketValue": 3674352,
+      "name": "Á. Carreras",
+      "lockedUntil": "2026-12-04T12:55:32+01:00"
+    },
     "2540": {
       "teamId": "40636623",
       "clause": 1000000,
@@ -162,6 +169,13 @@
       "marketValue": 993519,
       "name": "A. Abqar",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
+    },
+    "2834": {
+      "teamId": "40639639",
+      "clause": 3200000,
+      "marketValue": 657414,
+      "name": "Beitia",
+      "lockedUntil": "2026-12-04T12:55:32+01:00"
     },
     "2933": {
       "teamId": "40639639",
@@ -247,19 +261,19 @@
       "name": "Yeremay",
       "lockedUntil": "2026-11-24T12:55:28+01:00"
     },
-    "3077": {
-      "teamId": "40631220",
-      "clause": 51040192,
-      "marketValue": 51040192,
-      "name": "Edu Expósito",
-      "lockedUntil": "2026-12-02T14:12:55+01:00"
-    },
     "3083": {
       "teamId": "40636623",
       "clause": 84534720,
       "marketValue": 74889370,
       "name": "Nico Williams",
       "lockedUntil": "2026-11-17T12:55:27+01:00"
+    },
+    "3084": {
+      "teamId": "40631220",
+      "clause": 62812766,
+      "marketValue": 62812766,
+      "name": "Budimir",
+      "lockedUntil": "2026-12-04T12:55:32+01:00"
     },
     "3088": {
       "teamId": "40640228",
@@ -351,6 +365,13 @@
       "marketValue": 703257,
       "name": "Van Oevelen",
       "lockedUntil": "2026-12-02T12:55:05+01:00"
+    },
+    "3239": {
+      "teamId": "40631220",
+      "clause": 1000000,
+      "marketValue": 785329,
+      "name": "Mayol",
+      "lockedUntil": "2026-12-04T12:55:32+01:00"
     },
     "3262": {
       "teamId": "40640228",
