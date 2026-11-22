@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-22T15:14:26.919Z",
+  "tomadaEn": "2026-11-22T21:43:19.832Z",
   "leagueId": "018592924",
   "jugadores": {
     "652": {
@@ -291,7 +291,7 @@
     },
     "3088": {
       "teamId": "40640228",
-      "clause": 77386904,
+      "clause": 83386904,
       "marketValue": 77386904,
       "name": "Julián Alvarez",
       "lockedUntil": "2026-11-17T12:55:27+01:00"
@@ -405,9 +405,21 @@
     "40631220": 28950816,
     "40636623": 21101437,
     "40639639": 10000000,
-    "40640228": 57701146
+    "40640228": 60701146
   },
   "historial": [
+    {
+      "playerId": "3088",
+      "playerName": "Julián Alvarez",
+      "teamId": "40640228",
+      "clauseAnterior": 77386904,
+      "clauseActual": 83386904,
+      "subida": 6000000,
+      "coste": 3000000,
+      "desde": "2026-11-22T15:14:26.919Z",
+      "hasta": "2026-11-22T21:43:19.832Z",
+      "fecha": "2026-11-22T21:43:19.832Z"
+    },
     {
       "playerId": "3083",
       "playerName": "Nico Williams",
