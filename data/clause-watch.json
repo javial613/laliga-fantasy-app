@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-22T06:36:59.749Z",
+  "tomadaEn": "2026-11-22T15:14:26.919Z",
   "leagueId": "018592924",
   "jugadores": {
     "652": {
@@ -135,6 +135,13 @@
       "name": "Navarro",
       "lockedUntil": "2026-11-04T13:50:40+01:00"
     },
+    "2552": {
+      "teamId": "40631220",
+      "clause": 10090219,
+      "marketValue": 10090219,
+      "name": "Jonny Otto",
+      "lockedUntil": "2026-12-06T12:55:04+01:00"
+    },
     "2596": {
       "teamId": "40636623",
       "clause": 7622977,
@@ -212,6 +219,13 @@
       "name": "Mario Soriano",
       "lockedUntil": "2026-12-03T14:11:05+01:00"
     },
+    "3026": {
+      "teamId": "40636623",
+      "clause": 2570000,
+      "marketValue": 2088427,
+      "name": "Pablo Ramón",
+      "lockedUntil": "2026-12-06T12:55:04+01:00"
+    },
     "3036": {
       "teamId": "40631220",
       "clause": 17668761,
@@ -263,7 +277,7 @@
     },
     "3083": {
       "teamId": "40636623",
-      "clause": 84534720,
+      "clause": 87734720,
       "marketValue": 77945261,
       "name": "Nico Williams",
       "lockedUntil": "2026-11-17T12:55:27+01:00"
@@ -389,11 +403,23 @@
   },
   "costes": {
     "40631220": 28950816,
-    "40636623": 19501437,
+    "40636623": 21101437,
     "40639639": 10000000,
     "40640228": 57701146
   },
   "historial": [
+    {
+      "playerId": "3083",
+      "playerName": "Nico Williams",
+      "teamId": "40636623",
+      "clauseAnterior": 84534720,
+      "clauseActual": 87734720,
+      "subida": 3200000,
+      "coste": 1600000,
+      "desde": "2026-11-22T06:36:59.749Z",
+      "hasta": "2026-11-22T15:14:26.919Z",
+      "fecha": "2026-11-22T15:14:26.919Z"
+    },
     {
       "playerId": "1674",
       "playerName": "Arda Güler",
