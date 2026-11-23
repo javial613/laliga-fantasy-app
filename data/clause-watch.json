@@ -1,7 +1,14 @@
 {
-  "tomadaEn": "2026-11-23T02:39:38.928Z",
+  "tomadaEn": "2026-11-23T12:20:10.714Z",
   "leagueId": "018592924",
   "jugadores": {
+    "581": {
+      "teamId": "40640228",
+      "clause": 3350000,
+      "marketValue": 3118348,
+      "name": "Rioja",
+      "lockedUntil": "2026-12-07T12:55:22+01:00"
+    },
     "652": {
       "teamId": "40640228",
       "clause": 16808653,
@@ -102,7 +109,7 @@
     },
     "2479": {
       "teamId": "40631220",
-      "clause": 37220921,
+      "clause": 42220921,
       "marketValue": 37220921,
       "name": "Kike Salas",
       "lockedUntil": "2026-11-23T12:52:05+01:00"
@@ -380,6 +387,13 @@
       "name": "Van Oevelen",
       "lockedUntil": "2026-12-02T12:55:05+01:00"
     },
+    "3238": {
+      "teamId": "40640228",
+      "clause": 2777000,
+      "marketValue": 2721731,
+      "name": "M. Sarr",
+      "lockedUntil": "2026-12-07T12:55:22+01:00"
+    },
     "3239": {
       "teamId": "40631220",
       "clause": 1000000,
@@ -402,12 +416,24 @@
     "40640228": "Yaguettou"
   },
   "costes": {
-    "40631220": 28950816,
+    "40631220": 31450816,
     "40636623": 21101437,
     "40639639": 10000000,
     "40640228": 60701146
   },
   "historial": [
+    {
+      "playerId": "2479",
+      "playerName": "Kike Salas",
+      "teamId": "40631220",
+      "clauseAnterior": 37220921,
+      "clauseActual": 42220921,
+      "subida": 5000000,
+      "coste": 2500000,
+      "desde": "2026-11-23T02:39:38.928Z",
+      "hasta": "2026-11-23T12:20:10.714Z",
+      "fecha": "2026-11-23T12:20:10.714Z"
+    },
     {
       "playerId": "3088",
       "playerName": "Julián Alvarez",
