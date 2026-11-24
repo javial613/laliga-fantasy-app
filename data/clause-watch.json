@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-24T00:46:31.448Z",
+  "tomadaEn": "2026-11-24T10:51:24.457Z",
   "leagueId": "018592924",
   "jugadores": {
     "581": {
@@ -50,13 +50,6 @@
       "marketValue": 728246,
       "name": "Almeida",
       "lockedUntil": "2026-12-02T12:55:05+01:00"
-    },
-    "1674": {
-      "teamId": "40636623",
-      "clause": 155266165,
-      "marketValue": 151589671,
-      "name": "Arda Güler",
-      "lockedUntil": "2026-11-21T12:55:18+01:00"
     },
     "1787": {
       "teamId": "40636623",
@@ -144,7 +137,7 @@
     },
     "2596": {
       "teamId": "40636623",
-      "clause": 7603727,
+      "clause": 10603727,
       "marketValue": 7603727,
       "name": "V. Chust",
       "lockedUntil": "2026-11-24T12:55:28+01:00"
@@ -270,7 +263,7 @@
     },
     "3083": {
       "teamId": "40636623",
-      "clause": 87734720,
+      "clause": 93734720,
       "marketValue": 82332997,
       "name": "Nico Williams",
       "lockedUntil": "2026-11-17T12:55:27+01:00"
@@ -284,7 +277,7 @@
     },
     "3088": {
       "teamId": "40640228",
-      "clause": 83386904,
+      "clause": 92386904,
       "marketValue": 80108945,
       "name": "Julián Alvarez",
       "lockedUntil": "2026-11-17T12:55:27+01:00"
@@ -305,7 +298,7 @@
     },
     "3106": {
       "teamId": "40640228",
-      "clause": 67013127,
+      "clause": 68013127,
       "marketValue": 63049655,
       "name": "Cucurella",
       "lockedUntil": "2026-11-13T12:55:26+01:00"
@@ -396,11 +389,59 @@
   },
   "costes": {
     "40631220": 31450816,
-    "40636623": 21101437,
+    "40636623": 25601437,
     "40639639": 10000000,
-    "40640228": 60701146
+    "40640228": 65701146
   },
   "historial": [
+    {
+      "playerId": "2596",
+      "playerName": "V. Chust",
+      "teamId": "40636623",
+      "clauseAnterior": 7603727,
+      "clauseActual": 10603727,
+      "subida": 3000000,
+      "coste": 1500000,
+      "desde": "2026-11-24T00:46:31.448Z",
+      "hasta": "2026-11-24T10:51:24.457Z",
+      "fecha": "2026-11-24T10:51:24.457Z"
+    },
+    {
+      "playerId": "3083",
+      "playerName": "Nico Williams",
+      "teamId": "40636623",
+      "clauseAnterior": 87734720,
+      "clauseActual": 93734720,
+      "subida": 6000000,
+      "coste": 3000000,
+      "desde": "2026-11-24T00:46:31.448Z",
+      "hasta": "2026-11-24T10:51:24.457Z",
+      "fecha": "2026-11-24T10:51:24.457Z"
+    },
+    {
+      "playerId": "3088",
+      "playerName": "Julián Alvarez",
+      "teamId": "40640228",
+      "clauseAnterior": 83386904,
+      "clauseActual": 92386904,
+      "subida": 9000000,
+      "coste": 4500000,
+      "desde": "2026-11-24T00:46:31.448Z",
+      "hasta": "2026-11-24T10:51:24.457Z",
+      "fecha": "2026-11-24T10:51:24.457Z"
+    },
+    {
+      "playerId": "3106",
+      "playerName": "Cucurella",
+      "teamId": "40640228",
+      "clauseAnterior": 67013127,
+      "clauseActual": 68013127,
+      "subida": 1000000,
+      "coste": 500000,
+      "desde": "2026-11-24T00:46:31.448Z",
+      "hasta": "2026-11-24T10:51:24.457Z",
+      "fecha": "2026-11-24T10:51:24.457Z"
+    },
     {
       "playerId": "2479",
       "playerName": "Kike Salas",
