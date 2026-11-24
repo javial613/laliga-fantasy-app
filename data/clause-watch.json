@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-24T10:51:24.457Z",
+  "tomadaEn": "2026-11-24T21:07:14.563Z",
   "leagueId": "018592924",
   "jugadores": {
     "581": {
@@ -94,11 +94,11 @@
       "lockedUntil": "2026-11-23T18:09:58+01:00"
     },
     "2479": {
-      "teamId": "40631220",
+      "teamId": "40636623",
       "clause": 42220921,
       "marketValue": 38891260,
       "name": "Kike Salas",
-      "lockedUntil": "2026-11-23T12:52:05+01:00"
+      "lockedUntil": "2026-12-08T13:14:08+01:00"
     },
     "2529": {
       "teamId": "40640228",
@@ -295,6 +295,13 @@
       "marketValue": 43764243,
       "name": "Oyarzabal",
       "lockedUntil": "2026-12-03T12:55:16+01:00"
+    },
+    "3103": {
+      "teamId": "40640228",
+      "clause": 227870500,
+      "marketValue": 184190087,
+      "name": "Mbappé",
+      "lockedUntil": "2026-12-08T12:55:17+01:00"
     },
     "3106": {
       "teamId": "40640228",
