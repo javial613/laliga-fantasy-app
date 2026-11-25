@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-25T04:10:44.748Z",
+  "tomadaEn": "2026-11-25T15:31:06.193Z",
   "leagueId": "018592924",
   "jugadores": {
     "581": {
@@ -36,13 +36,6 @@
       "marketValue": 49421398,
       "name": "Berenguer",
       "lockedUntil": "2026-11-19T12:55:06+01:00"
-    },
-    "1210": {
-      "teamId": "40640228",
-      "clause": 70269984,
-      "marketValue": 70269984,
-      "name": "Giuliano",
-      "lockedUntil": "2026-11-28T12:55:07+01:00"
     },
     "1529": {
       "teamId": "40640228",
@@ -135,12 +128,26 @@
       "name": "Jonny Otto",
       "lockedUntil": "2026-12-06T12:55:04+01:00"
     },
+    "2588": {
+      "teamId": "40631220",
+      "clause": 3843841,
+      "marketValue": 3843841,
+      "name": "Danjuma",
+      "lockedUntil": "2026-12-09T12:55:12+01:00"
+    },
     "2596": {
       "teamId": "40636623",
       "clause": 10603727,
       "marketValue": 7626586,
       "name": "V. Chust",
       "lockedUntil": "2026-11-24T12:55:28+01:00"
+    },
+    "2613": {
+      "teamId": "40640228",
+      "clause": 20250000,
+      "marketValue": 18207266,
+      "name": "M. Dituro",
+      "lockedUntil": "2026-12-09T12:55:13+01:00"
     },
     "2656": {
       "teamId": "40640228",
@@ -234,11 +241,11 @@
       "lockedUntil": "2026-11-05T13:29:08+01:00"
     },
     "3068": {
-      "teamId": "40640228",
-      "clause": 22130213,
+      "teamId": "40631220",
+      "clause": 26130213,
       "marketValue": 22130213,
       "name": "Cabrera",
-      "lockedUntil": "2026-11-25T13:01:17+01:00"
+      "lockedUntil": "2026-12-09T13:01:21+01:00"
     },
     "3069": {
       "teamId": "40640228",
@@ -295,6 +302,13 @@
       "marketValue": 44312156,
       "name": "Oyarzabal",
       "lockedUntil": "2026-12-03T12:55:16+01:00"
+    },
+    "3098": {
+      "teamId": "40636623",
+      "clause": 3200000,
+      "marketValue": 1014011,
+      "name": "Q. Hartman",
+      "lockedUntil": "2026-12-09T12:55:13+01:00"
     },
     "3103": {
       "teamId": "40640228",
@@ -386,6 +400,13 @@
       "marketValue": 16390144,
       "name": "Félix Correia",
       "lockedUntil": "2026-12-02T12:57:04+01:00"
+    },
+    "3265": {
+      "teamId": "40636623",
+      "clause": 41300000,
+      "marketValue": 37572866,
+      "name": "Fofana",
+      "lockedUntil": "2026-12-09T12:55:13+01:00"
     }
   },
   "managers": {
