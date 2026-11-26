@@ -1,7 +1,14 @@
 {
-  "tomadaEn": "2026-11-26T09:27:30.602Z",
+  "tomadaEn": "2026-11-26T19:34:05.091Z",
   "leagueId": "018592924",
   "jugadores": {
+    "184": {
+      "teamId": "40631220",
+      "clause": 23367289,
+      "marketValue": 23367289,
+      "name": "David Soria",
+      "lockedUntil": "2026-12-10T12:55:17+01:00"
+    },
     "581": {
       "teamId": "40640228",
       "clause": 3370989,
@@ -65,12 +72,19 @@
       "name": "Vivian",
       "lockedUntil": "2026-11-20T12:55:22+01:00"
     },
-    "2384": {
-      "teamId": "40631220",
-      "clause": 35275660,
-      "marketValue": 35275660,
-      "name": "Unai Lopez",
-      "lockedUntil": "2026-12-07T13:27:50+01:00"
+    "2318": {
+      "teamId": "40636623",
+      "clause": 20500006,
+      "marketValue": 17772097,
+      "name": "O. Sancet",
+      "lockedUntil": "2026-12-10T12:55:17+01:00"
+    },
+    "2445": {
+      "teamId": "40640228",
+      "clause": 8250010,
+      "marketValue": 6720199,
+      "name": "Olasagasti",
+      "lockedUntil": "2026-12-10T12:55:17+01:00"
     },
     "2464": {
       "teamId": "40640228",
@@ -169,13 +183,6 @@
       "marketValue": 690955,
       "name": "J. Vertrouwd",
       "lockedUntil": "2026-12-03T14:15:27+01:00"
-    },
-    "2776": {
-      "teamId": "40631220",
-      "clause": 5000000,
-      "marketValue": 942465,
-      "name": "A. Abqar",
-      "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
     "2834": {
       "teamId": "40639639",
@@ -359,19 +366,19 @@
       "name": "Manel Usedo",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
     },
-    "3183": {
-      "teamId": "40631220",
-      "clause": 4431821,
-      "marketValue": 1853009,
-      "name": "Dubasin",
-      "lockedUntil": "2026-11-05T14:07:40+01:00"
-    },
     "3205": {
       "teamId": "40636623",
       "clause": 9020000,
       "marketValue": 4109253,
       "name": "Iván Martín",
       "lockedUntil": "2026-10-30T12:55:05+01:00"
+    },
+    "3206": {
+      "teamId": "40640228",
+      "clause": 4120001,
+      "marketValue": 2838192,
+      "name": "Maffeo",
+      "lockedUntil": "2026-12-10T12:55:17+01:00"
     },
     "3232": {
       "teamId": "40631220",
