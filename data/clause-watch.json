@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-27T02:47:40.802Z",
+  "tomadaEn": "2026-11-27T12:04:02.637Z",
   "leagueId": "018592924",
   "jugadores": {
     "184": {
@@ -170,19 +170,26 @@
       "name": "Jon Martin",
       "lockedUntil": "2026-12-03T14:08:59+01:00"
     },
-    "2671": {
-      "teamId": "40636623",
-      "clause": 1000000,
-      "marketValue": 793197,
-      "name": "Jeremy Toljan",
-      "lockedUntil": "2026-11-26T12:55:21+01:00"
-    },
     "2678": {
       "teamId": "40639639",
       "clause": 1000000,
       "marketValue": 691521,
       "name": "J. Vertrouwd",
       "lockedUntil": "2026-12-03T14:15:27+01:00"
+    },
+    "2703": {
+      "teamId": "40640228",
+      "clause": 6251000,
+      "marketValue": 3474855,
+      "name": "Redondo",
+      "lockedUntil": "2026-12-11T12:55:22+01:00"
+    },
+    "2761": {
+      "teamId": "40631220",
+      "clause": 1800000,
+      "marketValue": 785875,
+      "name": "Oluwaseyi",
+      "lockedUntil": "2026-12-11T12:55:22+01:00"
     },
     "2834": {
       "teamId": "40639639",
@@ -197,6 +204,13 @@
       "marketValue": 3815945,
       "name": "Cepeda",
       "lockedUntil": "2026-11-20T12:55:22+01:00"
+    },
+    "2939": {
+      "teamId": "40640228",
+      "clause": 9670001,
+      "marketValue": 7731144,
+      "name": "G. Villar",
+      "lockedUntil": "2026-12-11T12:55:22+01:00"
     },
     "2958": {
       "teamId": "40639639",
@@ -345,6 +359,13 @@
       "name": "Gulácsi",
       "lockedUntil": "2026-12-01T12:57:49+01:00"
     },
+    "3156": {
+      "teamId": "40631220",
+      "clause": 1600000,
+      "marketValue": 835820,
+      "name": "Valentini",
+      "lockedUntil": "2026-12-11T12:55:22+01:00"
+    },
     "3159": {
       "teamId": "40640228",
       "clause": 1000000,
@@ -400,6 +421,13 @@
       "marketValue": 776525,
       "name": "Mayol",
       "lockedUntil": "2026-12-04T12:55:32+01:00"
+    },
+    "3261": {
+      "teamId": "40631220",
+      "clause": 4500001,
+      "marketValue": 1125872,
+      "name": "Belocian",
+      "lockedUntil": "2026-12-11T12:55:22+01:00"
     },
     "3262": {
       "teamId": "40640228",
