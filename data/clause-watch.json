@@ -1,5 +1,5 @@
 {
-  "tomadaEn": "2026-11-28T03:51:33.898Z",
+  "tomadaEn": "2026-11-28T12:54:10.988Z",
   "leagueId": "018592924",
   "jugadores": {
     "184": {
@@ -254,6 +254,13 @@
       "name": "Dani Lorenzo",
       "lockedUntil": "2026-11-05T14:07:58+01:00"
     },
+    "3045": {
+      "teamId": "40636623",
+      "clause": 7002000,
+      "marketValue": 6719220,
+      "name": "Niño",
+      "lockedUntil": "2026-12-12T12:55:26+01:00"
+    },
     "3061": {
       "teamId": "40639639",
       "clause": 1000000,
@@ -282,6 +289,13 @@
       "name": "Germán V.",
       "lockedUntil": "2026-12-03T14:12:13+01:00"
     },
+    "3075": {
+      "teamId": "40636623",
+      "clause": 22100000,
+      "marketValue": 21026545,
+      "name": "Javi Guerra",
+      "lockedUntil": "2026-12-12T12:55:26+01:00"
+    },
     "3083": {
       "teamId": "40636623",
       "clause": 93734720,
@@ -298,7 +312,7 @@
     },
     "3088": {
       "teamId": "40640228",
-      "clause": 92386904,
+      "clause": 93786904,
       "marketValue": 85516500,
       "name": "Julián Alvarez",
       "lockedUntil": "2026-11-17T12:55:27+01:00"
@@ -359,33 +373,12 @@
       "name": "Valentini",
       "lockedUntil": "2026-12-11T12:55:22+01:00"
     },
-    "3159": {
-      "teamId": "40640228",
-      "clause": 1000000,
-      "marketValue": 690503,
-      "name": "Novoa",
-      "lockedUntil": "2026-12-02T12:55:05+01:00"
-    },
-    "3160": {
-      "teamId": "40640228",
-      "clause": 1000000,
-      "marketValue": 692124,
-      "name": "A. Rodriguez",
-      "lockedUntil": "2026-12-02T12:55:05+01:00"
-    },
     "3166": {
       "teamId": "40631220",
       "clause": 1000000,
       "marketValue": 688690,
       "name": "Manel Usedo",
       "lockedUntil": "2026-11-06T12:55:12+01:00"
-    },
-    "3205": {
-      "teamId": "40636623",
-      "clause": 9020000,
-      "marketValue": 4029178,
-      "name": "Iván Martín",
-      "lockedUntil": "2026-10-30T12:55:05+01:00"
     },
     "3206": {
       "teamId": "40640228",
@@ -447,9 +440,21 @@
     "40631220": 31454423,
     "40636623": 25604208,
     "40639639": 10000000,
-    "40640228": 65702702
+    "40640228": 66402702
   },
   "historial": [
+    {
+      "playerId": "3088",
+      "playerName": "Julián Alvarez",
+      "teamId": "40640228",
+      "clauseAnterior": 92386904,
+      "clauseActual": 93786904,
+      "subida": 1400000,
+      "coste": 700000,
+      "desde": "2026-11-28T03:51:33.898Z",
+      "hasta": "2026-11-28T12:54:10.988Z",
+      "fecha": "2026-11-28T12:54:10.988Z"
+    },
     {
       "playerId": "652",
       "playerName": "Rubén García",
